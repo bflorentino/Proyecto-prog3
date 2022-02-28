@@ -32,6 +32,11 @@ namespace Capa_de_servicios
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Capa_de_servicios", Version = "v1" });
             });
+
+            services.AddCors(opt => opt.AddPolicy("WebConnection", build => build
+                                                                                                  .AllowAnyMethod()
+                                                                                                  .AllowAnyHeader()
+                                                                                                  .AllowAnyOrigin()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +52,7 @@ namespace Capa_de_servicios
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("WebConnection");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
