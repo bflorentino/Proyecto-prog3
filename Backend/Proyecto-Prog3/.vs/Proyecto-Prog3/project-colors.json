@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1ddc00a2-7294-4688-a967-d15156d2bf8a": {
+      "ProjectGuid": "1ddc00a2-7294-4688-a967-d15156d2bf8a",
+      "DisplayName": "Capa de datos",
+      "ColorIndex": 0
+    },
+    "0df26913-4114-46b8-98ec-b09323cc60c7": {
+      "ProjectGuid": "0df26913-4114-46b8-98ec-b09323cc60c7",
+      "DisplayName": "Capa de servicios",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
