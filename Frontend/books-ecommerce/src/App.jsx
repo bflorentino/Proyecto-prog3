@@ -1,4 +1,4 @@
-import { AddUserPage } from "./Features/AddUserPage";
+import { AddUserPage } from "./Features/Sign Up/AddUserPage";
 
 const App = () => {
     return(<>
