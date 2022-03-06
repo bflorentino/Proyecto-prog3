@@ -3,7 +3,9 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 
 const LoginSchema = yup.object().shape({
-    correo: yup.string().email("Correo inválido").required('Escribe un correo electrónico'),
+    usuario: yup.string()
+    .required("Usuario no valido")
+    .min(5, "Nombre de usuario muy corto"),
     password: yup.string()
     .required("Escribe tu contraseña")
     .min(8, "Se requieren al menos 8 caracteres")
@@ -16,7 +18,7 @@ export const Login = () => {
         <div className="flex items-center flex-col mt-20">
 
             <Formik
-                initialValues={{correo:'', password:''}}
+                initialValues={{usuario:'', password:''}}
                 validationSchema = {LoginSchema}
                 onSubmit={values => {
                     console.log(values)
@@ -32,13 +34,13 @@ export const Login = () => {
                 <div className="mt-10 w-4/5">
                     <Field
                         type="text"
-                        placeholder="Correo Electrónico"
+                        placeholder="Usuario"
                         autoComplete="off"
-                        name="correo"
+                        name="usuario"
                         className="border-light-blue outline-none text-center border-b-2 border-light-blue w-full focus:border-dark-blue placeholder:text-dark-blue"
                     />
-                    {errors.correo && touched.correo ? (
-                        <div className="text-red-error">{errors.correo}</div>
+                    {errors.usuario && touched.usuario ? (
+                        <div className="text-red-error">{errors.usuario}</div>
                     ): null}
                 </div>
 
