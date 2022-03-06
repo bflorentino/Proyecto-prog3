@@ -20,7 +20,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 export const AddUserPage = () =>{
-
+    
     return (
     <>
         <div className='flex items-center flex-col mt-6'>
