@@ -11,7 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Capa_de_datos;
+using Capa_de_servicios.Servicios;
+using Capa_de_servicios.Common;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Capa_de_servicios
 {
@@ -38,7 +42,43 @@ namespace Capa_de_servicios
                                                                                                   .AllowAnyMethod()
                                                                                                   .AllowAnyHeader()
                                                                                                   .AllowAnyOrigin()));
-            services.AddDbContext<E_CommerceContext>();
+
+            services.AddControllers();
+
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<Appsetings>(appSettingsSection);
+          
+
+            //JWT
+            var appSettings = appSettingsSection.Get<Appsetings>();
+            var llave = Encoding.ASCII.GetBytes(appSettings.secreto);
+            services.AddAuthentication(d =>
+            {
+
+                d.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                d.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+
+
+            })
+                .AddJwtBearer(d=> {
+
+                    d.RequireHttpsMetadata = false;
+                    d.SaveToken = true;
+                    d.TokenValidationParameters = new TokenValidationParameters
+                    {
+
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(llave),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+
+                    };
+                }) ;
+
+
+
+            services.AddScoped<IUserServices, UserServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +95,7 @@ namespace Capa_de_servicios
 
             app.UseRouting();
             app.UseCors("WebConnection");
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
