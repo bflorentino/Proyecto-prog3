@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capa_de_datos;
 
 namespace Capa_de_servicios
 {
@@ -37,6 +38,7 @@ namespace Capa_de_servicios
                                                                                                   .AllowAnyMethod()
                                                                                                   .AllowAnyHeader()
                                                                                                   .AllowAnyOrigin()));
+            services.AddDbContext<E_CommerceContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
