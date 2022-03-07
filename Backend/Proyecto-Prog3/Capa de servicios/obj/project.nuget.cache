@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WQRrt5F4KQMqYXFOVWWazbBeEKJXy+v/jGwq3N53YS4XzzCJcXp+lIjZbAcyv/5LV4YCNzpKtMGbwDtn2AmjZQ==",
+  "dgSpecHash": "Y6UWQT1hTXtz7vPQirap1is5JuMM9kTZl+9N99PflWPvj55f8JXXlMkFRs9emBBNSpt36sDY3KcjJnseNVtB7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.3\\microsoft.aspnetcore.authentication.jwtbearer.3.0.3.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

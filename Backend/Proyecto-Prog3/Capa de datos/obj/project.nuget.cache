@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U4PS4PTk0QhdReWwMGEQBJRV57Y/sOpQz5EP9EQBb9eDtNtp3BElf5rjKPuXEqis0uv5FfeFU2XXkrbQzwHkQw==",
+  "dgSpecHash": "d9aAWHsCyi63txIeOug1f63vWvp54ie7CkScYuZ3no1yo15+wKYtWmuGP0ENvcjUA7pWUI87ZxKHsYG5iarvtQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

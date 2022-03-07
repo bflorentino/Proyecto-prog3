@@ -2,6 +2,21 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -1573,6 +1588,20 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.0.3": {
+      "sha512": "3agHVU8W52KaXVkfGuaftc8OGnyiH4Xqanaqwx/RugdraDvT4KGt9MgFOF7selwon5iP4Cs++Mj4ynpYUy7fEQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.3.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
@@ -5898,6 +5927,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Capa de datos >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.0.3",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -5909,11 +5939,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
       "projectName": "Capa de servicios",
-      "projectPath": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -5936,8 +5966,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
+            "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Desktop\\Archivos de milton\\ITLA\\Trabajos ITLA\\Quinto Cuatrimestre\\Programación III\\Proyecto lo mas jevi\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
             }
           }
         }
@@ -5952,6 +5982,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[3.0.3, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
