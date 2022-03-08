@@ -1,12 +1,13 @@
 import { React } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
+import sendData from './LoginService';
 
 const LoginSchema = yup.object().shape({
-    usuario: yup.string()
+    NombreUsuario: yup.string()
     .required("Usuario no valido")
     .min(5, "Nombre de usuario muy corto"),
-    password: yup.string()
+    contraseña: yup.string()
     .required("Escribe tu contraseña")
     .min(8, "Se requieren al menos 8 caracteres")
 });
@@ -18,10 +19,10 @@ export const Login = () => {
         <div className="flex items-center flex-col mt-20">
 
             <Formik
-                initialValues={{usuario:'', password:''}}
+                initialValues={{NombreUsuario:'', contraseña:''}}
                 validationSchema = {LoginSchema}
                 onSubmit={values => {
-                    console.log(values)
+                    sendData({values});
                 }}
             >
             {({errors, touched}) => (
@@ -36,11 +37,11 @@ export const Login = () => {
                         type="text"
                         placeholder="Usuario"
                         autoComplete="off"
-                        name="usuario"
+                        name="NombreUsuario"
                         className="border-light-blue outline-none text-center border-b-2 border-light-blue w-full focus:border-dark-blue placeholder:text-dark-blue"
                     />
-                    {errors.usuario && touched.usuario ? (
-                        <div className="text-red-error">{errors.usuario}</div>
+                    {errors.NombreUsuario && touched.NombreUsuario ? (
+                        <div className="text-red-error">{errors.NombreUsuario}</div>
                     ): null}
                 </div>
 
@@ -49,11 +50,11 @@ export const Login = () => {
                         type="password"
                         placeholder="Contraseña"
                         autoComplete="off"
-                        name="password"
+                        name="contraseña"
                         className="text-center outline-none border-b-2 border-light-blue w-full focus:border-dark-blue placeholder:text-dark-blue"
                     />
-                    {errors.password && touched.password ? (
-                        <div className="text-red-error">{errors.password}</div>
+                    {errors.contraseña && touched.contraseña ? (
+                        <div className="text-red-error">{errors.contraseña}</div>
                     ): null}
                 </div>
 
