@@ -44,6 +44,8 @@ namespace Capa_de_servicios
                                                                                                   .AllowAnyHeader()
                                                                                                   .AllowAnyOrigin()));
             //inyeccion de dependencias
+            services.AddScoped<ILibroServices, LibrosServices>();
+            services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IClienteServices, ClienteServices>();
             services.AddDbContext<E_CommerceContext>();
 
@@ -82,7 +84,7 @@ namespace Capa_de_servicios
 
 
 
-            services.AddScoped<IUserServices, UserServices>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Capa_de_servicios.Response
 {
-    public class Respuestas<T>
+    public class Respuestas
     {
         public int Exito {get; set;}
         public string Mensaje { get; set; }

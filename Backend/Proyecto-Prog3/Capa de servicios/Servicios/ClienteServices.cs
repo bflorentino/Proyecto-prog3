@@ -19,9 +19,9 @@ namespace Capa_de_servicios.Servicios
         }
 
 
-        public async Task<Respuestas<string>> AddCliente(ClienteBinding cliente)
+        public async Task<Respuestas> AddCliente(ClienteBinding cliente)
         {
-            var respuesta = new Respuestas<string>();
+            var respuesta = new Respuestas();
 
             var client = new Cliente
             {
