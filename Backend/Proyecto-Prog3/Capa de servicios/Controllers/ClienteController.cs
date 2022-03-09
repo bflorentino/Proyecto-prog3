@@ -39,6 +39,5 @@ namespace Capa_de_servicios.Controllers
         {
             return Ok(await _clienteServices.AddCliente(cliente));
         }
-       
     }
 }

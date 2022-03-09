@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup';
+import { addUser } from './SigupService';
+import { useNavigate, Link } from 'react-router-dom';
 
 // FORMIK VALIDATIONS
 const SignUpSchema = Yup.object().shape({
@@ -9,27 +11,31 @@ const SignUpSchema = Yup.object().shape({
     apellido: Yup.string()
     .required("Este campo es requerido"),
     correo : Yup.string().email("Correo inválido").required('Se requiere un correo electrónico'),
-    pais : Yup.string()
+    direccion : Yup.string()
     .required("Debe seleccionar su país"),
-    usuario : Yup.string()
+    nombreUsuario : Yup.string()
     .required("Se requiere un nombre de usuario")
     .min(5, "Este nombre es demasiado corto"),
-    password : Yup.string()
+    Contraseña : Yup.string()
     .required("Se requiere una contraseña")
     .min(8, "Se requieren al menos 8 caracteres")
 });
 
 export const AddUserPage = () =>{
     
+    const history = useNavigate();
+
     return (
     <>
         <div className='flex items-center flex-col mt-6'>
             <h1 className='text-4xl font-bold font-poppins'>Crear nueva cuenta</h1>
             <Formik
-                initialValues={{nombre:'', apellido:'', telefono:'', correo:'', pais:'', usuario:'', password:''}}
+                initialValues={{nombre:'', apellido:'', telefono:'', correo:'', direccion:'', nombreUsuario:'',Contraseña:''}}
                 validationSchema = {SignUpSchema}
                 onSubmit={values => {
-                    console.log(values)
+                    addUser({values}).then(mensaje => {
+                        history('/Log-In', {replace:true})
+                    })
                 }}
             >
             {({ errors, touched }) => (
@@ -90,12 +96,12 @@ export const AddUserPage = () =>{
                     <Field 
                         type="text"
                         autoComplete='off'
-                        placeholder='País'
-                        name='pais'
+                        placeholder='Direccion'
+                        name='direccion'
                         className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
                     />
-                    {errors.pais && touched.pais ? (
-                        <div className='text-red-error'>{errors.pais}</div>
+                    {errors.direccion && touched.direccion ? (
+                        <div className='text-red-error'>{errors.direccion}</div>
                     ) : null}
                 </div>
 
@@ -104,11 +110,11 @@ export const AddUserPage = () =>{
                         type="text"
                         autoComplete='off'
                         placeholder='Nombre de usuario'
-                        name='usuario'
+                        name='nombreUsuario'
                         className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
                     />
-                    {errors.usuario && touched.usuario ? (
-                        <div className='text-red-error'>{errors.usuario}</div>
+                    {errors.nombreUsuario && touched.nombreUsuario ? (
+                        <div className='text-red-error'>{errors.nombreUsuario}</div>
                     ) : null}
                 </div>
 
@@ -117,15 +123,15 @@ export const AddUserPage = () =>{
                         type="password"
                         autoComplete='off'
                         placeholder='Contraseña'
-                        name='password'
+                        name='Contraseña'
                         className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
                     />
-                    {errors.password && touched.password ? (
-                        <div className='text-red-error'>{errors.password}</div>
+                    {errors.Contraseña && touched.Contraseña ? (
+                        <div className='text-red-error'>{errors.Contraseña}</div>
                     ) : null}
                 </div>
 
-                <div className='mt-6 w-4/5'>
+                {/* <div className='mt-6 w-4/5'>
                     <Field 
                         type="password"
                         autoComplete='off'
@@ -133,16 +139,16 @@ export const AddUserPage = () =>{
                         name='confirmPassword'
                         className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
                     />
-                </div>
+                </div> */}
                 <div className='mt-6 bg-dark-blue text-white px-14 py-2 rounded-lg'>
-                    <button type='submit'>
-                         Crear Cuenta
+                <button type="submit">
+                        Crear cuenta
                     </button>
                 </div>
                 <div className='mt-6 mb-6 bg-yellow  px-8 py-2 rounded-lg'>
-                    <button >
-                        Ya tengo una cuenta
-                    </button>
+                <Link to={`/Log-In`}>
+                    Ya tengo una cuenta
+                </Link>
                 </div>
             </Form>
                )}

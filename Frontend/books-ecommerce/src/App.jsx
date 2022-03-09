@@ -1,10 +1,9 @@
-import { AddUserPage } from "./Features/Sign Up/AddUserPage";
-import { Login } from "./Features/Login/LoginUserPage";
-import { Data } from "./Features/Login/LoginService";
+
+import AppRouter from "./Features/Routes/AppRouter";
 
 const App = () => {
     return(<>
-        <Login/>
+        <AppRouter />
     </>)
 }  
 

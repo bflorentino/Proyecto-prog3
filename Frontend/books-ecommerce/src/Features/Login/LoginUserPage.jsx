@@ -2,6 +2,7 @@ import { React } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import sendData from './LoginService';
+import { Link } from "react-router-dom";
 
 const LoginSchema = yup.object().shape({
     NombreUsuario: yup.string()
@@ -65,7 +66,11 @@ export const Login = () => {
                 </div>
 
                 <div className='mt-2 mb-6'>
-                    <p>¿No tienes una cuenta aún? <a href="#" className="text-gray underline">Crear</a></p>
+                    <p>¿No tienes una cuenta aún?  
+                        <Link to={`/Sign-Up`} className='text-blue-top-buttom'>
+                            Crear
+                        </Link>
+                    </p>
                 </div>
 
             </Form>    

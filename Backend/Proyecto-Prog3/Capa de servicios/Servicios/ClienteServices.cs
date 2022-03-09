@@ -46,7 +46,7 @@ namespace Capa_de_servicios.Servicios
             await _context.SaveChangesAsync();
 
 
-            respuesta.Mensaje = "El cliente a sido agregado correctamente";
+            respuesta.Mensaje = "El cliente ha sido agregado correctamente";
             return respuesta;
         }
     }
