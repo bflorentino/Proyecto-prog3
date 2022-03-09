@@ -16,6 +16,7 @@ using Capa_de_servicios.Common;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Capa_de_datos;
 
 namespace Capa_de_servicios
 {
@@ -42,6 +43,9 @@ namespace Capa_de_servicios
                                                                                                   .AllowAnyMethod()
                                                                                                   .AllowAnyHeader()
                                                                                                   .AllowAnyOrigin()));
+            //inyeccion de dependencias
+            services.AddScoped<IClienteServices, ClienteServices>();
+            services.AddDbContext<E_CommerceContext>();
 
             services.AddControllers();
 
