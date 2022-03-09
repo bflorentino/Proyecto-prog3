@@ -9,6 +9,6 @@ namespace Capa_de_servicios.Servicios
 {
    public interface IClienteServices
     {
-        Task<Respuestas<string>> AddCliente(ClienteBinding cliente);
+        Task<Respuestas> AddCliente(ClienteBinding cliente);
     }
 }

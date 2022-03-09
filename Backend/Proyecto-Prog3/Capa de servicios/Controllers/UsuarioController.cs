@@ -30,7 +30,7 @@ namespace Capa_de_servicios.Controllers
         public async Task <IActionResult> Autentificar([FromBody] AuthRequest model) 
         {
 
-            Respuestas<UserResponse> respuesta = new Respuestas<UserResponse>();
+            Respuestas respuesta = new Respuestas();
             //Respuestas respuesta = new Respuestas();
             var userresponse = await _UserServices.Auth(model);
             if (userresponse == null)
