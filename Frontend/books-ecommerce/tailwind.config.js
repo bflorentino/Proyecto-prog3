@@ -14,6 +14,7 @@ module.exports = {
       'green': '#40916c',
       'blue-top-buttom' : '#026aa7',
       'red-error':'#FF3143',
+      'green-button': '#57CC25'
     },
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif']

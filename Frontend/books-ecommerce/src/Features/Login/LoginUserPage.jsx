@@ -39,7 +39,7 @@ export const Login = () => {
                         placeholder="Usuario"
                         autoComplete="off"
                         name="NombreUsuario"
-                        className="border-light-blue outline-none text-center border-b-2 border-light-blue w-full focus:border-dark-blue placeholder:text-dark-blue"
+                        className="border-light-blue outline-none text-center border-b-2 w-full focus:border-dark-blue placeholder:text-dark-blue"
                     />
                     {errors.NombreUsuario && touched.NombreUsuario ? (
                         <div className="text-red-error">{errors.NombreUsuario}</div>
