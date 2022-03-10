@@ -17,16 +17,16 @@ const AppRouter = () => {
                         path = '/Sign-Up'
                         element= {<AddUserPage />}
                     />
-                <Route
-                    exact
-                    path = '/Log-In'
-                    element= {<Login />}
-                />
-                <Route
-                    exact
-                    path = '/Get-BooksAdm'
-                    element= {<GetBooksPage />}
-                />
+                    <Route
+                        exact
+                        path = '/Log-In'
+                        element= {<Login />}
+                    />
+                    <Route
+                        exact
+                        path = '/Get-BooksAdm'
+                        element= {<GetBooksPage />}
+                    />
                 </Routes>
             </div>
           </Router>
