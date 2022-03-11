@@ -145,13 +145,15 @@ namespace Capa_de_datos
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Imagen).HasColumnType("image");
-
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Precio).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.RutaFoto)
+                    .IsUnicode(false)
+                    .HasColumnName("rutaFoto");
 
                 entity.HasOne(d => d.IdCategoriaNavigation)
                     .WithMany(p => p.Libros)
@@ -185,7 +187,7 @@ namespace Capa_de_datos
                     .HasColumnName("nombreUsuario");
 
                 entity.Property(e => e.Contraseña)
-                    .HasMaxLength(6)
+                    .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("contraseña");
 

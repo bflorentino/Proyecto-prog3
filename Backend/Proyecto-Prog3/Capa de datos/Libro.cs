@@ -22,7 +22,8 @@ namespace Capa_de_datos
         public int? NumeroPaginas { get; set; }
         public string Idioma { get; set; }
         public int? IdCategoria { get; set; }
-        public byte[] Imagen { get; set; }
+        public string RutaFoto { get; set; }
+        public bool? EnVenta { get; set; }
 
         public virtual Categorium IdCategoriaNavigation { get; set; }
         public virtual ICollection<Calificacione> Calificaciones { get; set; }
