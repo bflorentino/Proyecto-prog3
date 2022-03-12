@@ -43,3 +43,18 @@ C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\ref\Capa de datos.dll
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.pdb
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.genruntimeconfig.cache
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.deps.json
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.runtimeconfig.json
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.runtimeconfig.dev.json
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.dll
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\ref\Capa de datos.dll
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.pdb
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.csproj.AssemblyReference.cache
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.AssemblyInfoInputs.cache
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.AssemblyInfo.cs
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.csproj.CoreCompileInputs.cache
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.dll
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\ref\Capa de datos.dll
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.pdb
+C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.genruntimeconfig.cache
