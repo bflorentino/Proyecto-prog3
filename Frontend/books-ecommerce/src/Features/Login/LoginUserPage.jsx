@@ -1,8 +1,8 @@
-import { React } from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
-import sendData from './LoginService';
 import { Link } from "react-router-dom";
+import {AuthContext} from "../Context/AuthContext";
 
 const LoginSchema = yup.object().shape({
     NombreUsuario: yup.string()
@@ -13,8 +13,10 @@ const LoginSchema = yup.object().shape({
     .min(8, "Se requieren al menos 8 caracteres")
 });
 
-export const Login = () => {
-    
+const Login = () => {
+
+    let {logIn} = useContext(AuthContext);
+
     return(
     <>
         <div className="flex items-center flex-col mt-20">
@@ -22,9 +24,9 @@ export const Login = () => {
             <Formik
                 initialValues={{NombreUsuario:'', contraseña:''}}
                 validationSchema = {LoginSchema}
-                onSubmit={values => {
-                    sendData({values});
-                }}
+                onSubmit={
+                    logIn
+                }
             >
             {({errors, touched}) => (
             <Form className="flex flex-col items-center mt-20 w-1/4 bg-white shadow-md rounded-md">
@@ -80,3 +82,5 @@ export const Login = () => {
     </>
     );
 }
+
+export default Login;
