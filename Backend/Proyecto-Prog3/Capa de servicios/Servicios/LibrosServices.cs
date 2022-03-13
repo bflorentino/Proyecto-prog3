@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capa_de_servicios.Modelos;
 
 namespace Capa_de_servicios.Servicios
 {
@@ -16,6 +17,35 @@ namespace Capa_de_servicios.Servicios
         public LibrosServices(E_CommerceContext context)
         {
             _context = context;
+        }
+
+        public async Task<Respuestas> AddLibro(LibroBinding libro)
+        {
+            var respuesta = new Respuestas();
+
+            var book = new Libro
+            {
+                Nombre = libro.Nombre,
+                Precio = libro.Precio,
+                Autor = libro.Autor,
+                Año = libro.Año,
+                Editorial = libro.Editorial,
+                NumeroPaginas = libro.NumeroPaginas,
+                Idioma = libro.Idioma,
+                IdCategoria = libro.IdCategoria,
+                RutaFoto = libro.RutaFoto,
+                EnVenta = true
+
+            };
+
+            
+
+            await _context.Libros.AddAsync(book);
+            await _context.SaveChangesAsync();
+
+
+            respuesta.Mensaje = "El libro ha sido agregado correctamente";
+            return respuesta;
         }
 
         public async Task<Respuestas> Getbooks()

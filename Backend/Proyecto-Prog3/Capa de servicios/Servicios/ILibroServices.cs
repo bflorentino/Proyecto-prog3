@@ -6,11 +6,13 @@ using Capa_de_datos;
 using Capa_de_servicios.Response;
 using Capa_de_servicios.Controllers;
 using Capa_de_servicios.Request;
+using Capa_de_servicios.Modelos;
 
 namespace Capa_de_servicios.Servicios
 {
     public interface ILibroServices
     {
+        public Task<Respuestas> AddLibro(LibroBinding libroBinding);
         public Task<Respuestas> Getbooks();
 
         public Task<Respuestas> EditBooks(LibroRequest omodel);

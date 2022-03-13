@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Capa_de_servicios.Request;
 using Capa_de_servicios.Response;
 using Capa_de_servicios.Servicios;
+using Capa_de_servicios.Modelos;
+using System.IO;
 
 namespace Capa_de_servicios.Controllers
 {
@@ -16,27 +18,48 @@ namespace Capa_de_servicios.Controllers
     public class LibroController : ControllerBase
     {
 
-        private ILibroServices _libroServices;
+        private readonly ILibroServices _libroServices;
+        private readonly IAlmacenamientoServices almacenamiento;
 
 
-        public LibroController(ILibroServices librosServices)
+        public LibroController(ILibroServices librosServices, IAlmacenamientoServices almacenamientoServices)
         {
 
             _libroServices = librosServices;
+            almacenamiento = almacenamientoServices;
 
-        }
+        } 
 
         // Obtener los datos de los Libros
         [HttpGet]
         public async Task<IActionResult> Get()
         {
 
-
-
             return Ok(await _libroServices.Getbooks());
 
+        }
 
+       
 
+        [HttpPost]
+        public async Task<IActionResult> Post([FromForm] LibroBinding libro)
+        {
+
+            if (libro.Foto != null)
+            {
+                libro.RutaFoto = await GuardarFoto(libro.Foto);
+            }
+            return Ok( await _libroServices.AddLibro(libro));
+        }
+
+        private async Task<string> GuardarFoto(IFormFile foto)
+        {
+            var stream = new MemoryStream();
+            await foto.CopyToAsync(stream);
+
+            var filebytes = stream.ToArray();
+
+            return await almacenamiento.CrearFoto(filebytes, foto.ContentType, Path.GetExtension(foto.FileName), "Libro", Guid.NewGuid().ToString());
         }
 
         // Editar libro 

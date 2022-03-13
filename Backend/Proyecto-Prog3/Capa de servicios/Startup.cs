@@ -48,6 +48,9 @@ namespace Capa_de_servicios
             services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IClienteServices, ClienteServices>();
             services.AddDbContext<E_CommerceContext>();
+            services.AddScoped<IAlmacenamientoServices, AlmacenamientoServices>();
+            services.AddHttpContextAccessor();
+            
 
             services.AddControllers();
 
@@ -98,7 +101,7 @@ namespace Capa_de_servicios
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors("WebConnection");
             app.UseAuthentication();
