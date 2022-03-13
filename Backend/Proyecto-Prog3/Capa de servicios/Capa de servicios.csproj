@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Capa de datos\Capa de datos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Libro\" />
+  </ItemGroup>
+
 </Project>
