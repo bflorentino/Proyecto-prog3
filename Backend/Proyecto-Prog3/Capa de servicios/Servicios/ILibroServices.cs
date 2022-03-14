@@ -13,6 +13,7 @@ namespace Capa_de_servicios.Servicios
     public interface ILibroServices
     {
         public Task<Respuestas> AddLibro(LibroBinding libroBinding);
+        public Task<Respuestas> EliminarLibro(int eliminar);
         public Task<Respuestas> Getbooks();
 
         public Task<Respuestas> EditBooks(LibroRequest omodel);

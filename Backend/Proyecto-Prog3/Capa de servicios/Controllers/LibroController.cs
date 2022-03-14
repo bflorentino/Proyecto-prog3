@@ -28,7 +28,16 @@ namespace Capa_de_servicios.Controllers
             _libroServices = librosServices;
             almacenamiento = almacenamientoServices;
 
-        } 
+        }
+
+        //Eliminar un libro
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> EliminarLibro(int Id)
+        {
+
+            return Ok(await _libroServices.EliminarLibro(Id));
+
+        }
 
         // Obtener los datos de los Libros
         [HttpGet]
