@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { deleteBook } from '../Admin-registerBooks/deleteBookServise';
 
 const BookGrid =( {book} ) => {
 
@@ -16,6 +17,7 @@ const BookGrid =( {book} ) => {
                 <div className='flex flex-row'>
                   <dt className = "font-bold">Título: </dt>
                   <dd className='ml-2'>{book.nombre}</dd>
+                  {/* <dd dd className='ml-2'>{book.idLibro}</dd> */}
                 </div>
 
                 <div className='flex flex-row'>
@@ -49,7 +51,7 @@ const BookGrid =( {book} ) => {
               <button className='ml-32 bg-green-button text-white px-4 py-1'>
                   Editar
               </button>
-              <button className='ml-4 px-4 py-1 bg-red-error text-white'>
+              <button onClick={() => {deleteBook(book.idLibro)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
                   Eliminar
               </button>
             </div>

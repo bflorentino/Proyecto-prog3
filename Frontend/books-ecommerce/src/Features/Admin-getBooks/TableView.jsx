@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { deleteBook } from '../Admin-registerBooks/deleteBookServise';
 
 const TableView = ( {Books} ) => {
 
-  console.log(Books)
   return (
     <div className='flex justify-center'>
        <div class="overflow-hidden rounded-lg mt-8">
@@ -37,10 +37,10 @@ const TableView = ( {Books} ) => {
                   <td className='py-4 px-6 whitespace-nowrap text-sm '>{book.editorial}</td>
                   <td className='py-4 px-6 whitespace-nowrap text-sm text-center'>{book.numeroPaginas}</td>
                   <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                      <button class="text-link-blue hover:underline">Editar</button>
+                    <button class="text-link-blue hover:underline">Editar</button>
                   </td>
                   <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                      <button href="#" class="text-link-blue hover:underline">Eliminar</button>
+                    <button onClick={() => {deleteBook(book.idLibro)}} className="text-link-blue hover:underline">Eliminar</button>
                   </td>
                 </tr>
             ))
