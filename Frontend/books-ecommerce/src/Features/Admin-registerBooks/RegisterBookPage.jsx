@@ -197,6 +197,7 @@ export const RegisterBookPage = () => {
                                 <input
                                     ref={fileRef}
                                     type="file"
+                                    accept='image/*'
                                     className="ml-2"
                                     onChange={(event) => {
                                         setFieldValue("Foto", event.target.files[0])

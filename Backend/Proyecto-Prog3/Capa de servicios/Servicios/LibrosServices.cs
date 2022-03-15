@@ -110,11 +110,11 @@ namespace Capa_de_servicios.Servicios
 
         }
 
-        public async Task<Respuestas> GetbookByID(LibroRequest omodel) 
+        public async Task<Respuestas> GetbookByID(int id) 
         {
             Respuestas orepuesta = new Respuestas();
 
-            Libro olibro = await _context.Libros.FindAsync(omodel.idLibro);
+            Libro olibro = await _context.Libros.FindAsync(id);
             _context.Entry(olibro).State = Microsoft.EntityFrameworkCore.EntityState.Unchanged;
             orepuesta.Data = olibro;
 

@@ -3,16 +3,17 @@ const API = 'https://localhost:44373/api/Libro';
 export const registerService = async ({values}) => {    
     
     let form = new FormData();
-
-    form.append('Nombre', values.Nombre);
-    form.append('Precio', values.Precio);
-    form.append('Autor', values.Autor);
-    form.append('Año', values.Año);
-    form.append('Editorial', values.Editorial);
-    form.append('NumeroPaginas', values.NumeroPaginas);
-    form.append('Idioma', values.Idioma);
-    form.append('IdCategoria', values.IdCategoria);
-    form.append('Foto', values.Foto);
+    
+    form.append('idLibro', values.idLibro);
+    form.append('nombre', values.Nombre);
+    form.append('precio', values.Precio);
+    form.append('autor', values.Autor);
+    form.append('año', values.Año);
+    form.append('editorial', values.Editorial);
+    form.append('numeroPaginas', values.NumeroPaginas);
+    form.append('idioma', values.Idioma);
+    form.append('idCategoria', values.IdCategoria);
+    form.append('foto', values.Foto);
 
     let response = await fetch(API, {
 

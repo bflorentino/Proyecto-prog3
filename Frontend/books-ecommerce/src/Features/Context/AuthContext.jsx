@@ -7,11 +7,10 @@ export const AuthProvider = ({children}) => {
 
     const history = useNavigate();
     const API = 'https://localhost:44373/api/Usuario/login'; 
-
-    let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
+    const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? localStorage.getItem('authTokens') : null);
 
-    let logIn = async (values) => {
+    const logIn = async (values) => {
 
         let mensaje = 'Usuario no encontrado';
 
@@ -28,23 +27,21 @@ export const AuthProvider = ({children}) => {
         if (response.status === 200){
             setAuthTokens(data);
             setUser(data.exito);
-
             localStorage.setItem('authTokens', JSON.stringify(data));
-            history('/Get-BooksAdm');
+            history('/Get-BooksAdm', {replace : true});
         }else{
             alert(mensaje);
         }
     }
 
-    let logOut = () => {
+    const logOut = () => {
         setAuthTokens(null);
         setUser(null);
-
         localStorage.removeItem('authTokens');
-        history('/Log-in');    
+        history('/Log-in', {replace: true});    
     }
 
-    let contextData = {
+    const contextData = {
         user:user,
         authTokens:authTokens,
         logIn:logIn,
@@ -52,8 +49,8 @@ export const AuthProvider = ({children}) => {
     };
 
     return(
-        <AuthContext.Provider value={contextData}>
-            {children}
+        <AuthContext.Provider value={contextData}>     
+                {children}
         </AuthContext.Provider>
     )
 }

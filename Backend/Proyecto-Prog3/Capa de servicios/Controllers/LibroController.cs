@@ -74,22 +74,18 @@ namespace Capa_de_servicios.Controllers
         // Editar libro 
 
         [HttpPut]
-        public async Task<IActionResult> Edit(LibroRequest omodel)
+        public async Task<IActionResult> Edit([FromForm]LibroRequest omodel)
         {
 
             return Ok(await _libroServices.EditBooks(omodel));
 
         }
-
-        [HttpGet("{iD}")]
-        public  async Task <IActionResult> GetID(LibroRequest omodel)
-        {
-           
-                return Ok(await _libroServices.GetbookByID(omodel));
-
             
+        [HttpGet("{id}")]
+        public  async Task <IActionResult> GetID(int id)
+        {
+                return Ok(await _libroServices.GetbookByID(id));
         }
-
     }
 }
     

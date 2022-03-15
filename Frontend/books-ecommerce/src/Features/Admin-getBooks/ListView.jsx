@@ -6,13 +6,14 @@ const ListView = ({Books}) => {
   return (
     <>
         {
-            Books.map(book => (
+            Books.map(book => 
+              (book.enVenta) &&
                 <BookGrid 
                     key = {book.idLibro}
                     book = {book}
                 />
-            ))
-        } 
+            )
+          }
     </>
   )
 }

@@ -34,7 +34,7 @@ export const AddUserPage = () =>{
                 validationSchema = {SignUpSchema}
                 onSubmit={values => {
                     addUser({values}).then(mensaje => {
-                        history('/Log-In', {replace:true})
+                        history('/', {replace:true})
                     })
                 }}
             >
@@ -146,7 +146,7 @@ export const AddUserPage = () =>{
                     </button>
                 </div>
                 <div className='mt-6 mb-6 bg-yellow  px-8 py-2 rounded-lg'>
-                <Link to={`/Log-In`}>
+                <Link to={`/`}>
                     Ya tengo una cuenta
                 </Link>
                 </div>

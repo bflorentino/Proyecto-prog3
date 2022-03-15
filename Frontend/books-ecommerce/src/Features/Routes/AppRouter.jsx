@@ -9,6 +9,7 @@ import GetBooksPage from '../Admin-getBooks/getBooksPage';
 import { AuthProvider } from '../Context/AuthContext';
 import PrivateRoute from './PrivatesRoutes';
 import { RegisterBookPage } from '../Admin-registerBooks/RegisterBookPage';
+import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
 
 const AppRouter = () => {
     return(
@@ -23,7 +24,7 @@ const AppRouter = () => {
                         />
                         <Route
                             exact
-                            path = '/Log-In'
+                            path = '/'
                             element= {<Login />}
                         />
                         <Route exact path='/Get-BooksAdm' element={<PrivateRoute/>}>
@@ -31,6 +32,9 @@ const AppRouter = () => {
                         </Route>
                         <Route exact path='/Register-BooksAdm' element={<PrivateRoute/>}>
                             <Route exact path='/Register-BooksAdm' element={<RegisterBookPage/>}/>
+                        </Route>
+                        <Route exact path='/Edit-BooksAdm/:bookId' element={<PrivateRoute/>}>
+                            <Route exact path='/Edit-BooksAdm/:bookId' element={<EditBookPage/>}/>
                         </Route>
                     </Routes>
                 </AuthProvider>

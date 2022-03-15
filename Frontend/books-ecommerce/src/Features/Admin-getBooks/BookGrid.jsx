@@ -1,4 +1,5 @@
-import React from 'react';
+import React  from 'react';
+import { Link } from 'react-router-dom';
 import { deleteBook } from '../Admin-registerBooks/deleteBookServise';
 
 const BookGrid =( {book} ) => {
@@ -8,7 +9,7 @@ const BookGrid =( {book} ) => {
     <div className='flex flex-col items-center'>
       <div className='flex flex-row mb-6 mt-6 font-poppins w-2/3 border-b pb-6'>
           <img 
-              src={ `./assets/nombre.jpg` }  
+              src={ book.rutaFoto.replace(" ", "") }  
               className='w-30 h-40 ml-6 mr-6' 
               alt = "nombre"
           />
@@ -27,7 +28,7 @@ const BookGrid =( {book} ) => {
                 
                 <div className='flex flex-row'>
                   <dt className = "font-bold">Precio: </dt>               
-                  <dd className='ml-2'>{book.precio}</dd>
+                  <dd className='ml-2'>{`${book.precio} USD$`}</dd>
                 </div>
                 
                 <div className='flex flex-row'>
@@ -48,9 +49,9 @@ const BookGrid =( {book} ) => {
             </dl>
 
             <div className='flex items-center'>
-              <button className='ml-32 bg-green-button text-white px-4 py-1'>
-                  Editar
-              </button>
+              <Link to={`/Edit-BooksAdm/${book.idLibro}`} className='ml-32 bg-green-button text-white px-4 py-1'>
+                  Editar  
+              </Link>
               <button onClick={() => {deleteBook(book.idLibro)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
                   Eliminar
               </button>

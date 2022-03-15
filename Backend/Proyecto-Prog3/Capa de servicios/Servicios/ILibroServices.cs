@@ -18,7 +18,7 @@ namespace Capa_de_servicios.Servicios
 
         public Task<Respuestas> EditBooks(LibroRequest omodel);
 
-        public Task<Respuestas> GetbookByID(LibroRequest omodel);
+        public Task<Respuestas> GetbookByID(int id);
 
     }
 }
