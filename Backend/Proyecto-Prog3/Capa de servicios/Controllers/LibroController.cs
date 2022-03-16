@@ -74,7 +74,7 @@ namespace Capa_de_servicios.Controllers
         // Editar libro 
 
         [HttpPut]
-        public async Task<IActionResult> Edit([FromForm]LibroRequest omodel)
+        public async Task<IActionResult> Edit([FromForm]LibroBinding omodel)
         {
 
             return Ok(await _libroServices.EditBooks(omodel));
@@ -86,6 +86,13 @@ namespace Capa_de_servicios.Controllers
         {
                 return Ok(await _libroServices.GetbookByID(id));
         }
+
+        [HttpGet("nombre/{nombre}")]
+        public async Task<IActionResult> GetName(string nombre)
+        {
+            return Ok(await _libroServices.GetbookByName(nombre));
+        }
+
     }
 }
     
