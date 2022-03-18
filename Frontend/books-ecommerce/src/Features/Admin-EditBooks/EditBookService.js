@@ -1,11 +1,8 @@
 let URL = "https://localhost:44373/api/Libro"
 
-
 export const editBookService = async (values) => {
 
     const form = new FormData();
-
-    console.log(values)
 
     form.append("idLibro", values.idLibro)
     form.append('Nombre', values.Nombre);

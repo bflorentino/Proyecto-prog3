@@ -9,7 +9,7 @@ const ListView = ({Books}) => {
             Books.map(book => 
               (book.enVenta) &&
                 <BookGrid 
-                    key = {book.idLibro}
+                    key = {book.idlibro}
                     book = {book}
                 />
             )

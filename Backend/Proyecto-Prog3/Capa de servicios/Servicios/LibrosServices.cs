@@ -19,7 +19,6 @@ namespace Capa_de_servicios.Servicios
             _context = context;
         }
 
-
         public async Task<Respuestas> AddLibro(LibroBinding libro)
         {
             var respuesta = new Respuestas();
@@ -36,15 +35,9 @@ namespace Capa_de_servicios.Servicios
                 IdCategoria = libro.IdCategoria,
                 RutaFoto = libro.RutaFoto,
                 EnVenta = true
-
             };
-
-            
-
             await _context.Libros.AddAsync(book);
             await _context.SaveChangesAsync();
-
-
             respuesta.Mensaje = "El libro ha sido agregado correctamente";
             respuesta.Exito = 1;
             return respuesta;
@@ -52,16 +45,11 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<Respuestas> EliminarLibro(int eliminar)
         {
-
             var respuesta = new Respuestas();
             var libro = await _context.Libros.FirstOrDefaultAsync(a => a.IdLibro == eliminar);
-
-               libro.EnVenta = false;
-
+             libro.EnVenta = false;
             _context.Update(libro);
             await _context.SaveChangesAsync();
-
-
 
             respuesta.Mensaje = "el libro ha sido eliminado correctamente";
             respuesta.Exito = 1;
@@ -70,13 +58,12 @@ namespace Capa_de_servicios.Servicios
 
     public async Task<Respuestas> Getbooks()
         {
-
+            Respuestas oRespuesta = new  Respuestas();
             var listaLibro = await (from libros in _context.Libros 
                                     join categoria in _context.Categoria 
                                     on libros.IdCategoria equals categoria.IdCategoria 
                                     select new LibroViewModel     
                                     {
-
                                          Nombre = libros.Nombre,
                                          Autor = libros.Autor,
                                          Categoria = categoria.CategoriaLibro,
@@ -86,25 +73,20 @@ namespace Capa_de_servicios.Servicios
                                          RutaFoto = libros.RutaFoto,
                                          IdCategoria = libros.IdCategoria,
                                          Anio = libros.Año,
-                                         Idlibro = libros.IdLibro
-
+                                         Idlibro = libros.IdLibro,
+                                         Precio = libros.Precio,
+                                         EnVenta = libros.EnVenta
                                     }).ToListAsync();
 
-
-            Respuestas oRespuesta = new  Respuestas();
-
             oRespuesta.Data = listaLibro;
-
             return oRespuesta;
         }
 
         public async Task<Respuestas> EditBooks(LibroBinding omodel) 
         {
             Respuestas orepuesta = new Respuestas();
-
             try
-            {
-           
+            {           
                     Libro olibro = await _context.Libros.FindAsync(omodel.Idlibro);
                     olibro.Nombre = omodel.Nombre;
                     olibro.Precio = omodel.Precio;
@@ -116,20 +98,16 @@ namespace Capa_de_servicios.Servicios
                     olibro.IdCategoria = omodel.IdCategoria;
                     olibro.RutaFoto = omodel.RutaFoto;
 
-
                     orepuesta.Mensaje = "el libro ha sido editado correctamente";
                     _context.Entry(olibro).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                    await _context.SaveChangesAsync();
                     orepuesta.Exito = 1;
-
             }
             catch (Exception ex)
             {
                 orepuesta.Mensaje = ex.Message;
             }
-
             return orepuesta;
-
         }
 
         public async Task<Respuestas> GetbookByID(int id) 
@@ -142,7 +120,6 @@ namespace Capa_de_servicios.Servicios
                          where libros.IdLibro == id
                          select new LibroViewModel
                          {
-
                              Nombre = libros.Nombre,
                              Autor = libros.Autor,
                              Categoria = categoria.CategoriaLibro,
@@ -153,8 +130,8 @@ namespace Capa_de_servicios.Servicios
                              IdCategoria = libros.IdCategoria,
                              Anio = libros.Año,
                              Idlibro = libros.IdLibro,
-                             Precio = libros.Precio
-
+                             Precio = libros.Precio,
+                             EnVenta = libros.EnVenta
                          };
             orepuesta.Data = Libro;
             return orepuesta;
@@ -170,7 +147,6 @@ namespace Capa_de_servicios.Servicios
                         where libros.Nombre.Contains(nombre)
                         select new LibroViewModel
                         {
-
                             Nombre = libros.Nombre,
                             Autor = libros.Autor,
                             Categoria = categoria.CategoriaLibro,
@@ -181,13 +157,11 @@ namespace Capa_de_servicios.Servicios
                             IdCategoria = libros.IdCategoria,
                             Anio = libros.Año,
                             Idlibro = libros.IdLibro,
-                            Precio = libros.Precio
-
+                            Precio = libros.Precio,
+                            EnVenta = libros.EnVenta
                         };
             orepuesta.Data = Libro;
             return orepuesta;
         }
-
-
     }
 }

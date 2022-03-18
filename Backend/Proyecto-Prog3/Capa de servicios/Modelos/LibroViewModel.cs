@@ -19,6 +19,7 @@ namespace Capa_de_servicios.Modelos
         public int? IdCategoria { get; set; }
         public string RutaFoto { get; set; }
         public string Categoria { get; set; }
+        public bool? EnVenta { get; set; }
 
     }
 }

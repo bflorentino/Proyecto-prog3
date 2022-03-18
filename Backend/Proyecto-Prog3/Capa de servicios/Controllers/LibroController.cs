@@ -17,43 +17,32 @@ namespace Capa_de_servicios.Controllers
     [ApiController]
     public class LibroController : ControllerBase
     {
-
         private readonly ILibroServices _libroServices;
         private readonly IAlmacenamientoServices almacenamiento;
 
-
         public LibroController(ILibroServices librosServices, IAlmacenamientoServices almacenamientoServices)
         {
-
             _libroServices = librosServices;
             almacenamiento = almacenamientoServices;
-
         }
 
         //Eliminar un libro
         [HttpPut("{Id}")]
         public async Task<IActionResult> EliminarLibro(int Id)
         {
-
             return Ok(await _libroServices.EliminarLibro(Id));
-
         }
 
         // Obtener los datos de los Libros
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-
             return Ok(await _libroServices.Getbooks());
-
         }
-
-       
 
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] LibroBinding libro)
         {
-
             if (libro.Foto != null)
             {
                 libro.RutaFoto = await GuardarFoto(libro.Foto);
@@ -65,20 +54,15 @@ namespace Capa_de_servicios.Controllers
         {
             var stream = new MemoryStream();
             await foto.CopyToAsync(stream);
-
             var filebytes = stream.ToArray();
-
             return await almacenamiento.CrearFoto(filebytes, foto.ContentType, Path.GetExtension(foto.FileName), "Libro", Guid.NewGuid().ToString());
         }
 
         // Editar libro 
-
         [HttpPut]
         public async Task<IActionResult> Edit([FromForm]LibroBinding omodel)
         {
-
             return Ok(await _libroServices.EditBooks(omodel));
-
         }
             
         [HttpGet("{id}")]
@@ -92,8 +76,6 @@ namespace Capa_de_servicios.Controllers
         {
             return Ok(await _libroServices.GetbookByName(nombre));
         }
-
     }
 }
-    
-
+   

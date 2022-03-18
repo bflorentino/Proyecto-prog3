@@ -10,10 +10,10 @@ export const EditBookPage = () => {
 
     useEffect(() => {
         getBookById(bookId).then(book =>{
-            setBook({...book})
+            setBook(book[0])
     })}, [bookId])
     
     return(
-      <EditForm Book={book}></EditForm>
+      <EditForm Book={book} />
     )
 }

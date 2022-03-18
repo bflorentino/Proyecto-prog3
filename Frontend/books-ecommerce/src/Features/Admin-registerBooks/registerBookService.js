@@ -4,7 +4,6 @@ export const registerService = async ({values}) => {
     
     let form = new FormData();
     
-    form.append('idLibro', values.idLibro);
     form.append('nombre', values.Nombre);
     form.append('precio', values.Precio);
     form.append('autor', values.Autor);

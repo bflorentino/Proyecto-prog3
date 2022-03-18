@@ -15,12 +15,8 @@ namespace Capa_de_servicios.Servicios
         public Task<Respuestas> AddLibro(LibroBinding libroBinding);
         public Task<Respuestas> EliminarLibro(int eliminar);
         public Task<Respuestas> Getbooks();
-
         public Task<Respuestas> EditBooks(LibroBinding omodel);
-
         public Task<Respuestas> GetbookByID(int id);
-
         public Task<Respuestas> GetbookByName(string nombre);
-
     }
 }

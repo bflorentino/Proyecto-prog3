@@ -15,10 +15,12 @@ module.exports = {
       'blue-top-buttom' : '#026aa7',
       'red-error':'#FF3143',
       'green-button': '#57CC25',
-      'upload-buttom': '#adb5bd'
+      'upload-buttom': '#adb5bd',
+      'border-book': '#E5E5E5'
     },
     fontFamily:{
-      'poppins' : ['Poppins', 'sans-serif']
+      'poppins' : ['Poppins', 'sans-serif'],
+      'galdeano' : ['Galdeano', 'sans-serif']
     },
     extend: {},
   },

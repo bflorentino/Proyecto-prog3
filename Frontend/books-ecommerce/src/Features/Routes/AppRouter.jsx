@@ -10,6 +10,7 @@ import { AuthProvider } from '../Context/AuthContext';
 import PrivateRoute from './PrivatesRoutes';
 import { RegisterBookPage } from '../Admin-registerBooks/RegisterBookPage';
 import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
+import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
 
 const AppRouter = () => {
     return(
@@ -27,6 +28,11 @@ const AppRouter = () => {
                             path = '/'
                             element= {<Login />}
                         />
+                        <Route
+                            exact
+                            path = '/BooksSell'
+                            element= {<BooksSellPage />}
+                        />
                         <Route exact path='/Get-BooksAdm' element={<PrivateRoute/>}>
                             <Route exact path='/Get-BooksAdm' element={<GetBooksPage/>}/>
                         </Route>
@@ -36,6 +42,7 @@ const AppRouter = () => {
                         <Route exact path='/Edit-BooksAdm/:bookId' element={<PrivateRoute/>}>
                             <Route exact path='/Edit-BooksAdm/:bookId' element={<EditBookPage/>}/>
                         </Route>
+                        <Route exact path='/Edit-BooksAdm/:bookId' element={<PrivateRoute/>}></Route>
                     </Routes>
                 </AuthProvider>
             </div>

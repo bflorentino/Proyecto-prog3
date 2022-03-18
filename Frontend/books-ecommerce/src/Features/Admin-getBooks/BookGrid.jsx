@@ -33,7 +33,7 @@ const BookGrid =( {book} ) => {
                 
                 <div className='flex flex-row'>
                   <dt className = "font-bold">Año: </dt>
-                  <dd className='ml-2'>{book.año}</dd>
+                  <dd className='ml-2'>{book.anio}</dd>
                 </div>
 
                 <div className='flex flex-row'>
@@ -49,10 +49,10 @@ const BookGrid =( {book} ) => {
             </dl>
 
             <div className='flex items-center'>
-              <Link to={`/Edit-BooksAdm/${book.idLibro}`} className='ml-32 bg-green-button text-white px-4 py-1'>
+              <Link to={`/Edit-BooksAdm/${book.idlibro}`} className='ml-32 bg-green-button text-white px-4 py-1'>
                   Editar  
               </Link>
-              <button onClick={() => {deleteBook(book.idLibro)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
+              <button onClick={() => {deleteBook(book.idlibro)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
                   Eliminar
               </button>
             </div>

@@ -16,23 +16,17 @@ using System.Security.Claims;
 
 namespace Capa_de_servicios.Servicios
 {
-
-   
-
     public class UserServices : IUserServices
     {
         private readonly Appsetings _appsetings;
 
         public UserServices(IOptions<Appsetings> appsettings)
-        
         {
-
             _appsetings = appsettings.Value;
         }
 
         public async Task  <UserResponse> Auth(AuthRequest usuario)
         {
-
             UserResponse userResponse = new UserResponse();
             using (var db = new E_CommerceContext())
             {
@@ -46,24 +40,15 @@ namespace Capa_de_servicios.Servicios
                 userResponse.Token = GetToken(Usuario);
                 userResponse.IdRol = Usuario.IdRol;
             }
-
-            return userResponse;
-
-            
+            return userResponse;   
         }
-
-       
 
         private string GetToken(Usuario usuario)
         {
             var tokenHandeler = new JwtSecurityTokenHandler();
-
             var llave = Encoding.ASCII.GetBytes(_appsetings.secreto);
-
             var tokenDescriptor = new SecurityTokenDescriptor
-
             {
-
                 Subject = new ClaimsIdentity(
                     new Claim[]
                     {
@@ -73,7 +58,6 @@ namespace Capa_de_servicios.Servicios
                     ),
                 Expires = DateTime.UtcNow.AddDays(90),
                 SigningCredentials =  new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256Signature)
-
             };
             var token = tokenHandeler.CreateToken(tokenDescriptor);
             return tokenHandeler.WriteToken(token);

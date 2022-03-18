@@ -10,6 +10,5 @@ namespace Capa_de_servicios.Servicios
       public interface  IUserServices
     {
         public Task <UserResponse> Auth(AuthRequest model);
-
     }
 }

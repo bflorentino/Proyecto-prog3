@@ -6,7 +6,6 @@ const EditForm = ({Book}) => {
 
     const [image, setImage] = useState(null)
     const history = useNavigate();    
-
     const imageHandler = ( e ) => {
         // Preview image 
         const reader = new FileReader();
@@ -24,7 +23,7 @@ const EditForm = ({Book}) => {
         const form = document.querySelector('#edit-data');    
         
         editBookService({
-            idLibro: Book.idLibro,
+            idLibro: Book.idlibro,
             Nombre: form.Nombre.value,
             Precio: form.Precio.value,
             Año: form.Año.value,
@@ -56,7 +55,7 @@ const EditForm = ({Book}) => {
                                 type="text"
                                 autoComplete="off"
                                 name="Nombre"
-                                defaultValue={Book.nombre}
+                                defaultValue={Book.nombre && Book.nombre}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div> 
@@ -66,7 +65,7 @@ const EditForm = ({Book}) => {
                                 type="number"
                                 autoComplete="off"
                                 name="Precio"
-                                defaultValue={Book.precio}
+                                defaultValue={Book.precio && Book.precio}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div> 
@@ -76,7 +75,7 @@ const EditForm = ({Book}) => {
                                 type="text"
                                 autoComplete="off"
                                 name="Año"
-                                defaultValue={Book.año}
+                                defaultValue={Book.anio && Book.anio}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div>                 
@@ -86,7 +85,7 @@ const EditForm = ({Book}) => {
                                 type="number"
                                 autoComplete="off"
                                 name="NumeroPaginas"
-                                defaultValue={Book.numeroPaginas}
+                                defaultValue={Book.numeroPaginas && Book.numeroPaginas}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div>
@@ -97,7 +96,7 @@ const EditForm = ({Book}) => {
                                 type="text"
                                 autoComplete="off"
                                 name="Autor"
-                                defaultValue={Book.autor}
+                                defaultValue={Book.autor && Book.autor}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div> 
@@ -108,7 +107,7 @@ const EditForm = ({Book}) => {
                                 type="text"
                                 autoComplete="off"
                                 name="Editorial"
-                                defaultValue={Book.editorial}
+                                defaultValue={Book.editorial && Book.editorial}
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div> 
@@ -119,7 +118,7 @@ const EditForm = ({Book}) => {
                                 type="text"
                                 autoComplete="off"
                                 name="Idioma"
-                                defaultValue={Book.idioma}     
+                                defaultValue={Book.idioma && Book.idioma}     
                                 className='px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue'
                             />
                         </div>

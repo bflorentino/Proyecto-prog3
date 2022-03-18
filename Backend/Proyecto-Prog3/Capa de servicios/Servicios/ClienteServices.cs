@@ -18,7 +18,6 @@ namespace Capa_de_servicios.Servicios
             _context = context;
         }
 
-
         public async Task<Respuestas> AddCliente(ClienteBinding cliente)
         {
             var respuesta = new Respuestas();
@@ -33,7 +32,6 @@ namespace Capa_de_servicios.Servicios
                 CorreoElectronico = cliente.CorreoElectronico
 
             };
-
             var user = new Usuario
             {
                 NombreUsuario = cliente.NombreUsuario,
@@ -44,7 +42,6 @@ namespace Capa_de_servicios.Servicios
             await _context.Clientes.AddAsync(client);
             await _context.Usuarios.AddAsync(user);
             await _context.SaveChangesAsync();
-
 
             respuesta.Mensaje = "El cliente ha sido agregado correctamente";
             return respuesta;
