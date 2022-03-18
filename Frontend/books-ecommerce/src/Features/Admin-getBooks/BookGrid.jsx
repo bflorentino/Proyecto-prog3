@@ -9,7 +9,7 @@ const BookGrid =( {book} ) => {
     <div className='flex flex-col items-center'>
       <div className='flex flex-row mb-6 mt-6 font-poppins w-2/3 border-b pb-6'>
           <img 
-              src={ book.rutaFoto.replace(" ", "") }  
+              src={ book.rutaFoto && book.rutaFoto.replace(" ", "") }  
               className='w-30 h-40 ml-6 mr-6' 
               alt = "nombre"
           />

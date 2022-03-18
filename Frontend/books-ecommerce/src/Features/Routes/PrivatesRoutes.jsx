@@ -4,8 +4,15 @@ import {AuthContext} from '../Context/AuthContext';
 
 const PrivateRoute = ({children, ...rest}) => {
     let {user} = useContext(AuthContext);
+    let access;
+
+    try{
+        access = user.data.idRol;
+    }catch{
+        access = null;
+    }
     
-    return user ? <Outlet /> : <Navigate to="/" />;
+    return access === 1 ? <Outlet /> : <Navigate to="/" />;
 }
 
 export default PrivateRoute;

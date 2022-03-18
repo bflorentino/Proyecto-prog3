@@ -31,7 +31,6 @@ const RegisterBooksSchema = yup.object().shape({
 });
 
 export const RegisterBookPage = () => {
-    
     const inputStyle = 'ml-2 px-1 rounded-md border-gray outline-none border-2 w-full placeholder:text-dark-blue';
     const text = 'text-1xl font-poppins';
 

@@ -31,7 +31,7 @@ const TableView = ( {Books} ) => {
               Books.map(book => (book.enVenta) && (
                 <tr className='border-b'>
                   <td className='whitespace-nowrap'>
-                    <img src={ book.rutaFoto.replace(" ", "") }  alt="libro" className='w-15 h-20 ml-6 mr-6 mb-2 mt-2' /></td>
+                    <img src={book.rutaFoto &&  book.rutaFoto.replace(" ", "") }  alt="libro" className='w-15 h-20 ml-6 mr-6 mb-2 mt-2' /></td>
                   <td className='py-4 px-6 whitespace-nowrap text-xs'>{book.nombre}</td>
                   <td className='py-4 px-6 whitespace-nowrap text-xs'>{book.categoria}</td>
                   <td className='py-4 px-6 whitespace-nowrap text-xs'>{book.autor}</td>
