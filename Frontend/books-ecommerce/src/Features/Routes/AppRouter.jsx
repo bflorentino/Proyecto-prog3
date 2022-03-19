@@ -29,14 +29,11 @@ const AppRouter = () => {
                             path = '/'
                             element= {<Login />}
                         />
-                        {/* <Route
+                        <Route
                             exact
                             path = '/BooksSell'
                             element= {<BooksSellPage />}
-                        /> */}
-                        <Route exact path='/BooksSell' element={<PrivateRoute/>}>
-                            <Route exact path='/BooksSell' element={<BooksSellPage/>}/>
-                        </Route>
+                        />
                         <Route exact path='/Get-BooksAdm' element={<AdminRoute/>}>
                             <Route exact path='/Get-BooksAdm' element={<GetBooksPage/>}/>
                         </Route>

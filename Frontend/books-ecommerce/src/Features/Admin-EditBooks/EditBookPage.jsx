@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import EditForm from './EditForm';
+import { MenuAdmin } from '../Menues/MenuAdmin';
 
 export const EditBookPage = () => {
     
@@ -14,6 +15,9 @@ export const EditBookPage = () => {
     })}, [bookId])
     
     return(
-      <EditForm Book={book} />
+      <div className='content'>
+        <MenuAdmin/>
+        <EditForm Book={book} />
+      </div>
     )
 }

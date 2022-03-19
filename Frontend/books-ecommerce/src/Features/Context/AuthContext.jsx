@@ -10,22 +10,6 @@ export const AuthProvider = ({children}) => {
     const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
 
-    const page = () => {
-        let access;
-        try{
-            access = user.data.idRold
-        }catch{
-
-        }
-
-        if(access === 2){
-            history('/Get-BooksAdm', {replace : true});
-        }else{
-            history('/BooksSell', {replace : true});
-        }
-
-    }
-
     const logIn = async (values) => {
 
         let mensaje = 'Usuario no encontrado';
@@ -44,18 +28,22 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(data);
             setUser(data);
             localStorage.setItem('authTokens', JSON.stringify(data)); 
+
+            if(data.data.idRol === 2){
+                history('/Get-BooksAdm', {replace : true})
+            }else{
+                history('/BooksSell', {replace : true})
+            }
         }else{
             alert(mensaje);
         }
-
-        page();
     }
 
     const logOut = () => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
-        history('/Log-in', {replace: true});    
+        history('/', {replace: true});    
     }
 
     const contextData = {

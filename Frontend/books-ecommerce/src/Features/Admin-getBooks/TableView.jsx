@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { deleteBook } from '../Admin-registerBooks/deleteBookServise';
+import { deleteBook } from '../Admin-DeleteBooks/deleteBookServise';
 
 const TableView = ( {Books} ) => {
 
