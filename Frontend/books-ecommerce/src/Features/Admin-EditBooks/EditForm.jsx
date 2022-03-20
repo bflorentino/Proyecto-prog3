@@ -1,19 +1,31 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { editBookService } from './EditBookService'
+import swal from 'sweetalert';
 
 const EditForm = ({Book}) => {
 
     const [image, setImage] = useState(null)
-    const history = useNavigate();    
+    const [editedImage, setEditedImage] = useState(null)
+    const history = useNavigate(); 
+
     const imageHandler = ( e ) => {
         // Preview image 
         const reader = new FileReader();
         reader.onload = () => {
-            console.log("Hola mundo")
             reader.readyState === 2 && setImage(reader.result)
         }
         reader.readAsDataURL(e.target.files[0])
+        setEditedImage(e.target.files[0])
+    }
+
+    const showAlert = () => {
+        swal({
+            title: "Libro editado",
+            text: "Se ha actualizado la información del libro",
+            icon: "success",
+            button: "Aceptar"
+        })
     }
 
    const editBookHandler = (e) => {
@@ -32,8 +44,12 @@ const EditForm = ({Book}) => {
             Editorial: form.Editorial.value,
             Idioma: form.Idioma.value,
             IdCategoria: form.IdCategoria.value,
+            Foto: editedImage 
+            
         }).then(data =>{
+            
             history('/Get-BooksAdm')
+            showAlert();
             }
         )
     }

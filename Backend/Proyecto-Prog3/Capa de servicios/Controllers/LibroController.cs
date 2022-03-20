@@ -60,14 +60,19 @@ namespace Capa_de_servicios.Controllers
 
         // Editar libro 
         [HttpPut]
-        public async Task<IActionResult> Edit([FromForm]LibroBinding omodel)
+        public async Task<IActionResult> Edit([FromForm]LibroBinding libro)
         {
-            return Ok(await _libroServices.EditBooks(omodel));
+            if (libro.Foto != null)
+            {
+                libro.RutaFoto = await GuardarFoto(libro.Foto);
+            }
+            return Ok(await _libroServices.EditBooks(libro));
         }
             
         [HttpGet("{id}")]
         public  async Task <IActionResult> GetID(int id)
         {
+
                 return Ok(await _libroServices.GetbookByID(id));
         }
 

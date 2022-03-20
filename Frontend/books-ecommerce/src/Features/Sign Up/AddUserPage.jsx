@@ -146,7 +146,7 @@ export const AddUserPage = () =>{
                     </button>
                 </div>
                 <div className='mt-6 mb-6 bg-yellow  px-8 py-2 rounded-lg'>
-                <Link to={`/`}>
+                <Link to={`/Login`}>
                     Ya tengo una cuenta
                 </Link>
                 </div>

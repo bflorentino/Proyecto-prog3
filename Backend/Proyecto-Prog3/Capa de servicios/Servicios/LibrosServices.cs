@@ -96,6 +96,8 @@ namespace Capa_de_servicios.Servicios
                     olibro.NumeroPaginas = omodel.NumeroPaginas;
                     olibro.Idioma = omodel.Idioma;
                     olibro.IdCategoria = omodel.IdCategoria;
+
+                if (omodel.RutaFoto != null)
                     olibro.RutaFoto = omodel.RutaFoto;
 
                     orepuesta.Mensaje = "el libro ha sido editado correctamente";

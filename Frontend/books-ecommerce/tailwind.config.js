@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     colors:{
       'gray': '#7E7D7D',
+      'gray-select': '#F0F2F2',
       'light-blue': '#BBDEFB',
       'dark-blue': '#303F9F',
       'link-blue': ' #0645AD',
@@ -16,11 +17,15 @@ module.exports = {
       'red-error':'#FF3143',
       'green-button': '#57CC25',
       'upload-buttom': '#adb5bd',
-      'border-book': '#E5E5E5'
+      'border-book': '#E5E5E5',
+      'blue-menu': '#026aa7',
+      'red-price': '#CA5304',
+      'orange': '#FA8900'
     },
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif'],
-      'galdeano' : ['Galdeano', 'sans-serif']
+      'galdeano' : ['Galdeano', 'sans-serif'],
+      'roboto': ['Roboto', 'sans-serif']
     },
     extend: {},
   },

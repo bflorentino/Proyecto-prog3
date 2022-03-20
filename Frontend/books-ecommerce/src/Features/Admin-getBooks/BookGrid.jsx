@@ -61,10 +61,10 @@ const BookGrid =( {book} ) => {
 
             <div className='flex items-center'>
               <Link to={`/Edit-BooksAdm/${book.idlibro}`} className='ml-32 bg-green-button text-white px-4 py-1'>
-                  Editar  
+                  Editar
               </Link>
               <button onClick={() => {handlePregunta()}} className='ml-4 px-4 py-1 bg-red-error text-white'>
-                Eliminar
+                Eliminar 
               </button>
             </div>
       </div>

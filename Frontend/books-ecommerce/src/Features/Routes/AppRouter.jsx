@@ -12,6 +12,7 @@ import AdminRoute from './AdminRoutes';
 import { RegisterBookPage } from '../Admin-registerBooks/RegisterBookPage';
 import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
 import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
+import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
 
 const AppRouter = () => {
     return(
@@ -21,18 +22,23 @@ const AppRouter = () => {
                     <Routes>
                         <Route
                             exact
+                            path = '/'
+                            element= {<BooksSellPage />}
+                        />
+                        <Route
+                            exact
                             path = '/Sign-Up'
                             element= {<AddUserPage />}
                         />
                         <Route
                             exact
-                            path = '/'
+                            path = '/Login'
                             element= {<Login />}
                         />
                         <Route
                             exact
-                            path = '/BooksSell'
-                            element= {<BooksSellPage />}
+                            path = '/Book-Info/:bookId'
+                            element= {<BookInfoPage />}
                         />
                         <Route exact path='/Get-BooksAdm' element={<AdminRoute/>}>
                             <Route exact path='/Get-BooksAdm' element={<GetBooksPage/>}/>

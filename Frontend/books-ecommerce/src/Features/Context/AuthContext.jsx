@@ -32,7 +32,7 @@ export const AuthProvider = ({children}) => {
             if(data.data.idRol === 2){
                 history('/Get-BooksAdm', {replace : true})
             }else{
-                history('/BooksSell', {replace : true})
+                history('/', {replace : true})
             }
         }else{
             alert(mensaje);
@@ -43,7 +43,7 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
-        history('/', {replace: true});    
+        history('/Login', {replace: true});    
     }
 
     const contextData = {
