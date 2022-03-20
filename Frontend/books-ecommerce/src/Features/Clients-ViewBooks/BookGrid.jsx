@@ -8,7 +8,7 @@ const BookGrid = ({Book}) => {
       <div className='flex-flex-col mt-8 ml-8 font-galdeano w-56 hover:cursor-pointer h-96 border border-border-book rounded-lg mb-1'>
         <div className='flex justify-center mt-4'>
           <img 
-              src = {`${Book.rutaFoto.replace(" ", "")}`}  
+              src = {`${Book.rutaFoto && Book.rutaFoto.replace(" ", "")}`}  
               alt="nombre" 
               className='w-40 h-60 self-center'    
           />
