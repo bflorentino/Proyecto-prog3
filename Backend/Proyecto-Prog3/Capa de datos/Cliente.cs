@@ -10,6 +10,7 @@ namespace Capa_de_datos
         public Cliente()
         {
             Calificaciones = new HashSet<Calificacione>();
+            Venta = new HashSet<Venta>();
         }
 
         public string NombreUsuario { get; set; }
@@ -21,5 +22,6 @@ namespace Capa_de_datos
 
         public virtual Usuario Usuario { get; set; }
         public virtual ICollection<Calificacione> Calificaciones { get; set; }
+        public virtual ICollection<Venta> Venta { get; set; }
     }
 }

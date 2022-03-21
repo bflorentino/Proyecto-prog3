@@ -1,21 +1,39 @@
 import React, { useEffect, useState } from 'react'
+import { getAllBooks } from '../Admin-getBooks/getBooksService';
+import { getBooksFiltered } from './FilterService';
 
 const FilterBooks = ({setBooks}) => {
 
   const [ filters, setFilters ] = useState({
-    generos : [],
+    genero : [],
     rangoPrecio: 0,
     calificaciones: 0
   });
 
-  useEffect(()=> {
-    console.log(filters)
-  }, [filters])
+  const {genero, rangoPrecio, calificaciones} = filters;
+  const [ started, setStarted ] = useState(false)
 
+  useEffect(()=> {
+    
+    if(!started){
+      setStarted(true)
+    }else if(started && (genero.length !== 0 || rangoPrecio !== 0 || calificaciones !== 0)){
+      getBooksFiltered(filters).then(books => {
+        setBooks([...books])
+      })
+    }
+    else if(started && genero.length === 0 && rangoPrecio === 0 && calificaciones === 0){
+      getAllBooks().then(books => {
+        setBooks([...books])
+      })
+    }
+      // eslint-disable-next-line
+    },[filters])
+    
   const handleFilterGenres = (e) => {
     e.target.checked 
-        ? setFilters({ ...filters, generos: [e.target.value,...filters.generos]})
-        : setFilters({...filters, generos: filters.generos.filter(genero => genero !== e.target.value)})
+        ? setFilters({ ...filters, genero: [e.target.value,...genero]})
+        : setFilters({...filters, genero: genero.filter(genero => genero !== e.target.value)})
   }
 
   return (
@@ -56,7 +74,7 @@ const FilterBooks = ({setBooks}) => {
       <div className='flex flex-col ml-4 font-poppins mt-6'>
       <h1 className="text-lg font-bold mb-2">Precio</h1>
         <div 
-            className={`mt-1 ${filters.rangoPrecio === 1 && 'text-blue-top-buttom'}`}  
+            className={`mt-1 ${rangoPrecio === 1 && 'text-blue-top-buttom'}`}  
             onClick={()=> setFilters({...filters, rangoPrecio : 1, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
@@ -65,7 +83,7 @@ const FilterBooks = ({setBooks}) => {
         </div>
       
         <div 
-            className={`mt-2 ${filters.rangoPrecio === 2 && 'text-blue-top-buttom'}`}  
+            className={`mt-2 ${rangoPrecio === 2 && 'text-blue-top-buttom'}`}  
             onClick={()=> setFilters({...filters, rangoPrecio : 2, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
@@ -74,7 +92,7 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-            className={`mt-2 ${filters.rangoPrecio === 3 && 'text-blue-top-buttom'}`}   
+            className={`mt-2 ${rangoPrecio === 3 && 'text-blue-top-buttom'}`}   
             onClick={()=> setFilters({...filters, rangoPrecio : 3, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
@@ -83,7 +101,7 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-            className={`mt-2 ${filters.rangoPrecio === 4 && 'text-blue-top-buttom'}`}  
+            className={`mt-2 ${rangoPrecio === 4 && 'text-blue-top-buttom'}`}  
             onClick={()=> setFilters({...filters, rangoPrecio : 4, })}
           >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
@@ -92,7 +110,7 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-           className={`mt-2 ${filters.rangoPrecio === 5 && 'text-blue-top-buttom'}`}   
+           className={`mt-2 ${rangoPrecio === 5 && 'text-blue-top-buttom'}`}   
            onClick={()=> setFilters({...filters, rangoPrecio : 5, })}
           >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
@@ -154,4 +172,4 @@ const FilterBooks = ({setBooks}) => {
   );
 }
 
-export default FilterBooks
+export default FilterBooks;

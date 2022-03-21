@@ -218,6 +218,16 @@ namespace Capa_de_datos
                     .HasColumnName("Fecha_Venc");
 
                 entity.Property(e => e.Monto).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.NombreUsuario)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("nombreUsuario");
+
+                entity.HasOne(d => d.NombreUsuarioNavigation)
+                    .WithMany(p => p.Venta)
+                    .HasForeignKey(d => d.NombreUsuario)
+                    .HasConstraintName("FK__Ventas__nombreUs__151B244E");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -25,11 +25,17 @@ const BookGrid =( {book} ) => {
               className='w-30 h-40 ml-6 mr-6' 
               alt = "nombre"
           />
-              <dl className='mt-2 w-1/2'>
+              <dl className='w-1/2'>
 
                 <div className='flex flex-row'>
                   <dt className = "font-bold">Título: </dt>
                   <dd className='ml-2'>{book.nombre}</dd>
+                </div>
+
+                
+                <div className='flex flex-row'>
+                  <dt className = "font-bold">Género: </dt>    
+                  <dd className='ml-2'>{book.categoria}</dd>
                 </div>
 
                 <div className='flex flex-row'>

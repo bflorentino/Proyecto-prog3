@@ -170,8 +170,6 @@ namespace Capa_de_servicios.Servicios
         public List<LibroViewModel> GetbookByGender(List<int?> genero, List<LibroViewModel> libros)
         {
             var librosCategoria = libros.Where(a => genero.Contains(a.IdCategoria)).ToList();
-           
-
             return librosCategoria;
         }
 
