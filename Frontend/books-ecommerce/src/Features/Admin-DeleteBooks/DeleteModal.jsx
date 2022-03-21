@@ -16,7 +16,9 @@ export const eliminarAlerta = (idLibro) => {
                 icon: "success"
             });
             
-            window.location.href = window.location.href;
+            setTimeout(function(){
+                window.location.href = window.location.href;
+            }, 1000);
         };
     });
 };

@@ -13,6 +13,7 @@ import { RegisterBookPage } from '../Admin-registerBooks/RegisterBookPage';
 import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
 import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
 import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
+import { Buscador } from '../Buscador/Buscador';
 
 const AppRouter = () => {
     return(
@@ -48,6 +49,9 @@ const AppRouter = () => {
                         </Route>
                         <Route exact path='/Edit-BooksAdm/:bookId' element={<AdminRoute/>}>
                             <Route exact path='/Edit-BooksAdm/:bookId' element={<EditBookPage/>}/>
+                        </Route>
+                        <Route exact path='/Buscador' element={<PrivateRoute/>}>
+                            <Route exact path='/Buscador' element={<Buscador/>}/>
                         </Route>
                     </Routes>
                 </AuthProvider>
