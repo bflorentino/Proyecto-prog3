@@ -81,6 +81,13 @@ namespace Capa_de_servicios.Controllers
         {
             return Ok(await _libroServices.GetbookByName(nombre));
         }
+
+        [HttpPost("filtro")]
+        public async Task<IActionResult> FilterBooks(LibroFiltradoBinding Filtro)
+        {
+            return Ok(await _libroServices.FilterBooks(Filtro));
+        }
+
     }
 }
    

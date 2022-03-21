@@ -18,5 +18,6 @@ namespace Capa_de_servicios.Servicios
         public Task<Respuestas> EditBooks(LibroBinding omodel);
         public Task<Respuestas> GetbookByID(int id);
         public Task<Respuestas> GetbookByName(string nombre);
+        public Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro);
     }
 }
