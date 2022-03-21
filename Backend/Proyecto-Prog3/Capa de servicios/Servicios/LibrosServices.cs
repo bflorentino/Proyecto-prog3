@@ -165,5 +165,33 @@ namespace Capa_de_servicios.Servicios
             orepuesta.Data = Libro;
             return orepuesta;
         }
+
+        public async Task<Respuestas> GetbookByGender(string genero)
+        {
+             Respuestas orepuesta = new Respuestas();
+
+            var Libro = from Genero in _context.Categoria
+                        join libros in _context.Libros
+                        on Genero.IdCategoria equals libros.IdCategoria
+                        where Genero.CategoriaLibro.Contains(genero)
+                        select new LibroViewModel
+                        {
+                            Nombre = libros.Nombre,
+                            Autor = libros.Autor,
+                            Categoria = Genero.CategoriaLibro,
+                            Editorial = libros.Editorial,
+                            NumeroPaginas = libros.NumeroPaginas,
+                            Idioma = libros.Idioma,
+                            RutaFoto = libros.RutaFoto,
+                            IdCategoria = libros.IdCategoria,
+                            Anio = libros.Año,
+                            Idlibro = libros.IdLibro,
+                            Precio = libros.Precio,
+                            EnVenta = libros.EnVenta
+                        };
+            orepuesta.Data = Libro;
+            return orepuesta;
+        }
     }
 }
+ 
