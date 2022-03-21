@@ -82,10 +82,10 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _libroServices.GetbookByName(nombre));
         }
 
-        [HttpGet("genero/{genero}")]
-        public async Task<IActionResult> GetbookByGender(string genero)
+        [HttpPost("filtro")]
+        public async Task<IActionResult> FilterBooks(LibroFiltradoBinding Filtro)
         {
-            return Ok(await _libroServices.GetbookByGender(genero));
+            return Ok(await _libroServices.FilterBooks(Filtro));
         }
 
     }

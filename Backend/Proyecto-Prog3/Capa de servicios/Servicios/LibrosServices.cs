@@ -62,6 +62,7 @@ namespace Capa_de_servicios.Servicios
             var listaLibro = await (from libros in _context.Libros 
                                     join categoria in _context.Categoria 
                                     on libros.IdCategoria equals categoria.IdCategoria 
+                                    where libros.EnVenta == true
                                     select new LibroViewModel     
                                     {
                                          Nombre = libros.Nombre,
@@ -119,7 +120,7 @@ namespace Capa_de_servicios.Servicios
             var Libro =  from libros in _context.Libros
                          join categoria in _context.Categoria
                          on libros.IdCategoria equals categoria.IdCategoria
-                         where libros.IdLibro == id
+                         where libros.IdLibro == id && libros.EnVenta == true
                          select new LibroViewModel
                          {
                              Nombre = libros.Nombre,
@@ -146,7 +147,7 @@ namespace Capa_de_servicios.Servicios
             var Libro = from libros in _context.Libros
                         join categoria in _context.Categoria
                         on libros.IdCategoria equals categoria.IdCategoria
-                        where libros.Nombre.Contains(nombre)
+                        where libros.Nombre.Contains(nombre) && libros.EnVenta == true
                         select new LibroViewModel
                         {
                             Nombre = libros.Nombre,
@@ -166,31 +167,43 @@ namespace Capa_de_servicios.Servicios
             return orepuesta;
         }
 
-        public async Task<Respuestas> GetbookByGender(string genero)
+        public List<LibroViewModel> GetbookByGender(List<int?> genero, List<LibroViewModel> libros)
         {
-             Respuestas orepuesta = new Respuestas();
+            var librosCategoria = libros.Where(a => genero.Contains(a.IdCategoria)).ToList();
+           
 
-            var Libro = from Genero in _context.Categoria
-                        join libros in _context.Libros
-                        on Genero.IdCategoria equals libros.IdCategoria
-                        where Genero.CategoriaLibro.Contains(genero)
-                        select new LibroViewModel
-                        {
-                            Nombre = libros.Nombre,
-                            Autor = libros.Autor,
-                            Categoria = Genero.CategoriaLibro,
-                            Editorial = libros.Editorial,
-                            NumeroPaginas = libros.NumeroPaginas,
-                            Idioma = libros.Idioma,
-                            RutaFoto = libros.RutaFoto,
-                            IdCategoria = libros.IdCategoria,
-                            Anio = libros.Año,
-                            Idlibro = libros.IdLibro,
-                            Precio = libros.Precio,
-                            EnVenta = libros.EnVenta
-                        };
-            orepuesta.Data = Libro;
-            return orepuesta;
+            return librosCategoria;
+        }
+
+        public async Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro)
+        {
+            Respuestas orespuesta = new Respuestas();
+
+            var listaLibro = await (from libros in _context.Libros
+                                    join categoria in _context.Categoria
+                                    on libros.IdCategoria equals categoria.IdCategoria
+                                    where libros.EnVenta == true
+                                    select new LibroViewModel
+                                    {
+                                        Nombre = libros.Nombre,
+                                        Autor = libros.Autor,
+                                        Categoria = categoria.CategoriaLibro,
+                                        Editorial = libros.Editorial,
+                                        NumeroPaginas = libros.NumeroPaginas,
+                                        Idioma = libros.Idioma,
+                                        RutaFoto = libros.RutaFoto,
+                                        IdCategoria = libros.IdCategoria,
+                                        Anio = libros.Año,
+                                        Idlibro = libros.IdLibro,
+                                        Precio = libros.Precio,
+                                        EnVenta = libros.EnVenta
+                                    }).ToListAsync();
+
+           var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
+
+            orespuesta.Data = LibrosGenero;
+            orespuesta.Exito = 1;
+            return orespuesta;
         }
     }
 }
