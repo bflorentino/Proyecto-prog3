@@ -44,6 +44,7 @@ namespace Capa_de_servicios
                                                                                                   .AllowAnyHeader()
                                                                                                   .AllowAnyOrigin()));
             //inyeccion de dependencias
+            services.AddScoped<IPagoServices, PagoServices>();
             services.AddScoped<ILibroServices, LibrosServices>();
             services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IClienteServices, ClienteServices>();

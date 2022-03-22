@@ -88,3 +88,18 @@ C:\Users\ESTUDIANTE\OneDrive\Documentos\Proyecto-prog3\Proyecto-prog3\Backend\Pr
 C:\Users\ESTUDIANTE\OneDrive\Documentos\Proyecto-prog3\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.pdb
 C:\Users\ESTUDIANTE\OneDrive\Documentos\Proyecto-prog3\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.genruntimeconfig.cache
 C:\Users\ESTUDIANTE\OneDrive\Documentos\Proyecto-prog3\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\ref\Capa de datos.dll
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.deps.json
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.runtimeconfig.json
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.runtimeconfig.dev.json
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.dll
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\ref\Capa de datos.dll
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\bin\Debug\net5.0\Capa de datos.pdb
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.csproj.AssemblyReference.cache
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.AssemblyInfo.cs
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.dll
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\ref\Capa de datos.dll
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.pdb
+C:\Users\DELL\Desktop\Proyecto PIII\Backend\Proyecto-Prog3\Capa de datos\obj\Debug\net5.0\Capa de datos.genruntimeconfig.cache
