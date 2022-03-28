@@ -47,7 +47,7 @@ namespace Capa_de_servicios.Servicios
         {
             var respuesta = new Respuestas();
             var libro = await _context.Libros.FirstOrDefaultAsync(a => a.IdLibro == eliminar);
-             libro.EnVenta = false;
+            libro.EnVenta = false;
             _context.Update(libro);
             await _context.SaveChangesAsync();
 
@@ -56,55 +56,55 @@ namespace Capa_de_servicios.Servicios
             return respuesta;
         }
 
-    public async Task<Respuestas> Getbooks()
+        public async Task<Respuestas> Getbooks()
         {
-            Respuestas oRespuesta = new  Respuestas();
-            var listaLibro = await (from libros in _context.Libros 
-                                    join categoria in _context.Categoria 
-                                    on libros.IdCategoria equals categoria.IdCategoria 
+            Respuestas oRespuesta = new Respuestas();
+            var listaLibro = await (from libros in _context.Libros
+                                    join categoria in _context.Categoria
+                                    on libros.IdCategoria equals categoria.IdCategoria
                                     where libros.EnVenta == true
-                                    select new LibroViewModel     
+                                    select new LibroViewModel
                                     {
-                                         Nombre = libros.Nombre,
-                                         Autor = libros.Autor,
-                                         Categoria = categoria.CategoriaLibro,
-                                         Editorial = libros.Editorial,
-                                         NumeroPaginas = libros.NumeroPaginas,
-                                         Idioma = libros.Idioma,
-                                         RutaFoto = libros.RutaFoto,
-                                         IdCategoria = libros.IdCategoria,
-                                         Anio = libros.Año,
-                                         Idlibro = libros.IdLibro,
-                                         Precio = libros.Precio,
-                                         EnVenta = libros.EnVenta
+                                        Nombre = libros.Nombre,
+                                        Autor = libros.Autor,
+                                        Categoria = categoria.CategoriaLibro,
+                                        Editorial = libros.Editorial,
+                                        NumeroPaginas = libros.NumeroPaginas,
+                                        Idioma = libros.Idioma,
+                                        RutaFoto = libros.RutaFoto,
+                                        IdCategoria = libros.IdCategoria,
+                                        Anio = libros.Año,
+                                        Idlibro = libros.IdLibro,
+                                        Precio = libros.Precio,
+                                        EnVenta = libros.EnVenta
                                     }).ToListAsync();
 
             oRespuesta.Data = listaLibro;
             return oRespuesta;
         }
 
-        public async Task<Respuestas> EditBooks(LibroBinding omodel) 
+        public async Task<Respuestas> EditBooks(LibroBinding omodel)
         {
             Respuestas orepuesta = new Respuestas();
             try
-            {           
-                    Libro olibro = await _context.Libros.FindAsync(omodel.Idlibro);
-                    olibro.Nombre = omodel.Nombre;
-                    olibro.Precio = omodel.Precio;
-                    olibro.Autor = omodel.Autor;
-                    olibro.Año = omodel.Año;
-                    olibro.Editorial = omodel.Editorial;
-                    olibro.NumeroPaginas = omodel.NumeroPaginas;
-                    olibro.Idioma = omodel.Idioma;
-                    olibro.IdCategoria = omodel.IdCategoria;
+            {
+                Libro olibro = await _context.Libros.FindAsync(omodel.Idlibro);
+                olibro.Nombre = omodel.Nombre;
+                olibro.Precio = omodel.Precio;
+                olibro.Autor = omodel.Autor;
+                olibro.Año = omodel.Año;
+                olibro.Editorial = omodel.Editorial;
+                olibro.NumeroPaginas = omodel.NumeroPaginas;
+                olibro.Idioma = omodel.Idioma;
+                olibro.IdCategoria = omodel.IdCategoria;
 
                 if (omodel.RutaFoto != null)
                     olibro.RutaFoto = omodel.RutaFoto;
 
-                    orepuesta.Mensaje = "el libro ha sido editado correctamente";
-                    _context.Entry(olibro).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                   await _context.SaveChangesAsync();
-                    orepuesta.Exito = 1;
+                orepuesta.Mensaje = "el libro ha sido editado correctamente";
+                _context.Entry(olibro).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                await _context.SaveChangesAsync();
+                orepuesta.Exito = 1;
             }
             catch (Exception ex)
             {
@@ -113,29 +113,29 @@ namespace Capa_de_servicios.Servicios
             return orepuesta;
         }
 
-        public async Task<Respuestas> GetbookByID(int id) 
+        public async Task<Respuestas> GetbookByID(int id)
         {
             Respuestas orepuesta = new Respuestas();
 
-            var Libro =  from libros in _context.Libros
-                         join categoria in _context.Categoria
-                         on libros.IdCategoria equals categoria.IdCategoria
-                         where libros.IdLibro == id && libros.EnVenta == true
-                         select new LibroViewModel
-                         {
-                             Nombre = libros.Nombre,
-                             Autor = libros.Autor,
-                             Categoria = categoria.CategoriaLibro,
-                             Editorial = libros.Editorial,
-                             NumeroPaginas = libros.NumeroPaginas,
-                             Idioma = libros.Idioma,
-                             RutaFoto = libros.RutaFoto,
-                             IdCategoria = libros.IdCategoria,
-                             Anio = libros.Año,
-                             Idlibro = libros.IdLibro,
-                             Precio = libros.Precio,
-                             EnVenta = libros.EnVenta
-                         };
+            var Libro = from libros in _context.Libros
+                        join categoria in _context.Categoria
+                        on libros.IdCategoria equals categoria.IdCategoria
+                        where libros.IdLibro == id && libros.EnVenta == true
+                        select new LibroViewModel
+                        {
+                            Nombre = libros.Nombre,
+                            Autor = libros.Autor,
+                            Categoria = categoria.CategoriaLibro,
+                            Editorial = libros.Editorial,
+                            NumeroPaginas = libros.NumeroPaginas,
+                            Idioma = libros.Idioma,
+                            RutaFoto = libros.RutaFoto,
+                            IdCategoria = libros.IdCategoria,
+                            Anio = libros.Año,
+                            Idlibro = libros.IdLibro,
+                            Precio = libros.Precio,
+                            EnVenta = libros.EnVenta
+                        };
             orepuesta.Data = Libro;
             return orepuesta;
         }
@@ -173,6 +173,85 @@ namespace Capa_de_servicios.Servicios
             return librosCategoria;
         }
 
+        public bool GetStarAverage(int idLibro, int calificacion)
+        {
+            var average = (from a in _context.Calificaciones
+                           where a.IdLibro == idLibro
+                           select a.Calificación
+                            ).Average();
+
+            return average >= calificacion;
+        }
+
+        public List<LibroViewModel> GetbookByCalificacion(int calificacion, List<LibroViewModel> libros)
+        {
+
+            List<LibroViewModel> librosCalificacion = new List<LibroViewModel>();
+
+
+            if (calificacion > 0)
+            {
+                foreach (var libro in libros)
+                {
+                    bool cierto = GetStarAverage(libro.Idlibro, calificacion);
+                    if (cierto == true)
+                        librosCalificacion.Add(libro);
+                }
+                return librosCalificacion;
+            }
+            //else if (calificacion == 2)
+            //{
+            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
+            //    return librosCalificacion;
+            //}
+            //else if (calificacion == 3)
+            //{
+            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
+            //    return librosCalificacion;
+            //}
+
+            //else if (calificacion == 4)
+            //{
+            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
+            //    return librosCalificacion;
+            //}
+
+            else
+                return libros;
+        }
+
+        private List<LibroViewModel> GetbookByCost(int cost, List<LibroViewModel> libros)
+        {
+            if (cost == 1) 
+            {
+                var librosPrecio = libros.Where(a =>(a.Precio <= 20 && a.Precio >= 10)).ToList();
+                return librosPrecio;
+            }
+            else if (cost == 2)
+            {
+                var librosPrecio = libros.Where(a => (a.Precio <= 40 && a.Precio >= 21)).ToList();
+                return librosPrecio;
+            }
+            else if (cost == 3)
+            {
+                var librosPrecio = libros.Where(a => (a.Precio <= 60 && a.Precio >= 41)).ToList();
+                return librosPrecio;
+            }
+            else if (cost == 4)
+            {
+                var librosPrecio = libros.Where(a => (a.Precio <= 80 && a.Precio >= 61)).ToList();
+                return librosPrecio;
+            }
+            else if (cost == 5)
+            {
+                var librosPrecio = libros.Where(a => ( a.Precio >= 81)).ToList();
+                return librosPrecio;
+            }
+            else 
+                return libros;
+
+        }
+
         public async Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro)
         {
             Respuestas orespuesta = new Respuestas();
@@ -198,8 +277,11 @@ namespace Capa_de_servicios.Servicios
                                     }).ToListAsync();
 
            var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
+           var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
+           var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
 
-            orespuesta.Data = LibrosGenero;
+
+            orespuesta.Data = LibrosCalificado;
             orespuesta.Exito = 1;
             return orespuesta;
         }
