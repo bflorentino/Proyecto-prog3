@@ -169,8 +169,13 @@ namespace Capa_de_servicios.Servicios
 
         public List<LibroViewModel> GetbookByGender(List<int?> genero, List<LibroViewModel> libros)
         {
-            var librosCategoria = libros.Where(a => genero.Contains(a.IdCategoria)).ToList();
-            return librosCategoria;
+            if(genero.Count > 0){
+
+                var librosCategoria = libros.Where(a => genero.Contains(a.IdCategoria)).ToList();
+                return librosCategoria;
+
+            }
+            return libros;
         }
 
         public bool GetStarAverage(int idLibro, int calificacion)
@@ -252,6 +257,23 @@ namespace Capa_de_servicios.Servicios
 
         }
 
+        private List<LibroViewModel> GetbookByLanguage(int Idioma, List<LibroViewModel> LibrosIdiomas)
+        {
+            if (Idioma == 1)
+            {
+                var librosIdioma = LibrosIdiomas.Where(a => (a.Idioma == "En")).ToList();
+                return librosIdioma;
+            }
+            else if (Idioma == 2)
+            {
+                var librosIdioma = LibrosIdiomas.Where(a => (a.Idioma == "Es")).ToList();
+                return librosIdioma;
+            }
+            else
+                return LibrosIdiomas;
+
+        }
+
         public async Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro)
         {
             Respuestas orespuesta = new Respuestas();
@@ -279,9 +301,10 @@ namespace Capa_de_servicios.Servicios
            var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
            var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
            var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
+           var LibrosIdioma = GetbookByLanguage(Filtro.Idioma, LibrosCalificado);
 
 
-            orespuesta.Data = LibrosCalificado;
+            orespuesta.Data = LibrosIdioma;
             orespuesta.Exito = 1;
             return orespuesta;
         }
