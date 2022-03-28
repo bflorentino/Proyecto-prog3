@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj": {}
+    "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
+    "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+        "projectUniqueName": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
         "projectName": "Capa de datos",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\obj\\",
+        "projectPath": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+        "packagesPath": "C:\\Users\\scarl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\scarl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -76,28 +74,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj": {
+    "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+        "projectUniqueName": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
         "projectName": "Capa de servicios",
-        "projectPath": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
+        "projectPath": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+        "packagesPath": "C:\\Users\\scarl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\scarl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -110,8 +106,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
-                "projectPath": "C:\\Users\\DELL\\Desktop\\Proyecto PIII\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
+              "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
+                "projectPath": "C:\\Users\\scarl\\Source\\Repos\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
               }
             }
           }
@@ -153,7 +149,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }
