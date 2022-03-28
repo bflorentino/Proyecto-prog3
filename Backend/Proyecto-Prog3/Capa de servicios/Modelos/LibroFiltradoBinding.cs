@@ -7,5 +7,6 @@ namespace Capa_de_servicios.Modelos
         public List<int?> Genero { get; set; }
         public int Precio { get; set; } = 0;
         public int Calificacion { get; set; }
+        public int Idioma { get; set; }
     }
 }
