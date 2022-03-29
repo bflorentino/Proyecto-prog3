@@ -1,12 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
+import { AuthContext } from '../Context/AuthContext'
+
+let Cantidad;
 
 const BookInfoPage = () => {
 
   const [book, setBook] = useState({})
   const { bookId } = useParams();
+  const {agregarLibroCarrito} = useContext(AuthContext);
+
+  const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
+    agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio);
+  }
+
+  function getCantidad(){
+    Cantidad = document.getElementById('cantidad').value;  
+  }
 
   useEffect(() => {
       getBookById(bookId).then(book =>{
@@ -44,7 +56,7 @@ const BookInfoPage = () => {
       <p className='text-red-price font-bold text-2xl text-center'>US ${book.precio}</p>
 
       <div className='w-full mt-8 ml-4'>
-           <select name="Cantidad" id="cantidad" className='outline-none bg-gray-select rounded-lg'>
+           <select name="Cantidad" id="cantidad" onChange={() => getCantidad()} className='outline-none bg-gray-select rounded-lg'>
              <option value="Cantidad" defaultValue>Cantidad</option>
              <option value="1">1</option>
              <option value="2">2</option>
@@ -62,7 +74,7 @@ const BookInfoPage = () => {
              <option value="14">14</option>
              <option value="15">15</option>
            </select>
-          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano'>Agregar al carrito</button>
+          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleClick(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
           <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano'>¡Comprar Ya!</button>
       </div>
 

@@ -55,13 +55,11 @@ export const RegisterBookPage = () => {
                         NumeroPaginas: '',
                         Idioma: '',
                         IdCategoria: 1,
-                        // file: null
                     }}
                     validationSchema = {RegisterBooksSchema}
                     onSubmit={values => {
                         registerService({values}).then(data => {
                             history('/Get-BooksAdm')
-                            console.log(data)
                         })
                     }}
                 >
