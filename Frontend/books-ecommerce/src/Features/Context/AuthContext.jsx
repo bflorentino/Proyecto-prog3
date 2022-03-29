@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-
+    
     const history = useNavigate();
     const API = 'https://localhost:44373/api/Usuario/login'; 
     const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
@@ -46,16 +46,32 @@ export const AuthProvider = ({children}) => {
         history('/Login', {replace: true});    
     }
 
+    const initialState = {
+        cart: [],
+    }
+
+    const [state, setState] = useState(initialState);
+    
+    const agregarLibroCarrito = (idLibro, cantidad, rutaFoto, nombre, precio) => {
+        let libro = {idLibro, cantidad, rutaFoto, nombre, precio}
+        setState({
+            ...state,
+            cart: [...state.cart, libro]
+        });
+    }
+
     const contextData = {
         user:user,
         authTokens:authTokens,
+        state:state,
         logIn:logIn,
         logOut:logOut,
+        agregarLibroCarrito:agregarLibroCarrito,
     };
 
     return(
         <AuthContext.Provider value={contextData}>     
-                {children}
+            {children}
         </AuthContext.Provider>
     )
 }
