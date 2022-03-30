@@ -190,7 +190,7 @@ export const RegisterBookPage = () => {
                                         
                                     </div>
 
-                                    <div className="mt-4 ml-4 mt-4 w-full flex">
+                                    <div className="mt-4 ml-4 w-full flex">
                                         <label className="text-1xl font-poppins mt-1" htmlFor="Foto">Foto:</label>
                                         <input
                                             ref={fileRef}
