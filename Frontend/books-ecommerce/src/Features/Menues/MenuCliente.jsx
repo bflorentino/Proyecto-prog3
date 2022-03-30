@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Buscador } from "../Clients-Buscador/Buscador";
 import { Carrito } from "../Clients-Carrito/Carrito";
+import { Link } from "react-router-dom";
 
 export const MenuCliente = () => {
 
@@ -42,7 +43,7 @@ export const MenuCliente = () => {
     }
 
     return(
-        <nav className="p-5 bg-blue-menu shadow md:flex md:items-center md:justify-between">
+        <nav className="p-5 bg-blue-menu shadow md:flex md:items-center md:justify-between w-full sticky">
             <div className="flex justify-between items-center">
                 <span className="text-2x1 font-[Poppins] cursor-pointer text-white">
                     NOMBRE PAGINA
@@ -59,27 +60,27 @@ export const MenuCliente = () => {
                 <li onClick={() => ShowBuscador()} className="mx-4 md:my-0 text-xl cursor-pointer text-white">
                     <ion-icon name="search-outline"></ion-icon>
                 </li>
-                <li id="carrito" className="hidden absolute bg-blue-menu top-20 mt-2">
+                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-20 mt-2 shadow-xl rounded-2xl h-96">
                     {state.cart.map(item => (
                         <Carrito book={item} key={`orderId-${item.idLibro}`}/>
                     ))}
                     {state.cart.length > 0 ? <div className="flex w-full justify-center mb-3">
-                        <button type="submit" className="bg-green p-1 text-white rounded-md">
+                        <Link to='/cash' className="bg-green p-1 text-white rounded-md">
                             Comprar
-                        </button>
+                        </Link>
                     </div> : null}
                 </li>
                 <li onClick={() => ShowCarrito()} className="flex flex-column ml-4 md:my-0 text-xl cursor-pointer text-white">
                     <ion-icon name="cart-outline"></ion-icon>
                 </li>
-                <li className="mb-6 mr-4">
+                <li className="mr-4">
                     {state.cart.length > 0 ? <div className="text-white">{state.cart.length}</div> : null}
                 </li>
                 <li className="mx-4 my-6 md:my-0">
-                    <a className="text-x1 duration-500 text-white" href="/">LIBROS</a>
+                    <Link to='/' className="text-x1 duration-500 text-white">LIBROS</Link>
                 </li>
                 <li className="mx-4 my-6 md:my-0">
-                    {user ? <a className="text-x1 duration-500 cursor-pointer text-white" onClick={logOut}>CERRAR SESIÓN</a> : <a className="text-x1 text-white hover:text-light-blue-500 duration-500" href="/Login">ACCEDER</a>}
+                    {user ? <button className="text-x1 duration-500 cursor-pointer text-white" onClick={logOut}>CERRAR SESIÓN</button> : <Link className="text-x1 text-white hover:text-light-blue-500 duration-500" to="/Login">ACCEDER</Link>}
                 </li>
             </ul>
         </nav> 

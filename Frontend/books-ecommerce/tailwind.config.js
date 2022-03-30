@@ -18,6 +18,7 @@ module.exports = {
       'green-button': '#57CC25',
       'upload-buttom': '#adb5bd',
       'border-book': '#E5E5E5',
+      'border-pay' : '#D1D7DC',
       'blue-menu': '#026aa7',
       'red-price': '#CA5304',
       'orange': '#FA8900'

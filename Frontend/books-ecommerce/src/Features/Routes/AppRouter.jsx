@@ -7,12 +7,12 @@ import { AddUserPage } from '../Sign Up/AddUserPage';
 import Login from '../Login/LoginUserPage';
 import GetBooksPage from '../Admin-getBooks/getBooksPage';
 import { AuthProvider } from '../Context/AuthContext';
-import PrivateRoute from './PrivatesRoutes';
 import AdminRoute from './AdminRoutes';
 import { RegisterBookPage } from '../Admin-registerBooks/RegisterBookPage';
 import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
 import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
 import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
+import PayPage from '../Payments/PayPage';
 
 const AppRouter = () => {
     return(
@@ -35,6 +35,11 @@ const AppRouter = () => {
                             path = '/Login'
                             element= {<Login />}
                         />
+                        <Route
+                            exact
+                            path = '/Cash'
+                            element= {<PayPage />}
+                        />                      
                         <Route
                             exact
                             path = '/Book-Info/:bookId'

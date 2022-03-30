@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
@@ -9,11 +9,18 @@ let Cantidad;
 const BookInfoPage = () => {
 
   const [book, setBook] = useState({})
+  const history = useNavigate();
   const { bookId } = useParams();
-  const {agregarLibroCarrito} = useContext(AuthContext);
+  const {agregarLibroCarrito, user} = useContext(AuthContext);
+  const location = useLocation();
 
   const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
-    agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio);
+    if(!user){
+      window.localStorage.setItem("lastPath", JSON.stringify(location.pathname))
+      history('/login')
+    }else{
+      agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
+    }
   }
 
   function getCantidad(){
