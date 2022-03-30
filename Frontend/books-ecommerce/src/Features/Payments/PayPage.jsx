@@ -8,6 +8,16 @@ import ItemGrid from './itemGrid'
 import swal from 'sweetalert'
 import { payBooks } from './PayService'
 
+const PaySchema = Yup.object().shape({
+
+  nombreTarjeta: Yup.string().required("Debe agregar el nombre de su tarjeta"),
+  numeroTarjeta: Yup.string().required("Se requiere un número de tarjeta")
+                             .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
+  cvc: Yup.string().required("Debe agregar el código de seguridad")
+                   .max(3, "CVC inválido").min(3, "CVC incompleto"),
+
+});
+
 const PayPage = () => {
   
   const location = useLocation();
@@ -67,7 +77,7 @@ const PayPage = () => {
     
     const paymentData = {
       nombreUsuario: user.data.nombreUsuario,
-      numTarjeta: values.numeroTarjeta,
+      numTarjeta: values.numeroTarjeta.substring(0, 10),
       cv: values.cvc,
       fechaVenc : `${values.mes}/${values.anio}`,
       carrito: cartDetails
@@ -89,20 +99,15 @@ const PayPage = () => {
     <>
       <MenuCliente />
       <div className='flex flex-row flex-wrap bg-white overflow-auto h-full w-full justify-center'>
-        <Formik initialValues={{pais:'', 
-                                nombreTarjeta: '', 
-                                numeroTarjeta: '', 
-                                cvc:'', 
-                                mes: '',
-                                anio: ''   
-                              }}
-                              onSubmit={values => {
-                                handlePayment(values)
-                            }}
+        <Formik 
+              initialValues={{pais:'', nombreTarjeta: '', numeroTarjeta: '', cvc:'', mes: '',anio: '' }}
+              validationSchema = {PaySchema}
+              onSubmit={values => {
+                  handlePayment(values)
+              }}
           >
-
-            {({errors, touched}) => (
-
+            {({ errors, touched }) => (
+ 
               <Form className='flex flex-col w-1/2 pb-10 mt-12'>
                 <h1 className='mb-8 font-galdeano font-bold text-4xl'>Pagar</h1>
                 <div className='flex flex-col w-full mt-4 h-16'>
@@ -141,45 +146,70 @@ const PayPage = () => {
                 </div>
 
                 <div className='border border-border-pay flex flex-row flex-wrap w-full mt-8 pb-12'>
-                  <div className='w-full mt-4 flex justify-center h-10'>
+                  <div className='w-full mt-4 flex flex-col justify-center h-16 ml-6'>
                     <Field
+                      type = "text"
                       name = 'nombreTarjeta'
                       placeholder = 'Nombre de la tarjeta'
-                      className = 'border outline-none w-11/12 h-full pl-2'
-                    >
-                    </Field>
+                      className = 'border outline-none w-11/12 h-10 pl-2'
+                    />
+                    {errors.nombreTarjeta && touched.nombreTarjeta ? (
+                        <div className='text-red-error'>{errors.nombreTarjeta}</div>
+                    ) : null}
+                    
                   </div>
 
-                  <div className='w-full mt-4 flex justify-center h-10'>
+                  <div className='w-full mt-2 flex flex-col justify-center h-16 ml-6'>
                     <Field
+                      type = "text"
                       name = 'numeroTarjeta'
                       placeholder = 'Número de tarjeta'
-                      className = 'border outline-none w-11/12 h-full pl-2'
-                    >
-                    </Field>
+                      className = 'border outline-none w-11/12 h-10 pl-2'
+                    />
+                    {errors.numeroTarjeta && touched.numeroTarjeta ? (
+                        <div className='text-red-error'>{errors.numeroTarjeta}</div>
+                    ) : null}
                   </div>
 
                   <div className='w-full mt-4 flex ml-6 h-24 flex-wrap'>
-                    <Field
+                    <select
                       name = 'mes'
                       placeholder = 'Mes'
                       className = 'border outline-none w-5/12 h-10 pl-2'
                     >
-                    </Field>
-                    <Field
+                      {[...Array(12)].map((opt, i) => {
+                        return <option key={i} value = {i < 9 ? `0${i+1}`:i+1}>  
+                                  {i < 9 ? `0${i+1}`:i+1} 
+                                </option>
+                      })
+                      }
+                    </select>
+                    <select
                       name = 'anio'
                       placeholder = 'Año'
                       className = 'border outline-none w-5/12 ml-14 h-10 pl-2'
                     >
-                    </Field>
-                    <Field
-                      name = 'cvc'
-                      placeholder = 'CVC'
-                      className = 'border outline-none w-5/12 h-10 mt-4 pl-2'
-                    >
-                    </Field>
+                      {[...Array(15)].map((opt, i) => {
+                        return <option key={i} value = {i < 9 ? `0${i+2022}`:i+2022}>  
+                                  {i < 9 ? i+2022 :i+2022}
+                                </option>
+                      })
+                      }
+                    </select>
+                    <div className='flex flex-col w-full'>
+                      <Field
+                        type = "text"
+                        name = 'cvc'
+                        placeholder = 'CVC'
+                        className = 'border outline-none w-5/12 h-10 mt-4 pl-2'
+                      />
+                      {errors.cvc && touched.cvc ? (
+                          <div className='text-red-error'>{errors.cvc}</div>
+                      ) : null}
+                    </div>
                   </div>
-                <button type='submit' className='bg-orange text-white font-bold text-lg py-2 px-36 ml-32 mr-5 mt-8'>
+                
+                <button type="submit" className='bg-orange text-white font-bold text-lg py-2 px-36 ml-32 mr-5 mt-8'>
                   Completar Pago
                 </button>
                 </div>
