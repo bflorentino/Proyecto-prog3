@@ -6,23 +6,24 @@ const FilterBooks = ({setBooks}) => {
 
   const [ filters, setFilters ] = useState({
     genero : [],
-    rangoPrecio: 0,
-    calificaciones: 0
+    precio: 0,
+    calificacion: 0,
+    idioma: 0
   });
 
-  const {genero, rangoPrecio, calificaciones} = filters;
+  const {genero, precio, calificacion, idioma} = filters;
   const [ started, setStarted ] = useState(false)
 
   useEffect(()=> {
     
     if(!started){
       setStarted(true)
-    }else if(started && (genero.length !== 0 || rangoPrecio !== 0 || calificaciones !== 0)){
+    }else if(started && (genero.length !== 0 || precio !== 0 || calificacion !== 0 || idioma !== 0)){
       getBooksFiltered(filters).then(books => {
         setBooks([...books])
       })
     }
-    else if(started && genero.length === 0 && rangoPrecio === 0 && calificaciones === 0){
+    else if(started && genero.length === 0 && precio === 0 && calificacion === 0){
       getAllBooks().then(books => {
         setBooks([...books])
       })
@@ -74,8 +75,8 @@ const FilterBooks = ({setBooks}) => {
       <div className='flex flex-col ml-4 font-poppins mt-6'>
       <h1 className="text-lg font-bold mb-2">Precio</h1>
         <div 
-            className={`mt-1 ${rangoPrecio === 1 && 'text-blue-top-buttom'}`}  
-            onClick={()=> setFilters({...filters, rangoPrecio : 1, })}
+            className={`mt-1 ${precio === 1 && 'text-blue-top-buttom'}`}  
+            onClick={()=> setFilters({...filters, precio : 1, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
             <p>$10 US - $20 US </p>
@@ -83,8 +84,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
       
         <div 
-            className={`mt-2 ${rangoPrecio === 2 && 'text-blue-top-buttom'}`}  
-            onClick={()=> setFilters({...filters, rangoPrecio : 2, })}
+            className={`mt-2 ${precio === 2 && 'text-blue-top-buttom'}`}  
+            onClick={()=> setFilters({...filters, precio : 2, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
             <p>$21 US - $40 US </p>
@@ -92,8 +93,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-            className={`mt-2 ${rangoPrecio === 3 && 'text-blue-top-buttom'}`}   
-            onClick={()=> setFilters({...filters, rangoPrecio : 3, })}
+            className={`mt-2 ${precio === 3 && 'text-blue-top-buttom'}`}   
+            onClick={()=> setFilters({...filters, precio : 3, })}
         >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
             <p>$40 US - $60 US </p>
@@ -101,8 +102,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-            className={`mt-2 ${rangoPrecio === 4 && 'text-blue-top-buttom'}`}  
-            onClick={()=> setFilters({...filters, rangoPrecio : 4, })}
+            className={`mt-2 ${precio === 4 && 'text-blue-top-buttom'}`}  
+            onClick={()=> setFilters({...filters, precio : 4, })}
           >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
             <p>$60 US - $80 US </p>
@@ -110,8 +111,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-           className={`mt-2 ${rangoPrecio === 5 && 'text-blue-top-buttom'}`}   
-           onClick={()=> setFilters({...filters, rangoPrecio : 5, })}
+           className={`mt-2 ${precio === 5 && 'text-blue-top-buttom'}`}   
+           onClick={()=> setFilters({...filters, precio : 5, })}
           >
           <label htmlFor="price" className='text-sm hover:cursor-pointer'>
             <p>$80 US o más</p>
@@ -124,7 +125,7 @@ const FilterBooks = ({setBooks}) => {
        
         <div 
             className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificaciones : 1, })}
+            onClick={()=> setFilters({...filters, calificacion : 1, })}
           >
           <img 
               src={`../assets/Calificacion1.png`}  
@@ -135,7 +136,7 @@ const FilterBooks = ({setBooks}) => {
        
         <div 
             className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificaciones : 2 })}
+            onClick={()=> setFilters({...filters, calificacion : 2 })}
           >
           <img 
             src={`../assets/Calificacion2.png`}  
@@ -147,7 +148,7 @@ const FilterBooks = ({setBooks}) => {
 
         <div 
             className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificaciones : 3 })}
+            onClick={()=> setFilters({...filters, calificacion : 3 })}
         >
           <img 
             src={`../assets/Calificacion 3.png`}  
@@ -158,7 +159,7 @@ const FilterBooks = ({setBooks}) => {
        
         <div 
             className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificaciones : 4 })}
+            onClick={()=> setFilters({...filters, calificacion : 4 })}
           >
           <img 
               src={`../assets/Calificacion 4.png`}  
@@ -167,6 +168,26 @@ const FilterBooks = ({setBooks}) => {
           /> <p className='text-sm'> o más</p> 
         </div>
     
+      </div>
+
+      
+      <div className='flex flex-col font-poppins mt-6 w-full'>
+      <h1 className="text-lg font-bold mb-2 ml-4">Idioma</h1>
+       
+        <div 
+            className={`mt-2 ml-4 ${idioma === 2 && 'text-blue-top-buttom'}`}  
+            onClick={()=> setFilters({...filters, idioma: 2, })}
+          >
+         <p className='text-sm cursor-pointer'>Español</p> 
+        </div>
+       
+        <div 
+            className={`mt-2  ml-4 ${idioma === 1 && 'text-blue-top-buttom '}`}  
+            onClick={()=> setFilters({...filters,idioma : 1 })}
+          >
+          <p className='text-sm cursor-pointer'> Inglés</p>
+        </div>
+  
       </div>
     </>
   );

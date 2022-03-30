@@ -7,4 +7,8 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Capa_de_servicios
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\DELL\Desktop\Programación III\Backend\Proyecto-Prog3\Capa de servicios\
+=======
+build_property.ProjectDir = C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\
+>>>>>>> fa3c71a (Fitros faltantes en funcionamiento)
