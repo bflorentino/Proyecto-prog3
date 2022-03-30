@@ -1,6 +1,7 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "V1GsZAyZyx/JXb/xlanTaD9zIzl54zGdeXX2FnQrvQrqnU3bf6wLdPsVGGtcsMnFc5RDnGEVzwMR7U645++t7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
@@ -111,6 +112,12 @@
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
   "expectedPackageFiles": [
+=======
+  "dgSpecHash": "yAjTOy+30o3GmnJwad35WPmzPwNvrHI8maRmbIkuF0K7Ajszd6h4EM2or1rWNd6htGH+0BP5R/ahLaP2P1OIEQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
+  "expectedPackageFiles": [
+>>>>>>> 90aed182cea14550be69256386875758c029f40d
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.3\\microsoft.aspnetcore.authentication.jwtbearer.3.0.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -213,7 +220,10 @@
     "C:\\Users\\HP\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+<<<<<<< HEAD
 >>>>>>> a49b9de (Funcionalidad de pago implementada)
+=======
+>>>>>>> 90aed182cea14550be69256386875758c029f40d
   ],
   "logs": []
 }

@@ -5798,16 +5798,21 @@
   },
   "packageFolders": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
 =======
     "C:\\Users\\HP\\.nuget\\packages\\": {}
 >>>>>>> a49b9de (Funcionalidad de pago implementada)
+=======
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
+>>>>>>> 90aed182cea14550be69256386875758c029f40d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
       "projectName": "Capa de datos",
@@ -5832,6 +5837,17 @@
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
 >>>>>>> a49b9de (Funcionalidad de pago implementada)
+=======
+      "projectUniqueName": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+      "projectName": "Capa de datos",
+      "projectPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 90aed182cea14550be69256386875758c029f40d
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -5887,10 +5903,14 @@
           }
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
 >>>>>>> a49b9de (Funcionalidad de pago implementada)
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> 90aed182cea14550be69256386875758c029f40d
       }
     }
   }
