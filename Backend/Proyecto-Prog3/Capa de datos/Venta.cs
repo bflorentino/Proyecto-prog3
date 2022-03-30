@@ -19,7 +19,9 @@ namespace Capa_de_datos
         public string NumTarjeta { get; set; }
         public string FechaVenc { get; set; }
         public int Cv { get; set; }
+        public int IdPais { get; set; }
 
+        public virtual Pai IdPaisNavigation { get; set; }
         public virtual Cliente NombreUsuarioNavigation { get; set; }
         public virtual ICollection<DetalleVentum> DetalleVenta { get; set; }
     }

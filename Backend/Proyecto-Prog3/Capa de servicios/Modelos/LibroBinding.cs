@@ -12,7 +12,7 @@ namespace Capa_de_servicios.Modelos
         public string Nombre { get; set; }
         public decimal? Precio { get; set; }
         public string Autor { get; set; }
-        public DateTime? Año { get; set; }
+        public string Año { get; set; }
         public string Editorial { get; set; }
         public int? NumeroPaginas { get; set; }
         public string Idioma { get; set; }

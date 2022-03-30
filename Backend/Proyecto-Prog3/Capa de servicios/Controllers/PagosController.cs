@@ -29,5 +29,11 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _PagoServices.PayBook(pago));
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetCountry()
+        {
+            return Ok(await _PagoServices.GetCountry());
+        }
+
     }
 }

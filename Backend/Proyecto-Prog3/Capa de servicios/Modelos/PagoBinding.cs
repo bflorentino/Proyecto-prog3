@@ -14,7 +14,9 @@ namespace Capa_de_servicios.Modelos
         public string NumTarjeta { get; set; }
         public string FechaVenc { get; set; }
         public int Cv { get; set; }
+        public int idPais { get; set; }
         public List<ProductoBinding> Carrito {get; set;}
+
 
 
 

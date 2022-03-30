@@ -11,6 +11,6 @@ namespace Capa_de_servicios.Servicios
     {
         public Task<Respuestas> PayBook(PagoBinding pago);
 
-
+        public Task<Respuestas> GetCountry();
     }
 }

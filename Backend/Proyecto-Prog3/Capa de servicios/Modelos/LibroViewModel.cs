@@ -12,7 +12,7 @@ namespace Capa_de_servicios.Modelos
         public string Nombre { get; set; }
         public decimal? Precio { get; set; }
         public string Autor { get; set; }
-        public DateTime? Anio { get; set; }
+        public string Anio { get; set; }
         public string Editorial { get; set; }
         public int? NumeroPaginas { get; set; }
         public string Idioma { get; set; }
@@ -20,6 +20,9 @@ namespace Capa_de_servicios.Modelos
         public string RutaFoto { get; set; }
         public string Categoria { get; set; }
         public bool? EnVenta { get; set; }
+        public int CantidadCalificado { get; set; }
+        public double PromedioCalificacion { get; set; }
+        public bool PermisoCalificaar { get; set; }
 
     }
 }
