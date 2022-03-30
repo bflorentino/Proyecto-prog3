@@ -22,6 +22,7 @@ namespace Capa_de_datos
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<DetalleVentum> DetalleVenta { get; set; }
         public virtual DbSet<Libro> Libros { get; set; }
+        public virtual DbSet<Pai> Pais { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Venta> Ventas { get; set; }
@@ -109,7 +110,7 @@ namespace Capa_de_datos
             modelBuilder.Entity<DetalleVentum>(entity =>
             {
                 entity.HasKey(e => e.CodigoDetalle)
-                    .HasName("PK__Detalle___1C1EB93C2ADAC245");
+                    .HasName("PK__Detalle___1C1EB93C081F1A50");
 
                 entity.ToTable("Detalle_Venta");
 
@@ -124,21 +125,19 @@ namespace Capa_de_datos
                     .IsUnicode(false)
                     .HasColumnName("Codigo_Factura");
 
-                entity.Property(e => e.Precio)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("precio");
+                entity.Property(e => e.Precio).HasColumnName("precio");
 
                 entity.HasOne(d => d.CodigoFacturaNavigation)
                     .WithMany(p => p.DetalleVenta)
                     .HasForeignKey(d => d.CodigoFactura)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Detalle_V__preci__2DE6D218");
+                    .HasConstraintName("FK__Detalle_V__preci__395884C4");
 
                 entity.HasOne(d => d.IdlibroNavigation)
                     .WithMany(p => p.DetalleVenta)
                     .HasForeignKey(d => d.Idlibro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Detalle_V__Idlib__2EDAF651");
+                    .HasConstraintName("FK__Detalle_V__Idlib__3A4CA8FD");
             });
 
             modelBuilder.Entity<Libro>(entity =>
@@ -152,7 +151,9 @@ namespace Capa_de_datos
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Año).HasColumnType("date");
+                entity.Property(e => e.Año)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Editorial).IsUnicode(false);
 
@@ -174,6 +175,20 @@ namespace Capa_de_datos
                     .WithMany(p => p.Libros)
                     .HasForeignKey(d => d.IdCategoria)
                     .HasConstraintName("FK_Libros_categoria");
+            });
+
+            modelBuilder.Entity<Pai>(entity =>
+            {
+                entity.ToTable("pais");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("descripcion");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -221,7 +236,7 @@ namespace Capa_de_datos
             modelBuilder.Entity<Venta>(entity =>
             {
                 entity.HasKey(e => e.CodigoFactura)
-                    .HasName("PK__Ventas__BB514FC001A1CEAF");
+                    .HasName("PK__Ventas__BB514FC0FB0453B6");
 
                 entity.Property(e => e.CodigoFactura)
                     .HasMaxLength(200)
@@ -240,6 +255,8 @@ namespace Capa_de_datos
                     .IsUnicode(false)
                     .HasColumnName("Fecha_Venc");
 
+                entity.Property(e => e.IdPais).HasColumnName("idPais");
+
                 entity.Property(e => e.Monto).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.NombreUsuario)
@@ -253,11 +270,17 @@ namespace Capa_de_datos
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
+                entity.HasOne(d => d.IdPaisNavigation)
+                    .WithMany(p => p.Venta)
+                    .HasForeignKey(d => d.IdPais)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Ventas__idPais__3587F3E0");
+
                 entity.HasOne(d => d.NombreUsuarioNavigation)
                     .WithMany(p => p.Venta)
                     .HasForeignKey(d => d.NombreUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Ventas__CV__2B0A656D");
+                    .HasConstraintName("FK__Ventas__nombreUs__367C1819");
             });
 
             OnModelCreatingPartial(modelBuilder);

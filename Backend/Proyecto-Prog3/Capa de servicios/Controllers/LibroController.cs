@@ -69,11 +69,11 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _libroServices.EditBooks(libro));
         }
             
-        [HttpGet("{id}")]
-        public  async Task <IActionResult> GetID(int id)
+        [HttpGet("{id}/{nombreusuario}")]
+        public  async Task <IActionResult> GetID(int id , string nombreusuario = "")
         {
 
-                return Ok(await _libroServices.GetbookByID(id));
+                return Ok(await _libroServices.GetbookByID(id, nombreusuario));
         }
 
         [HttpGet("nombre/{nombre}")]

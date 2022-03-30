@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Capa_de_datos;
 using Capa_de_servicios.Response;
 using Capa_de_servicios.Modelos;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Capa_de_servicios.Servicios
 {
@@ -40,8 +40,8 @@ namespace Capa_de_servicios.Servicios
                 NombreUsuario = pago.NombreUsuario,
                 NumTarjeta = pago.NumTarjeta,
                 FechaVenc = pago.FechaVenc,
-                Cv = pago.Cv
-
+                Cv = pago.Cv,
+                IdPais = pago.idPais
             };
 
             await _context.Ventas.AddAsync(ventas);
@@ -55,7 +55,8 @@ namespace Capa_de_servicios.Servicios
                     CodigoFactura = pago.CodigoFactura,
                     Idlibro = producto.Idlibro,
                     Cantidad = producto.Cantidad,
-                    Precio = (decimal)producto.Monto
+                    Precio = (int)producto.Monto
+                   
                  };
                 await _context.DetalleVenta.AddAsync(detalle);
 
@@ -69,6 +70,27 @@ namespace Capa_de_servicios.Servicios
             return orespuesta;
 
         }
+
+        public async Task<Respuestas> GetCountry() 
+        {
+
+            Respuestas orespuesta = new Respuestas();
+
+            var paises = await (from pais in _context.Pais
+                        select new PaisesViewModelcs
+                       {
+                            ID = pais.Id,
+                           Descripcion = pais.Descripcion
+
+                       }).ToListAsync();
+
+            orespuesta.Data = paises;
+
+            return orespuesta;
+
+
+        }
+        
 
 
 

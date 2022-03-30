@@ -79,6 +79,29 @@ namespace Capa_de_servicios.Servicios
                                         EnVenta = libros.EnVenta
                                     }).ToListAsync();
 
+            int cantidad = 0;
+            double averagef = 0;
+
+            foreach (var libro in listaLibro)
+            {
+                var average = (from califica in _context.Calificaciones
+                               where califica.IdLibro == libro.Idlibro
+                               select califica.Calificación
+                           ).Average();
+
+                cantidad = (from califica in _context.Calificaciones
+                            where califica.IdLibro == libro.Idlibro
+                            select califica.Calificación
+                               ).Count();
+
+                averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+
+                libro.CantidadCalificado = cantidad;
+                libro.PromedioCalificacion = averagef;
+
+            }
+
+
             oRespuesta.Data = listaLibro;
             return oRespuesta;
         }
@@ -113,9 +136,41 @@ namespace Capa_de_servicios.Servicios
             return orepuesta;
         }
 
-        public async Task<Respuestas> GetbookByID(int id)
+        public async Task<Respuestas> GetbookByID(int id, string NombreUsuario = "")
         {
             Respuestas orepuesta = new Respuestas();
+
+            int cantidad = 0;
+            double averagef = 0;
+            int? Calificado = 0;
+            bool Permiso = false;
+
+            var average = (from califica in _context.Calificaciones
+                           where califica.IdLibro == id
+                           select califica.Calificación
+                           ).Average();
+
+            cantidad = (from califica in _context.Calificaciones
+                        where califica.IdLibro == id
+                        select califica.Calificación
+                           ).Count();
+
+
+            if (NombreUsuario != "")
+            {
+                Calificado = _context.Calificaciones.FirstOrDefault(a => a.IdLibro == id && a.NombreUsuario == NombreUsuario)?.Calificación ?? 0;
+
+                if (Calificado == 0)
+                {
+
+                    Permiso = true;
+
+                }
+
+
+            }
+
+            averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
 
             var Libro = from libros in _context.Libros
                         join categoria in _context.Categoria
@@ -134,7 +189,10 @@ namespace Capa_de_servicios.Servicios
                             Anio = libros.Año,
                             Idlibro = libros.IdLibro,
                             Precio = libros.Precio,
-                            EnVenta = libros.EnVenta
+                            EnVenta = libros.EnVenta,
+                             CantidadCalificado = cantidad,
+                            PromedioCalificacion = averagef,
+                            PermisoCalificaar = Permiso
                         };
             orepuesta.Data = Libro;
             return orepuesta;
@@ -204,22 +262,7 @@ namespace Capa_de_servicios.Servicios
                 }
                 return librosCalificacion;
             }
-            //else if (calificacion == 2)
-            //{
-            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
-            //    return librosCalificacion;
-            //}
-            //else if (calificacion == 3)
-            //{
-            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
-            //    return librosCalificacion;
-            //}
-
-            //else if (calificacion == 4)
-            //{
-            //    var librosCalificacion = libros.Where(a => a.cali).ToList();
-            //    return librosCalificacion;
-            //}
+            
 
             else
                 return libros;

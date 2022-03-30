@@ -11,7 +11,7 @@ namespace Capa_de_datos
         public string CodigoFactura { get; set; }
         public int Idlibro { get; set; }
         public int Cantidad { get; set; }
-        public decimal Precio { get; set; }
+        public int Precio { get; set; }
 
         public virtual Venta CodigoFacturaNavigation { get; set; }
         public virtual Libro IdlibroNavigation { get; set; }
