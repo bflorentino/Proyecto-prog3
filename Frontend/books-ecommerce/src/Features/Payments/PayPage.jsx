@@ -6,10 +6,10 @@ import { MenuCliente } from '../Menues/MenuCliente'
 import * as Yup from 'yup';
 import ItemGrid from './itemGrid'
 import swal from 'sweetalert'
-import { payBooks } from './PayService'
+import { getCountries, payBooks } from './PayService'
 
 const PaySchema = Yup.object().shape({
-
+  
   nombreTarjeta: Yup.string().required("Debe agregar el nombre de su tarjeta"),
   numeroTarjeta: Yup.string().required("Se requiere un número de tarjeta")
                              .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
@@ -24,6 +24,7 @@ const PayPage = () => {
   const {user, state} = useContext(AuthContext)
   const [ totalCost, setTotalCost ] = useState(0)
   const [ cartDetails, setCartDetails ] = useState(null)
+  const [ countries, setCountries ] = useState([]);
   const history = useNavigate();
 
   useEffect(()=>{
@@ -42,6 +43,14 @@ const PayPage = () => {
     }
     setTotalCost(totalCost)
     //eslint-disable-next-line
+  }, [])
+
+  useEffect(()=> {
+    let isMounted = true;
+    getCountries().then(countries => {
+      isMounted && setCountries(countries)
+    })
+    return () => {isMounted = false} 
   }, [])
   
   const confirmPay = (paymentData)=>{
@@ -80,8 +89,11 @@ const PayPage = () => {
       numTarjeta: values.numeroTarjeta.substring(0, 10),
       cv: values.cvc,
       fechaVenc : `${values.mes}/${values.anio}`,
-      carrito: cartDetails
+      carrito: cartDetails,
+      idPais: values.pais
     }
+
+    console.log(paymentData)
     
     confirmPay(paymentData)
   }
@@ -100,13 +112,13 @@ const PayPage = () => {
       <MenuCliente />
       <div className='flex flex-row flex-wrap bg-white overflow-auto h-full w-full justify-center'>
         <Formik 
-              initialValues={{pais:'', nombreTarjeta: '', numeroTarjeta: '', cvc:'', mes: '',anio: '' }}
+              initialValues={{pais:65, nombreTarjeta: '', numeroTarjeta: '', cvc:'', mes: '01',anio: 2022 }}
               validationSchema = {PaySchema}
               onSubmit={values => {
                   handlePayment(values)
               }}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, values, handleChange, setFieldValue }) => (
  
               <Form className='flex flex-col w-1/2 pb-10 mt-12'>
                 <h1 className='mb-8 font-galdeano font-bold text-4xl'>Pagar</h1>
@@ -115,10 +127,14 @@ const PayPage = () => {
                   <select
                     name='pais'
                     className='border outline-none w-6/12 h-10 mt-2'
+                    onChange={handleChange}
+                    value={values.pais}
                   >
-                    <option value="República Dominicana">República Dominicana</option>
-                    <option value="Estados Uniods">Estados Unidos</option>
-                    <option value="Alemania">Alemania</option>
+                    {
+                      countries && countries.map((country, i) => {
+                       return <option key = {i} value={country.id}>{country.descripcion}</option>
+                      })
+                    }
                   </select>
                 </div>
 
@@ -176,6 +192,7 @@ const PayPage = () => {
                       name = 'mes'
                       placeholder = 'Mes'
                       className = 'border outline-none w-5/12 h-10 pl-2'
+                      onChange={handleChange}
                     >
                       {[...Array(12)].map((opt, i) => {
                         return <option key={i} value = {i < 9 ? `0${i+1}`:i+1}>  
@@ -188,10 +205,11 @@ const PayPage = () => {
                       name = 'anio'
                       placeholder = 'Año'
                       className = 'border outline-none w-5/12 ml-14 h-10 pl-2'
+                      onChange={handleChange}
                     >
                       {[...Array(15)].map((opt, i) => {
-                        return <option key={i} value = {i < 9 ? `0${i+2022}`:i+2022}>  
-                                  {i < 9 ? i+2022 :i+2022}
+                        return <option key={i} value = {i+2022}>  
+                                  {i+2022}
                                 </option>
                       })
                       }

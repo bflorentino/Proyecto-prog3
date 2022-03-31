@@ -1,20 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "C:\\Users\\DELL\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\DELL\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-      "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
-=======
       "C:\\Users\\HP\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\HP\\.nuget\\packages"
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-=======
-      "C:\\Users\\HP\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\HP\\.nuget\\packages"
->>>>>>> 90aed182cea14550be69256386875758c029f40d
     ]
   }
 }

@@ -1,7 +1,7 @@
 const URL = 'https://localhost:44373/api/Pagos'
 
 export const payBooks = async (values) => {
-
+    
     const post = {
         method: 'POST',
         body: JSON.stringify(values),
@@ -14,4 +14,12 @@ export const payBooks = async (values) => {
     const { mensaje} = await res.json();
 
     return mensaje;
+}
+
+export const getCountries = async() => {
+    
+    const res = await fetch(URL);
+    const { data } = await res.json()
+    console.log(data)
+    return data;
 }

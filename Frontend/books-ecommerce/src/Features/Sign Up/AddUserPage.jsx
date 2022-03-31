@@ -34,7 +34,7 @@ export const AddUserPage = () =>{
                 validationSchema = {SignUpSchema}
                 onSubmit={values => {
                     addUser({values}).then(mensaje => {
-                        history('/', {replace:true})
+                        history('/login', {replace:true})
                     })
                 }}
             >

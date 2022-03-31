@@ -10,6 +10,12 @@ export const AuthProvider = ({children}) => {
     const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
 
+    const initialState = {
+        cart: [],
+    }
+
+    const [state, setState] = useState(initialState);
+
     const logIn = async (values) => {
 
         let mensaje = 'Usuario no encontrado';
@@ -44,15 +50,10 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
-        history('/Login', {replace: true});    
+        state.cart = []    
+        history('/Login', {replace: true});
     }
 
-    const initialState = {
-        cart: [],
-    }
-
-    const [state, setState] = useState(initialState);
-    
     const agregarLibroCarrito = (idLibro, cantidad, rutaFoto, nombre, precio) => {
         let libro = {idLibro, cantidad, rutaFoto, nombre, precio}
         setState({

@@ -60,12 +60,12 @@ export const MenuCliente = () => {
                 <li onClick={() => ShowBuscador()} className="mx-4 md:my-0 text-xl cursor-pointer text-white">
                     <ion-icon name="search-outline"></ion-icon>
                 </li>
-                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-20 mt-2 shadow-xl rounded-2xl h-96">
+                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-16 mt-2 shadow-xl rounded-2xl h-96 w-80">
                     {state.cart.map(item => (
                         <Carrito book={item} key={`orderId-${item.idLibro}`}/>
                     ))}
                     {state.cart.length > 0 ? <div className="flex w-full justify-center mb-3">
-                        <Link to='/cash' className="bg-green p-1 text-white rounded-md">
+                        <Link to='/cash' className="bg-green p-1 text-white rounded-md bottom-2">
                             Comprar
                         </Link>
                     </div> : null}

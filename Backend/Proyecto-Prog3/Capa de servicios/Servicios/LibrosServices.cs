@@ -94,14 +94,14 @@ namespace Capa_de_servicios.Servicios
                             select califica.Calificación
                                ).Count();
 
+                if(average == null) 
+                    average = 0;
+
                 averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
 
                 libro.CantidadCalificado = cantidad;
                 libro.PromedioCalificacion = averagef;
-
             }
-
-
             oRespuesta.Data = listaLibro;
             return oRespuesta;
         }
@@ -155,6 +155,10 @@ namespace Capa_de_servicios.Servicios
                         select califica.Calificación
                            ).Count();
 
+            if (average == null)
+                average = 0;
+
+            averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
 
             if (NombreUsuario != "")
             {
@@ -162,15 +166,9 @@ namespace Capa_de_servicios.Servicios
 
                 if (Calificado == 0)
                 {
-
                     Permiso = true;
-
                 }
-
-
             }
-
-            averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
 
             var Libro = from libros in _context.Libros
                         join categoria in _context.Categoria
@@ -248,9 +246,7 @@ namespace Capa_de_servicios.Servicios
 
         public List<LibroViewModel> GetbookByCalificacion(int calificacion, List<LibroViewModel> libros)
         {
-
             List<LibroViewModel> librosCalificacion = new List<LibroViewModel>();
-
 
             if (calificacion > 0)
             {
@@ -263,7 +259,6 @@ namespace Capa_de_servicios.Servicios
                 return librosCalificacion;
             }
             
-
             else
                 return libros;
         }
@@ -314,7 +309,6 @@ namespace Capa_de_servicios.Servicios
             }
             else
                 return LibrosIdiomas;
-
         }
 
         public async Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro)
@@ -341,11 +335,34 @@ namespace Capa_de_servicios.Servicios
                                         EnVenta = libros.EnVenta
                                     }).ToListAsync();
 
+            int cantidad = 0;
+            double averagef = 0;
+
+            foreach (var libro in listaLibro)
+            {
+                var average = (from califica in _context.Calificaciones
+                               where califica.IdLibro == libro.Idlibro
+                               select califica.Calificación
+                           ).Average();
+
+                cantidad = (from califica in _context.Calificaciones
+                            where califica.IdLibro == libro.Idlibro
+                            select califica.Calificación
+                               ).Count();
+
+                if (average == null)
+                    average = 0;
+
+                averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+
+                libro.CantidadCalificado = cantidad;
+                libro.PromedioCalificacion = averagef;
+            }
+
            var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
            var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
            var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
            var LibrosIdioma = GetbookByLanguage(Filtro.Idioma, LibrosCalificado);
-
 
             orespuesta.Data = LibrosIdioma;
             orespuesta.Exito = 1;
@@ -353,4 +370,3 @@ namespace Capa_de_servicios.Servicios
         }
     }
 }
- 

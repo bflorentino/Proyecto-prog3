@@ -124,8 +124,8 @@ const FilterBooks = ({setBooks}) => {
       <h1 className="text-lg font-bold mb-2 ml-4">Calificaciones</h1>
        
         <div 
-            className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificacion : 1, })}
+            className={`mt-2 flex flex-row ml-4 hover:cursor-pointer ${calificacion === 4 && 'text-blue-top-buttom'}`}
+            onClick={()=> setFilters({...filters, calificacion : 4, })}
           >
           <img 
               src={`../assets/Calificacion1.png`}  
@@ -135,8 +135,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
        
         <div 
-            className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificacion : 2 })}
+            className={`mt-2 flex flex-row ml-4 hover:cursor-pointer ${calificacion === 3 && 'text-blue-top-buttom'}`}
+            onClick={()=> setFilters({...filters, calificacion : 3 })}
           >
           <img 
             src={`../assets/Calificacion2.png`}  
@@ -147,8 +147,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
 
         <div 
-            className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificacion : 3 })}
+           className={`mt-2 flex flex-row ml-4 hover:cursor-pointer ${calificacion === 2 && 'text-blue-top-buttom'}`}
+            onClick={()=> setFilters({...filters, calificacion : 2 })}
         >
           <img 
             src={`../assets/Calificacion 3.png`}  
@@ -158,8 +158,8 @@ const FilterBooks = ({setBooks}) => {
         </div>
        
         <div 
-            className='mt-2 flex flex-row ml-4 hover:cursor-pointer'
-            onClick={()=> setFilters({...filters, calificacion : 4 })}
+             className={`mt-2 flex flex-row ml-4 hover:cursor-pointer ${calificacion === 1 && 'text-blue-top-buttom'}`} 
+            onClick={()=> setFilters({...filters, calificacion : 1 })}
           >
           <img 
               src={`../assets/Calificacion 4.png`}  

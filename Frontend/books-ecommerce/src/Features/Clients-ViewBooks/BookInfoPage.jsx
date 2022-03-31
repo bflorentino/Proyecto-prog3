@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import {  useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
 
-let Cantidad;
+let Cantidad = 1;
 
 const BookInfoPage = () => {
 
-  const [book, setBook] = useState({})
+  const [ book, setBook ] = useState({})
   const history = useNavigate();
   const { bookId } = useParams();
-  const {agregarLibroCarrito, user} = useContext(AuthContext);
+  const { agregarLibroCarrito, user } = useContext( AuthContext );
   const location = useLocation();
+  const userName = user !== null ? user.data.nombreUsuario : "no"
 
   const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
     if(!user){
@@ -23,13 +24,24 @@ const BookInfoPage = () => {
     }
   }
 
+  const handlePayAtOnce = (idLibro, cantidad, rutaFoto, nombre, precio) => {
+    if(!user){
+      window.localStorage.setItem("lastPath", JSON.stringify(location.pathname))
+      history('/login')
+    }else{
+      agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
+      history('/cash')
+    }
+  }
+
   function getCantidad(){
     Cantidad = document.getElementById('cantidad').value;  
   }
 
   useEffect(() => {
-      getBookById(bookId).then(book =>{
+      getBookById(bookId, userName).then(book =>{
       setBook(book[0])
+    // eslint-disable-next-line
   })}, [bookId])
 
   return (
@@ -63,8 +75,8 @@ const BookInfoPage = () => {
       <p className='text-red-price font-bold text-2xl text-center'>US ${book.precio}</p>
 
       <div className='w-full mt-8 ml-4'>
-           <select name="Cantidad" id="cantidad" onChange={() => getCantidad()} className='outline-none bg-gray-select rounded-lg'>
-             <option value="Cantidad" defaultValue>Cantidad</option>
+        <label htmlFor="">Cantidad</label>
+           <select name="Cantidad" id="cantidad" onChange={() => getCantidad()}  className='outline-none bg-gray-select rounded-lg ml-4 w-2/5'>
              <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
@@ -82,8 +94,8 @@ const BookInfoPage = () => {
              <option value="15">15</option>
            </select>
           <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleClick(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
-          <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano'>¡Comprar Ya!</button>
-      </div>
+          <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handlePayAtOnce(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>¡Comprar Ya!</button>
+        </div>
 
          </div>
        </div>

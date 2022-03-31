@@ -5932,47 +5932,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
-=======
     "C:\\Users\\HP\\.nuget\\packages\\": {}
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-=======
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
->>>>>>> 90aed182cea14550be69256386875758c029f40d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
-      "projectName": "Capa de servicios",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
-      "projectName": "Capa de servicios",
-      "projectPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\",
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-=======
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-=======
       "projectUniqueName": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
       "projectName": "Capa de servicios",
       "projectPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
@@ -5982,7 +5946,6 @@
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 90aed182cea14550be69256386875758c029f40d
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -5995,18 +5958,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
-=======
             "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
               "projectPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-=======
-            "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
-              "projectPath": "C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj"
->>>>>>> 90aed182cea14550be69256386875758c029f40d
             }
           }
         }
@@ -6054,16 +6007,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
->>>>>>> a49b9de (Funcionalidad de pago implementada)
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
->>>>>>> 90aed182cea14550be69256386875758c029f40d
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\HP\\Documents\\Proyecto Programación 3\\Backend\\Proyecto-Prog3\\Capa de servicios\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
