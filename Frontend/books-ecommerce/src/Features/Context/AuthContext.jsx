@@ -38,8 +38,7 @@ export const AuthProvider = ({children}) => {
             if(data.data.idRol === 2){
                 history('/Get-BooksAdm', {replace : true})
             }else{
-                const lastPath = JSON.parse(window.localStorage.getItem('lastPath')) || "/"
-                history(lastPath, {replace : true})
+                history('/', {replace:true})
             }
         }else{
             alert(mensaje);

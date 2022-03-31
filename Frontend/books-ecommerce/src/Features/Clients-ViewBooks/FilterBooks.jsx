@@ -23,7 +23,7 @@ const FilterBooks = ({setBooks}) => {
         setBooks([...books])
       })
     }
-    else if(started && genero.length === 0 && precio === 0 && calificacion === 0){
+    else if(started && genero.length === 0 && precio === 0 && calificacion === 0 && idioma === 0){
       getAllBooks().then(books => {
         setBooks([...books])
       })
@@ -37,12 +37,25 @@ const FilterBooks = ({setBooks}) => {
         : setFilters({...filters, genero: genero.filter(genero => genero !== e.target.value)})
   }
 
+  const handleClearPrice = (e) => {
+    setFilters({...filters, precio : 0})
+  }
+
+  const handleClearLanguage = (e) => {
+    setFilters({...filters, idioma : 0})
+  }
+
+  const handleClearRating = (e) => {
+    setFilters({...filters, calificacion : 0})
+  }
+
   return (
     <>
     <h1 className='text-center text-2xl font-poppins font-bold mt-2'>Filtrado</h1>
-      <div className="flex flex-col ml-4 mt-8 font-poppins">
-        <h1 className="text-lg font-bold mb-2">Género</h1>
 
+      <div className="flex flex-col ml-4 mt-8 font-poppins">
+
+        <h1 className="text-lg font-bold mb-2">Género</h1>
         <div>
           <input type="checkbox" value={1} id="cbox1" onChange={handleFilterGenres}/>
           <label className="ml-4 text-sm" htmlFor="cbox1">
@@ -118,11 +131,11 @@ const FilterBooks = ({setBooks}) => {
             <p>$80 US o más</p>
           </label>
         </div>
+      <button onClick={handleClearPrice} className='text-blue-top-buttom text-xs hover:underline mt-2'>Reestablecer</button>
       </div>
 
       <div className='flex flex-col font-poppins mt-6 w-full'>
       <h1 className="text-lg font-bold mb-2 ml-4">Calificaciones</h1>
-       
         <div 
             className={`mt-2 flex flex-row ml-4 hover:cursor-pointer ${calificacion === 4 && 'text-blue-top-buttom'}`}
             onClick={()=> setFilters({...filters, calificacion : 4, })}
@@ -167,13 +180,14 @@ const FilterBooks = ({setBooks}) => {
               className='w-4/10' 
           /> <p className='text-sm'> o más</p> 
         </div>
+      <button onClick={handleClearRating} className='text-blue-top-buttom text-xs hover:underline mt-2'>Reestablecer</button>
     
       </div>
 
       
       <div className='flex flex-col font-poppins mt-6 w-full'>
-      <h1 className="text-lg font-bold mb-2 ml-4">Idioma</h1>
-       
+      <h1 className="text-lg font-bold ml-4">Idioma</h1>
+      
         <div 
             className={`mt-2 ml-4 ${idioma === 2 && 'text-blue-top-buttom'}`}  
             onClick={()=> setFilters({...filters, idioma: 2, })}
@@ -187,6 +201,7 @@ const FilterBooks = ({setBooks}) => {
           >
           <p className='text-sm cursor-pointer'> Inglés</p>
         </div>
+      <button onClick={handleClearLanguage} className='text-blue-top-buttom text-xs hover:underline'>Reestablecer</button>
   
       </div>
     </>

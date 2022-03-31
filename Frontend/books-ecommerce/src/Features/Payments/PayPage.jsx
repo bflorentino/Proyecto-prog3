@@ -99,7 +99,6 @@ const PayPage = () => {
   }
 
   if(user === null) {
-      window.localStorage.setItem("lastPath", JSON.stringify(location.pathname))
       return <Navigate to='/login' replace />
   };
 

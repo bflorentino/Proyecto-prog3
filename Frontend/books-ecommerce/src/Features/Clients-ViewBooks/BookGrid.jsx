@@ -1,5 +1,5 @@
 import React from 'react'
-import BookStartRating from '../Rate-Books/BookStartRating'
+import BookRating from '../Rate-Books/BookRating'
 import { Link } from 'react-router-dom';
 
 const BookGrid = ({Book}) => {
@@ -16,7 +16,7 @@ const BookGrid = ({Book}) => {
               />
             </div>
             <div className='ml-8 mt-2 mb-2'>
-              <BookStartRating />
+              <BookRating book = {Book} size={17} />
             </div>
             <span className='text-sm w-full text-center'> <p>{Book.nombre}</p> </span>
             <span className='text-center w-full text-lg font-bold'> <p>{`US $${Book.precio}`}</p> </span>

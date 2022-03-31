@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {  useLocation, useNavigate, useParams } from 'react-router-dom'
+import {  useNavigate, useParams } from 'react-router-dom'
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
+import BookRating from '../Rate-Books/BookRating'
 
 let Cantidad = 1;
 
@@ -11,25 +12,25 @@ const BookInfoPage = () => {
   const [ book, setBook ] = useState({})
   const history = useNavigate();
   const { bookId } = useParams();
-  const { agregarLibroCarrito, user } = useContext( AuthContext );
-  const location = useLocation();
+  const { agregarLibroCarrito, user, state } = useContext( AuthContext );
   const userName = user !== null ? user.data.nombreUsuario : "no"
 
   const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
     if(!user){
-      window.localStorage.setItem("lastPath", JSON.stringify(location.pathname))
       history('/login')
     }else{
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
+      Cantidad = 1
     }
   }
 
   const handlePayAtOnce = (idLibro, cantidad, rutaFoto, nombre, precio) => {
     if(!user){
-      window.localStorage.setItem("lastPath", JSON.stringify(location.pathname))
       history('/login')
-    }else{
+    }else{  
+      state.cart = []
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
+      Cantidad = 1
       history('/cash')
     }
   }
@@ -54,10 +55,13 @@ const BookInfoPage = () => {
               alt={`${book.nombre}`} 
               className="w-60 h-96"
             /> 
-           <div className='flex flex-col ml-12 mt-6'>
+           <div className='flex flex-col ml-12'>
              
              <span><p className='font-bold text-4xl'>{book.nombre}</p></span>
              <span><p className='font-bold text-2xl mt-2 text-red-price'>US ${book.precio}</p></span>
+
+             <span className='mt-2'> <p>{book.promedioCalificacion} de 5</p> <BookRating book = { book } size={20}  />
+             </span>
 
              <span><p className='text-xl mt-6'><strong>Autor : </strong> {book.autor}</p></span>
              <span><p className='text-xl mt-6'><strong>Género : </strong> {book.categoria}</p></span>

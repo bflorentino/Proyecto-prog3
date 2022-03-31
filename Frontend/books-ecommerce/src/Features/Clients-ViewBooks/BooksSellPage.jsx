@@ -19,7 +19,7 @@ const BooksSellPage = () => {
       <div className='content'>
         <MenuCliente/>
         <div className='flex flex-row h-full w-full bg-white overflow-auto'>
-          <div className='h-full w-1/6 border-r border-border-book'>
+          <div className='h-full w-1/6 border-r border-b border-border-book pb-4'>
             <FilterBooks setBooks={setBooks} />
           </div>
           <div className='flex flex-row flex-wrap w-5/6'>
