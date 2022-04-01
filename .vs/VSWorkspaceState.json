@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Backend",
-    "\\Backend\\Proyecto-Prog3",
-    "\\Backend\\Proyecto-Prog3\\Capa de servicios",
-    "\\Backend\\Proyecto-Prog3\\Capa de servicios\\Request",
-    "\\Backend\\Proyecto-Prog3\\Capa de servicios\\Servicios"
+    ""
   ],
-  "SelectedNode": "\\Backend\\Proyecto-Prog3\\Capa de servicios\\Servicios\\LibrosServices.cs",
+  "SelectedNode": "\\Proyecto-Prog3.sln",
   "PreviewInSolutionExplorer": false
 }

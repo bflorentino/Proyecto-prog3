@@ -90,7 +90,44 @@ namespace Capa_de_servicios.Servicios
 
 
         }
-        
+
+        public async Task<Respuestas> GetFactura(string nombreUsuario)
+        {
+            Respuestas respuesta = new Respuestas();
+
+            var historialFactura = await (from historia in _context.Ventas
+                                          where historia.NombreUsuario == nombreUsuario
+                                          select new FacturaViewModel
+                                          {
+                                              Fecha = historia.Fecha,
+                                              Monto = historia.Monto,
+                                              CodigoFactura = historia.CodigoFactura
+                                          }).ToListAsync();
+
+            respuesta.Data = historialFactura;
+            respuesta.Exito = 1;
+            return respuesta;
+        }
+
+        public async Task<Respuestas> GetItems(string codigoFactura)
+        {
+            Respuestas respuesta = new Respuestas();
+            var items = await (from detalles in _context.DetalleVenta
+                               join nombre in _context.Libros
+                               on detalles.Idlibro equals nombre.IdLibro
+                               where detalles.CodigoFactura == codigoFactura
+                               select new ItemsViewModel
+                               {
+                                   NombreLibro = nombre.Nombre,
+                                   Idlibro = detalles.Idlibro,
+                                   Cantidad = detalles.Cantidad,
+                                   Precio = detalles.Precio
+                               }).ToListAsync();
+
+            respuesta.Data = items;
+            respuesta.Exito = 1;
+            return respuesta;
+        }
 
 
 

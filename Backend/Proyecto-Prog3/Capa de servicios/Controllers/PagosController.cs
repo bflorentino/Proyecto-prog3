@@ -29,6 +29,18 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _PagoServices.PayBook(pago));
         }
 
+        [HttpGet("Usuario/{nombreUsuario}")]
+        public async Task<ActionResult> GetFactura(string nombreUsuario)
+        {
+            return Ok(await _PagoServices.GetFactura(nombreUsuario));
+        }
+
+        [HttpGet("codigoFactura/{codigoFactura}")]
+        public async Task<ActionResult> GetItems(string codigoFactura)
+        {
+            return Ok(await _PagoServices.GetItems(codigoFactura));
+        }
+
         [HttpGet]
         public async Task<ActionResult> GetCountry()
         {

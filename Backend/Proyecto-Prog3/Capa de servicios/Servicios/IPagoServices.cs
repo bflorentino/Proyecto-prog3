@@ -12,5 +12,9 @@ namespace Capa_de_servicios.Servicios
         public Task<Respuestas> PayBook(PagoBinding pago);
 
         public Task<Respuestas> GetCountry();
+
+        public Task<Respuestas> GetFactura(string nombreUsuario);
+
+        public Task<Respuestas> GetItems(string codigoFactura);
     }
 }
