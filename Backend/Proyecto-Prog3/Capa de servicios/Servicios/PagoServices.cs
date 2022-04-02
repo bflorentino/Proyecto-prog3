@@ -27,7 +27,7 @@ namespace Capa_de_servicios.Servicios
 
             foreach (var producto in pago.Carrito) 
             {
-                monto_Total =+ (decimal)producto.Monto;
+                monto_Total += (decimal)producto.Monto;
             }
 
             pago.CodigoFactura = Guid.NewGuid().ToString();
@@ -97,9 +97,10 @@ namespace Capa_de_servicios.Servicios
 
             var historialFactura = await (from historia in _context.Ventas
                                           where historia.NombreUsuario == nombreUsuario
+                                          orderby(historia.Fecha )
                                           select new FacturaViewModel
                                           {
-                                              Fecha = historia.Fecha,
+                                              Fecha = historia.Fecha.ToString("dd/MM/yy"),
                                               Monto = historia.Monto,
                                               CodigoFactura = historia.CodigoFactura
                                           }).ToListAsync();

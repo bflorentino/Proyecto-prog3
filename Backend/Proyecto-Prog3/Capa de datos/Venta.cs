@@ -13,7 +13,7 @@ namespace Capa_de_datos
         }
 
         public string CodigoFactura { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
         public string NombreUsuario { get; set; }
         public string NumTarjeta { get; set; }

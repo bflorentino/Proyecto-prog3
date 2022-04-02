@@ -8,7 +8,7 @@ namespace Capa_de_servicios.Modelos
     public class FacturaViewModel
     {
         public string CodigoFactura { get; set; }
-        public DateTime? Fecha { get; set; }
+        public string Fecha { get; set; }
         public decimal Monto { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {  useNavigate, useParams } from 'react-router-dom'
+import {  Navigate, useNavigate, useParams } from 'react-router-dom'
 import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
@@ -15,8 +15,18 @@ const BookInfoPage = () => {
   const { agregarLibroCarrito, user, state } = useContext( AuthContext );
   const userName = user !== null ? user.data.nombreUsuario : "no"
 
-  const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
-    if(!user){
+useEffect(() => {
+  getBookById(bookId, userName).then(book =>{
+    setBook(book[0])
+    // eslint-disable-next-line
+  })}, [bookId])
+  
+  if(user!== null && user.data.idRol === 2){
+      return <Navigate to='/Get-BooksAdm' replace />
+  }
+
+const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
+  if(!user){
       history('/login')
     }else{
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
@@ -35,16 +45,10 @@ const BookInfoPage = () => {
     }
   }
 
-  function getCantidad(){
-    Cantidad = document.getElementById('cantidad').value;  
-  }
-
-  useEffect(() => {
-      getBookById(bookId, userName).then(book =>{
-      setBook(book[0])
-    // eslint-disable-next-line
-  })}, [bookId])
-
+    function getCantidad(){
+      Cantidad = document.getElementById('cantidad').value;  
+    }
+  
   return (
     <>
        <MenuCliente />

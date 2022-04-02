@@ -20,6 +20,25 @@ export const getCountries = async() => {
     
     const res = await fetch(URL);
     const { data } = await res.json()
-    console.log(data)
+    return data;
+}
+
+export const getInvoice = async(username) => {
+    
+    const URLInvoice = `${URL}/Usuario/${username}`
+
+    const res = await fetch(URLInvoice);
+    const { data } = await res.json()
+
+    return data;
+}
+
+export const getItemsByInvoice = async(invoiceCode) => {
+    
+    const URLInvoiceCode = `${URL}/codigoFactura/${invoiceCode}`
+
+    const res = await fetch(URLInvoiceCode);
+    const { data } = await res.json()
+
     return data;
 }

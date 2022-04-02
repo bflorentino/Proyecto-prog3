@@ -13,6 +13,7 @@ import { EditBookPage } from '../Admin-EditBooks/EditBookPage';
 import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
 import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
 import PayPage from '../Payments/PayPage';
+import ShoppingHistoryPage from '../Payments/ShoppingHistoryPage';
 
 const AppRouter = () => {
     return(
@@ -44,6 +45,11 @@ const AppRouter = () => {
                             exact
                             path = '/Book-Info/:bookId'
                             element= {<BookInfoPage />}
+                        />
+                           <Route
+                            exact
+                            path = '/ShoppingHistory'
+                            element= {<ShoppingHistoryPage />}
                         />
                         <Route exact path='/Get-BooksAdm' element={<AdminRoute/>}>
                             <Route exact path='/Get-BooksAdm' element={<GetBooksPage/>}/>

@@ -1,12 +1,13 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useContext, useEffect, useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Navigate,  useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContext'
 import { MenuCliente } from '../Menues/MenuCliente'
 import * as Yup from 'yup';
 import ItemGrid from './itemGrid'
 import swal from 'sweetalert'
 import { getCountries, payBooks } from './PayService'
+
 
 const PaySchema = Yup.object().shape({
   
@@ -20,7 +21,6 @@ const PaySchema = Yup.object().shape({
 
 const PayPage = () => {
   
-  const location = useLocation();
   const {user, state} = useContext(AuthContext)
   const [ totalCost, setTotalCost ] = useState(0)
   const [ cartDetails, setCartDetails ] = useState(null)
@@ -70,7 +70,7 @@ const PayPage = () => {
               });
               
               state.cart = [];
-              history('/', {replace : true})
+              history('/shoppingHistory', {replace : true})
 
             }).catch(error => {
               swal({
@@ -92,8 +92,6 @@ const PayPage = () => {
       carrito: cartDetails,
       idPais: values.pais
     }
-
-    console.log(paymentData)
     
     confirmPay(paymentData)
   }

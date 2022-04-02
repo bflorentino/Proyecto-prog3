@@ -26,7 +26,9 @@ module.exports = {
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif'],
       'galdeano' : ['Galdeano', 'sans-serif'],
-      'roboto': ['Roboto', 'sans-serif']
+      'roboto': ['Roboto', 'sans-serif'],
+      'notoSans': ['Noto Sans', 'sans-serif'],
+      'lato':['Lato', 'sans-serif']
     },
     extend: {},
   },
