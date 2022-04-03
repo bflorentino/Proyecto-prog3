@@ -87,7 +87,11 @@ namespace Capa_de_servicios.Controllers
         {
             return Ok(await _libroServices.FilterBooks(Filtro));
         }
-
+        [HttpPost("Calificar Libro")]
+        public async Task<ActionResult> RateBook(CalificacionBinding calificacion)
+        {
+            return Ok (await _libroServices.RateBook(calificacion));
+        }
     }
 }
    
