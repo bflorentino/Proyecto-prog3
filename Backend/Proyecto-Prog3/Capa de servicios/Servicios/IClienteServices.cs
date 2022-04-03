@@ -10,5 +10,6 @@ namespace Capa_de_servicios.Servicios
    public interface IClienteServices
     {
         Task<Respuestas> AddCliente(ClienteBinding cliente);
+        Task<Respuestas> EditPassword(ClienteBinding cliente);
     }
 }

@@ -46,5 +46,22 @@ namespace Capa_de_servicios.Servicios
             respuesta.Mensaje = "El cliente ha sido agregado correctamente";
             return respuesta;
         }
+
+        public async Task<Respuestas> EditPassword(ClienteBinding cliente)
+        {
+            var respuesta = new Respuestas();
+
+            Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
+            user.Contraseña = Encriptacion.GetSHA256(cliente.Contraseña);
+
+            respuesta.Mensaje = "Contraseña cambiada con exito!!!";
+
+            _context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            respuesta.Exito = 1;
+
+            return respuesta;
+        }
     }
 }

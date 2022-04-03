@@ -368,5 +368,25 @@ namespace Capa_de_servicios.Servicios
             orespuesta.Exito = 1;
             return orespuesta;
         }
+
+        public async Task<Respuestas> RateBook(CalificacionBinding calificacion)
+        {
+            Respuestas orespuesta = new Respuestas();
+
+            var calificar = new Calificacione
+            {
+                Calificación = calificacion.calificacion,
+                NombreUsuario = calificacion.nombreUsuario,
+                IdLibro = calificacion.idLibro
+            };
+
+            await _context.Calificaciones.AddAsync(calificar);
+            await _context.SaveChangesAsync();
+
+            orespuesta.Mensaje = "Calificacion agregada con exito!!!";
+            orespuesta.Exito = 1;
+
+            return orespuesta;
+            }
     }
 }

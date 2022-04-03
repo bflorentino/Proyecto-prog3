@@ -19,5 +19,6 @@ namespace Capa_de_servicios.Servicios
         public Task<Respuestas> GetbookByID(int id, string nombreusuario);
         public Task<Respuestas> GetbookByName(string nombre);
         public Task<Respuestas> FilterBooks(LibroFiltradoBinding Filtro);
+        public Task<Respuestas> RateBook(CalificacionBinding calificacion);
     }
 }
