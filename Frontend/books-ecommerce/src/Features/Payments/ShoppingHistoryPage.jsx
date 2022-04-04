@@ -5,6 +5,7 @@ import { MenuCliente } from '../Menues/MenuCliente';
 import InvoiceGrid from './InvoiceGrid';
 import NoInvoice from './NoInvoice';
 import { getInvoice } from './PayService';
+import { Footer } from '../Footer/Footer';
 
 const ShoppingHistoryPage = () => {
 
@@ -58,8 +59,11 @@ const ShoppingHistoryPage = () => {
           </div>
         ) 
         :
-          <NoInvoice />
+        <NoInvoice />
       }
+      <div className='mt-20'>
+        <Footer/>
+      </div>
     </>
   )
 }

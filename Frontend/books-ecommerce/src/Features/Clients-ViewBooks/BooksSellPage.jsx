@@ -3,6 +3,7 @@ import { getAllBooks } from '../Admin-getBooks/getBooksService'
 import BookGrid from './BookGrid';
 import FilterBooks from './FilterBooks';
 import { MenuCliente } from '../Menues/MenuCliente';
+import { Footer } from '../Footer/Footer';
 
 const BooksSellPage = () => {
 
@@ -42,6 +43,7 @@ const BooksSellPage = () => {
               }
             </div>
         </div>
+        <Footer/>
       </div>
     </>
   )

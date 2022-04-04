@@ -4,6 +4,7 @@ import { getBookById } from '../Admin-getBooks/getBooksService'
 import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
 import BookRating from '../Rate-Books/BookRating'
+import { Footer } from '../Footer/Footer'
 
 let Cantidad = 1;
 
@@ -107,6 +108,7 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
 
          </div>
        </div>
+       <Footer/>
     </>
   )
 }

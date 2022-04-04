@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import { registerService } from "./registerBookService";
@@ -201,6 +201,7 @@ export const RegisterBookPage = () => {
                                                 setFieldValue("Foto", event.target.files[0])
                                             }}
                                         />
+                                        
                                     </div>
 
                                     <div className="self-center mb-4 mt-6 w-1/2 bg-green text-white text-center px-6 py-1 rounded-md">
@@ -210,7 +211,7 @@ export const RegisterBookPage = () => {
                                     </div>
                                 </div>
 
-                                <div className='mt-12 mx-8 h-80'>
+                                <div className='mt-12 mx-8 h-80 border border-dashed'>
                                     {values.Foto && <PreviewImage file={values.Foto}/>}
                                 </div>
                             </div>
