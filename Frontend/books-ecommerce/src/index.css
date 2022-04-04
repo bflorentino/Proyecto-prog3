@@ -2,11 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities{
+    .no-scrollbar::-webkit-scrollbar{
+        display: none;
+    }
+
+    .scrol::-webkit-scrollbar{
+        width: 7px;
+    }
+
+    .scrol::-webkit-scrollbar-thumb{
+        background: #E5E5E5;
+        border-radious: 5px;
+    }
+}
+
 #root{
     background-color: #F2f2f2;
     width: 100vw;
     height: 100vh;
     overflow: auto;
+}
+
+#root::-webkit-scrollbar{
+    width: 7px;
+}
+
+#root::-webkit-scrollbar-thumb{
+    background: #FA8900;
+    border-radius: 5px;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+
+input[type=number]::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 .active{

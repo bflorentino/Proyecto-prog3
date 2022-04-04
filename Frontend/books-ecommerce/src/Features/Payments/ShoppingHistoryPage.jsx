@@ -9,7 +9,7 @@ import { Footer } from '../Footer/Footer';
 
 const ShoppingHistoryPage = () => {
 
-  const [ invoice, setInvoices ] = useState([]);
+  const [ invoice, setInvoices ] = useState(null);
   const {user} = useContext(AuthContext);
 
   useEffect(()=> {
@@ -34,9 +34,12 @@ const ShoppingHistoryPage = () => {
     <>
       <MenuCliente />
       {
-        invoice.length > 0 
-        ? (
-          <div className='bg-white w-full flex flex-col'>
+        invoice !== null
+        ?
+        
+          ( invoice.length > 0
+          ?
+            (<div className='bg-white w-full flex flex-col'>
             <h1 className='text-4xl font-notoSans font-bold mt-10 text-center'>Su Historial de compras</h1>
             <div className='flex flex-col w-full items-center mt-12'>
 
@@ -57,13 +60,19 @@ const ShoppingHistoryPage = () => {
             </div>
 
           </div>
+
         ) 
         :
-        <NoInvoice />
-      }
-      <div className='mt-20'>
-        <Footer/>
-      </div>
+          (<NoInvoice />)
+      )
+      :(
+        <h1 className='text-center w-full mt-36 text-3xl font-bold h-[165px]'>Cargando...</h1>
+      )
+  }
+
+      <Footer/>
+
+
     </>
   )
 }

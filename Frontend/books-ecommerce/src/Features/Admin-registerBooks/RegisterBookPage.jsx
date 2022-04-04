@@ -211,7 +211,7 @@ export const RegisterBookPage = () => {
                                     </div>
                                 </div>
 
-                                <div className='mt-12 mx-8 h-80 border border-dashed'>
+                                <div className='mt-12 mx-8 h-80 w-60 border border-dashed'>
                                     {values.Foto && <PreviewImage file={values.Foto}/>}
                                 </div>
                             </div>

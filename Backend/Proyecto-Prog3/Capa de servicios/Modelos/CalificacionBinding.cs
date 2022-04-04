@@ -7,8 +7,8 @@ namespace Capa_de_servicios.Modelos
 {
     public class CalificacionBinding
     {
-        public int idLibro { get; set; }
-        public int calificacion { get; set; }
-        public string nombreUsuario { get; set; }
+        public int IdLibro { get; set; }
+        public int Calificacion { get; set; }
+        public string NombreUsuario { get; set; }
     }
 }

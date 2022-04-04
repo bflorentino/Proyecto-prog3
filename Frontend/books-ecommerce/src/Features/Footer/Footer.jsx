@@ -8,7 +8,7 @@ import { TiempoEnvio } from "../Preguntas/TiempoEnvio";
 export const Footer = () => {
 
     return(
-        <footer className="bg-footer">
+        <footer className="bg-footer relative left-0 bottom-0 w-full">
             <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7">
 
                 <div className="w-full md:flex md:flex-column">

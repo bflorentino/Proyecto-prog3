@@ -2,8 +2,8 @@ import React from 'react'
 
 const NoInvoice = () => {
   return (
-    <div className='flex flex-row mt-20 w-full justify-center'>
-        <p> Usted no tiene ninguna compra registrada</p>
+    <div className='flex flex-row w-full justify-center h-[301px]'>
+        <p className='mt-32 text-xl'> Usted no tiene ninguna compra registrada</p>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { MenuCliente } from '../Menues/MenuCliente'
 import { AuthContext } from '../Context/AuthContext'
 import BookRating from '../Rate-Books/BookRating'
 import { Footer } from '../Footer/Footer'
+import BookStartRating from '../Rate-Books/BookStartRating'
 
 let Cantidad = 1;
 
@@ -53,11 +54,11 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
   return (
     <>
        <MenuCliente />
-       <div className='flex flex-row wrap bg-white w-full overflow-auto font-roboto h-screen'>
+       <div className='flex flex-row flex-wrap bg-white w-full overflow-auto font-roboto h-screen'>
          <div className='ml-8 flex flex-row mt-12 w-2/3'>
            <img 
               src = {book.rutaFoto && book.rutaFoto.replace(" ", "")} 
-              alt={`${book.nombre}`} 
+              alt={`Cargando`} 
               className="w-60 h-96"
             /> 
            <div className='flex flex-col ml-12'>
@@ -107,6 +108,15 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
         </div>
 
          </div>
+
+         {
+           user !== null && (
+            <div className='flex flex-col w-full items-center'>
+              <h1 className='text-3xl mb-2'>Calficar libro</h1>
+                <BookStartRating book={book} />
+            </div>
+           )
+         }
        </div>
        <Footer/>
     </>

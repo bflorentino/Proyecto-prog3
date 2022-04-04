@@ -14,7 +14,7 @@ export const PreviewImage = ({file}) => {
 
     return (
         
-        <img src={preview} alt="preview"/>
+        <img src={preview} alt="preview" className="h-80 w-60"/>
         
     )
 }

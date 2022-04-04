@@ -1,42 +1,72 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa'
+import { AuthContext } from '../Context/AuthContext';
+import { rateBook } from './RatingService';
+import RatingThanks from './RatingThanks';
+
+const BookStartRating = ({book}) => {
  
-const BookStartRating = () => {
- 
+    const {user} = useContext(AuthContext);
     const [ rating, setRating ] = useState(null);
     const [ hover, setHover ] = useState(null);
+    const [ rated, setRated ] = useState(null);
 
     const handleRating = ( e ) => {
-        setRating(e.target.value)
+        if(!rated){
+            setRating(e.target.value)
+            rateBook({
+                idLibro: book.idlibro,
+                calificacion: e.target.value,
+                nombreUsuario: user.data.nombreUsuario
+            }).then(message=>{
+                setRated(true)
+            })
+        }
     }
 
+    const handleOver = (ratingValue) => {
+        if(!rated){
+            setHover(ratingValue)
+        }
+    }
+    
     return (
-        <>
-            <div className='flex flex-row'>
-                {[...Array(5)].map((star, i) => {
-                    
-                    const ratingValue = i + 1;
-                return <label key={i}>
-                    <input 
-                        type="radio" 
-                        className='hidden' 
-                        name='rating' 
-                        value={ratingValue} 
-                        onClick={handleRating} 
-                    />
-                    <FaStar 
-                        className='cursor-pointer' 
-                        color = { ratingValue <= (hover || rating ) ? "#ffc107" : "#e4e5e9" } 
-                        size={17}
-                        onMouseEnter={() => setHover(ratingValue)}
-                        onMouseLeave={()=> setHover(null)}
-                     />
-                    </label> 
-                })} 
-                <p className='ml-2'>(20)</p>
-            </div>
-        </>
-  )
+      <>
+        <div className="flex flex-row">
+          {book.permisoCalificaar === true ? (
+            [...Array(5)].map((star, i) => {
+              const ratingValue = i + 1;
+              return (
+                <label key={i}>
+                  <input
+                    type="radio"
+                    className="hidden"
+                    name="rating"
+                    value={ratingValue}
+                    onClick={handleRating}
+                  />
+                  <FaStar
+                    className="cursor-pointer mr-12"
+                    color={
+                      ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                    }
+                    size={50}
+                    onMouseEnter={(e) => handleOver(ratingValue)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                </label>
+              );
+            })
+          ) : (
+            <h1>Ya usted ha calificado este libro</h1>
+          )}
+
+        </div>
+          {rated && (
+            <RatingThanks />
+          )}
+      </>
+    );
 }
 
 export default BookStartRating

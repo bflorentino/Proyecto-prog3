@@ -13,10 +13,11 @@ const PaySchema = Yup.object().shape({
   
   nombreTarjeta: Yup.string().required("Debe agregar el nombre de su tarjeta"),
   numeroTarjeta: Yup.string().required("Se requiere un número de tarjeta")
-                             .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
-  cvc: Yup.string().required("Debe agregar el código de seguridad")
-                   .max(3, "CVC inválido").min(3, "CVC incompleto"),
-
+                                      .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
+                            //  .test('len', 'Tarjeta inválida', (val) => val.toString().length ===  16),
+  cvc: Yup.number().required("Debe agregar el código de seguridad")
+                   .max(999, "CVC inválido").min(100, "CVC incompleto")
+                  
 });
 
 const PayPage = () => {
@@ -86,7 +87,7 @@ const PayPage = () => {
     
     const paymentData = {
       nombreUsuario: user.data.nombreUsuario,
-      numTarjeta: values.numeroTarjeta.substring(0, 10),
+      numTarjeta: values.numeroTarjeta.toString().substring(0, 10),
       cv: values.cvc,
       fechaVenc : `${values.mes}/${values.anio}`,
       carrito: cartDetails,
@@ -174,7 +175,7 @@ const PayPage = () => {
 
                   <div className='w-full mt-2 flex flex-col justify-center h-16 ml-6'>
                     <Field
-                      type = "text"
+                      type = "number"
                       name = 'numeroTarjeta'
                       placeholder = 'Número de tarjeta'
                       className = 'border outline-none w-11/12 h-10 pl-2'
@@ -213,7 +214,7 @@ const PayPage = () => {
                     </select>
                     <div className='flex flex-col w-full'>
                       <Field
-                        type = "text"
+                        type = "number"
                         name = 'cvc'
                         placeholder = 'CVC'
                         className = 'border outline-none w-5/12 h-10 mt-4 pl-2'

@@ -375,9 +375,9 @@ namespace Capa_de_servicios.Servicios
 
             var calificar = new Calificacione
             {
-                Calificación = calificacion.calificacion,
-                NombreUsuario = calificacion.nombreUsuario,
-                IdLibro = calificacion.idLibro
+                Calificación = calificacion.Calificacion,
+                NombreUsuario = calificacion.NombreUsuario,
+                IdLibro = calificacion.IdLibro
             };
 
             await _context.Calificaciones.AddAsync(calificar);
