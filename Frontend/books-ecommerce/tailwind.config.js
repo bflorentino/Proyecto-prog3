@@ -21,7 +21,9 @@ module.exports = {
       'border-pay' : '#D1D7DC',
       'blue-menu': '#026aa7',
       'red-price': '#CA5304',
-      'orange': '#FA8900'
+      'orange': '#FA8900',
+      'footer': '#023047',
+      'blue-footer': '#61a5c2',
     },
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif'],

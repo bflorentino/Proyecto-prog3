@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import ItemGrid from './itemGrid'
 import swal from 'sweetalert'
 import { getCountries, payBooks } from './PayService'
-
+import { Footer } from '../Footer/Footer'
 
 const PaySchema = Yup.object().shape({
   
@@ -261,6 +261,7 @@ const PayPage = () => {
             </div>
           </div>
         </div>
+        <Footer/>
     </>
   )
 }

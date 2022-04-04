@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginAlerta } from '../Login/LoginModal';
 
 export const AuthContext = createContext();
 
@@ -17,8 +18,6 @@ export const AuthProvider = ({children}) => {
     const [state, setState] = useState(initialState);
 
     const logIn = async (values) => {
-
-        let mensaje = 'Usuario no encontrado';
 
         let response = await fetch(API, {
             method: 'POST',
@@ -41,7 +40,7 @@ export const AuthProvider = ({children}) => {
                 history('/', {replace:true})
             }
         }else{
-            alert(mensaje);
+            loginAlerta();
         }
     }
 

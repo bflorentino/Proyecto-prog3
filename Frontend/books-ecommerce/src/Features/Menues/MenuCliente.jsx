@@ -80,6 +80,9 @@ export const MenuCliente = () => {
                     <Link to='/' className="text-x1 duration-500 text-white">LIBROS</Link>
                 </li>
                 <li className="mx-4 my-6 md:my-0">
+                    <Link to='/ShoppingHistory' className="text-x1 duration-500 text-white">HISTORIAL</Link>
+                </li>
+                <li className="mx-4 my-6 md:my-0">
                     {user ? <button className="text-x1 duration-500 cursor-pointer text-white" onClick={logOut}>CERRAR SESIÓN</button> : <Link className="text-x1 text-white hover:text-light-blue-500 duration-500" to="/Login">ACCEDER</Link>}
                 </li>
             </ul>
