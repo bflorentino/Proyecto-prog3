@@ -112,7 +112,7 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
          {
            user !== null && (
             <div className='flex flex-col w-full items-center'>
-              <h1 className='text-3xl mb-2'>Calficar libro</h1>
+              <h1 className='text-3xl mb-2'>Calificar libro</h1>
                 <BookStartRating book={book} />
             </div>
            )

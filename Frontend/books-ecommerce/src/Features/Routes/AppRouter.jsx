@@ -14,6 +14,7 @@ import BooksSellPage from '../Clients-ViewBooks/BooksSellPage';
 import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
 import PayPage from '../Payments/PayPage';
 import ShoppingHistoryPage from '../Payments/ShoppingHistoryPage';
+import { NotFound } from '../NotFound/PageNotFound';
 
 const AppRouter = () => {
     return(
@@ -46,10 +47,15 @@ const AppRouter = () => {
                             path = '/Book-Info/:bookId'
                             element= {<BookInfoPage />}
                         />
-                           <Route
+                        <Route
                             exact
                             path = '/ShoppingHistory'
                             element= {<ShoppingHistoryPage />}
+                        />
+                        <Route
+                            exact
+                            path='/*'
+                            element={<NotFound/>}
                         />
                         <Route exact path='/Get-BooksAdm' element={<AdminRoute/>}>
                             <Route exact path='/Get-BooksAdm' element={<GetBooksPage/>}/>

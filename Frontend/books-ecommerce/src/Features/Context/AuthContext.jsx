@@ -60,6 +60,13 @@ export const AuthProvider = ({children}) => {
         });
     }
 
+    const eliminarLibroCarrito = (book) => {
+        setState({
+            ...state,
+            cart: state.cart.filter(items => items.idLibro != book.idLibro),
+        });
+    }
+
     const contextData = {
         user:user,
         authTokens:authTokens,
@@ -67,6 +74,7 @@ export const AuthProvider = ({children}) => {
         logIn:logIn,
         logOut:logOut,
         agregarLibroCarrito:agregarLibroCarrito,
+        eliminarLibroCarrito:eliminarLibroCarrito,
     };
 
     return(
