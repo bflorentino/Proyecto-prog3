@@ -24,6 +24,7 @@ module.exports = {
       'orange': '#FA8900',
       'footer': '#023047',
       'blue-footer': '#61a5c2',
+      '404': '#67b99a'
     },
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif'],

@@ -1,5 +1,6 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import { BusquedaService } from "./BusquedaService";
+import { Link } from "react-router-dom";
 
 export const Buscador = () => {
     
@@ -7,14 +8,14 @@ export const Buscador = () => {
     const [busqueda, setBusqueda] = useState("");
 
     const handleChange = (e) => {
-
         setBusqueda(e.target.value);
+    }
 
+    useEffect(() => {
         BusquedaService(busqueda).then(info => {
             setLibros(info.data);
         });
-
-    }
+    }, [busqueda])
 
     return(
         <div className="main ml-5">
@@ -32,7 +33,7 @@ export const Buscador = () => {
             <ul id="lista" className="container absolute mt-5 w-2/6 bg-white rounded-md">
                 {libros && libros.map((libro) => (
                     <li key={libro.idlibro} className="p-2 cursor-pointer">
-                        <h1>{libro.nombre}</h1>
+                        <Link to={`/Book-Info/${libro.idlibro}`}>{libro.nombre}</Link>
                     </li>
                 ))}
             </ul>
