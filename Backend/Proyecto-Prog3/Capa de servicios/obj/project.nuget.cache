@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zk4q8iMxEMV8LisHaAvo1YiajhZ+QwByKG0cLXcVMUioWDtS/2TD6Cvl4tO7sHiGJr3Xx8Sg8drbGfYwQ/PVuw==",
+  "dgSpecHash": "EaXHj6Bi1U7j9C3HtX0JL1V1vni2mpMjdVwJxKAfDlG/kwTIXXFVJHr3j0R5CvGBpYDLUdrOw3UTHx+tkRgHbQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de servicios\\Capa de servicios.csproj",
   "expectedPackageFiles": [
@@ -104,7 +104,8 @@
     "C:\\Users\\bacil\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\bacil\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\bacil\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\bacil\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\bacil\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\bacil\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
   ],
   "logs": []
 }

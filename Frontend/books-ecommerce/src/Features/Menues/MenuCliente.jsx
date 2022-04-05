@@ -66,9 +66,9 @@ export const MenuCliente = () => {
                     ))}
                     {state.cart.length > 0 ? <div className="flex w-full justify-center mb-3">
                         <Link to='/cash' className="bg-green p-1 text-white rounded-md bottom-2">
-                            Comprar
+                            PAGAR
                         </Link>
-                    </div> : null}
+                    </div> : <h1 className="flex text-2xl justify-center items-center h-full w-full">Agrege un libro</h1>}
                 </li>
                 <li onClick={() => ShowCarrito()} className="flex flex-column ml-4 md:my-0 text-xl cursor-pointer text-white">
                     <ion-icon name="cart-outline"></ion-icon>

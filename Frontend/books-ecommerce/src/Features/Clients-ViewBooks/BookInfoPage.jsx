@@ -6,6 +6,7 @@ import { AuthContext } from '../Context/AuthContext'
 import BookRating from '../Rate-Books/BookRating'
 import { Footer } from '../Footer/Footer'
 import BookStartRating from '../Rate-Books/BookStartRating'
+import { ModalLibro } from '../Clients-Carrito/ModalLibro'
 
 let Cantidad = 1;
 
@@ -27,13 +28,15 @@ useEffect(() => {
       return <Navigate to='/Get-BooksAdm' replace />
   }
 
-const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
+const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
   if(!user){
       history('/login')
     }else{
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
       Cantidad = 1
     }
+
+    ModalLibro();
   }
 
   const handlePayAtOnce = (idLibro, cantidad, rutaFoto, nombre, precio) => {
@@ -47,9 +50,9 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
     }
   }
 
-    function getCantidad(){
-      Cantidad = document.getElementById('cantidad').value;  
-    }
+  function getCantidad(){
+    Cantidad = document.getElementById('cantidad').value;  
+  }
   
   return (
     <>
@@ -103,7 +106,7 @@ const handleClick = (idLibro, cantidad, rutaFoto, nombre, precio) => {
              <option value="14">14</option>
              <option value="15">15</option>
            </select>
-          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleClick(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
+          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleAgregarLibro(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
           <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handlePayAtOnce(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>¡Comprar Ya!</button>
         </div>
 
