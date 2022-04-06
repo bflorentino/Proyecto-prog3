@@ -1,6 +1,6 @@
 import swal from "sweetalert";
 
-export const ModalLibro = () => {
+export const ModalAgregarCarrito = () => {
     
     swal({
         title: "Se ha agregado un libro al carrito",

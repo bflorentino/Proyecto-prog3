@@ -15,8 +15,8 @@ export const MenuAdmin = () => {
     return(
         <nav className="p-5 bg-white shadow md:flex md:items-center md:justify-between">
             <div className="flex justify-between items-center">
-                <span className="text-2x1 font-[Poppins] cursor-pointer">
-                    NOMBRE PAGINA
+                <span className="font-[Poppins] cursor-pointer">
+                    VAN GOH LIBRARY
                 </span>
                 <span className="text-3x1 cursor-pointer mx-2 md:hidden block">
                     <ion-icon name="menu" onClick={() => Menu()}></ion-icon>

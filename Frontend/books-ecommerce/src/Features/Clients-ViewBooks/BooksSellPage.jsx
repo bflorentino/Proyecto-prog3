@@ -6,6 +6,7 @@ import { MenuCliente } from "../Menues/MenuCliente";
 import { Footer } from "../Footer/Footer";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { ToTopButton } from "../ToTop/ToTopButton";
 
 const BooksSellPage = () => {
   const [books, setBooks] = useState(null);
@@ -25,7 +26,6 @@ const BooksSellPage = () => {
   return (
     <>
       <div className="content">
-
         <MenuCliente />
         <div className="flex flex-row h-full w-full bg-white">
           <div className=" h-full w-1/6 border-r border-b border-border-book pb-4">
@@ -57,6 +57,7 @@ const BooksSellPage = () => {
           </div>
         </div>
         <Footer />
+        <ToTopButton/>
       </div>
     </>
   );

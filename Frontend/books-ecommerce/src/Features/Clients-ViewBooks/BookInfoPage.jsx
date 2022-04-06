@@ -6,7 +6,6 @@ import { AuthContext } from '../Context/AuthContext'
 import BookRating from '../Rate-Books/BookRating'
 import { Footer } from '../Footer/Footer'
 import BookStartRating from '../Rate-Books/BookStartRating'
-import { ModalLibro } from '../Clients-Carrito/ModalLibro'
 
 let Cantidad = 1;
 
@@ -35,8 +34,6 @@ const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
       Cantidad = 1
     }
-
-    ModalLibro();
   }
 
   const handlePayAtOnce = (idLibro, cantidad, rutaFoto, nombre, precio) => {

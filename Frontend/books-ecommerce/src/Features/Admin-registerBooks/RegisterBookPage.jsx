@@ -189,6 +189,11 @@ export const RegisterBookPage = () => {
                                             <option value={2}>Fantasía</option>
                                             <option value={3}>Ciencia Ficción</option>
                                             <option value={4}>Romance</option>
+                                            <option value={5}>Terror</option>
+                                            <option value={6}>Acción</option>
+                                            <option value={7}>Educación</option>
+                                            <option value={8}>Comedia</option>
+                                            <option value={9}>Drama</option>
                                         </select> 
                                     </div>
 

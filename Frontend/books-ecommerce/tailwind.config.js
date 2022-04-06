@@ -19,12 +19,12 @@ module.exports = {
       'upload-buttom': '#adb5bd',
       'border-book': '#E5E5E5',
       'border-pay' : '#D1D7DC',
-      'blue-menu': '#026aa7',
       'red-price': '#CA5304',
       'orange': '#FA8900',
       'footer': '#023047',
-      'blue-footer': '#61a5c2',
-      '404': '#67b99a'
+      '404': '#67b99a',
+      'menu-footer': '#545454',
+      'beige': '#cb997e'
     },
     fontFamily:{
       'poppins' : ['Poppins', 'sans-serif'],
