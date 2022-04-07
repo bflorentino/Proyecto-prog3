@@ -6,11 +6,9 @@ import {AuthContext} from "../Context/AuthContext";
 
 const LoginSchema = yup.object().shape({
     NombreUsuario: yup.string()
-    .required("Usuario no valido")
-    .min(5, "Nombre de usuario muy corto"),
+    .required("Escriba su nombre de usuario"),
     contraseña: yup.string()
     .required("Escribe tu contraseña")
-    .min(8, "Se requieren al menos 8 caracteres")
 });
 
 const Login = () => {

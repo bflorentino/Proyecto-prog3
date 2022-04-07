@@ -10,6 +10,7 @@ const BookStartRating = ({book}) => {
     const [ rating, setRating ] = useState(null);
     const [ hover, setHover ] = useState(null);
     const [ rated, setRated ] = useState(null);
+    console.log(book)
 
     const handleRating = ( e ) => {
         if(!rated){
@@ -33,34 +34,36 @@ const BookStartRating = ({book}) => {
     return (
       <>
         <div className="flex flex-row">
-          {book.permisoCalificaar === true ? (
-            [...Array(5)].map((star, i) => {
-              const ratingValue = i + 1;
-              return (
-                <label key={i}>
-                  <input
-                    type="radio"
-                    className="hidden"
-                    name="rating"
-                    value={ratingValue}
-                    onClick={handleRating}
-                  />
-                  <FaStar
-                    className="cursor-pointer mr-12"
-                    color={
-                      ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                    }
-                    size={50}
-                    onMouseEnter={(e) => handleOver(ratingValue)}
-                    onMouseLeave={() => setHover(null)}
-                  />
-                </label>
-              );
-            })
-          ) : (
-            <h1>Ya usted ha calificado este libro</h1>
-          )}
-
+          {
+            Object.keys(book).length !== 0 &&(
+              book.permisoCalificaar === true ? (
+              [...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+                return (
+                  <label key={i}>
+                    <input
+                      type="radio"
+                      className="hidden"
+                      name="rating"
+                      value={ratingValue}
+                      onClick={handleRating}
+                    />
+                    <FaStar
+                      className="cursor-pointer mr-12"
+                      color={
+                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      size={50}
+                      onMouseEnter={(e) => handleOver(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })
+            ) 
+            :(
+              <h1>Ya usted ha calificado este libro</h1>
+            )   )}
         </div>
           {rated && (
             <RatingThanks />

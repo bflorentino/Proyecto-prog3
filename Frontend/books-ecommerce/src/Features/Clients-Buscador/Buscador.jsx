@@ -38,7 +38,7 @@ export const Buscador = () => {
                 />
             </div>
 
-            <ul id="lista" className="container absolute mt-5 w-2/6 bg-white">
+            <ul id="lista" className="container absolute mt-5 w-2/6 h-[350px] overflow-auto scrol bg-white">
                 {libros && libros.map((libro) => (
                     <Link to={`/Book-Info/${libro.idlibro}`}>
                         <li key={libro.idlibro} className="rounded-bottom hover:bg-beige hover:text-white p-2 cursor-pointer">

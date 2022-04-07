@@ -7,13 +7,12 @@ import BookRating from '../Rate-Books/BookRating'
 import { Footer } from '../Footer/Footer'
 import BookStartRating from '../Rate-Books/BookStartRating'
 
-let Cantidad = 1;
-
 const BookInfoPage = () => {
 
   const [ book, setBook ] = useState({})
   const history = useNavigate();
   const { bookId } = useParams();
+  const [cantidad, setCantidad] = useState(1);
   const { agregarLibroCarrito, user, state } = useContext( AuthContext );
   const userName = user !== null ? user.data.nombreUsuario : "no"
 
@@ -32,7 +31,7 @@ const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
       history('/login')
     }else{
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
-      Cantidad = 1
+      setCantidad(1)
     }
   }
 
@@ -42,13 +41,13 @@ const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
     }else{  
       state.cart = []
       agregarLibroCarrito(idLibro, cantidad, rutaFoto, nombre, precio*cantidad);
-      Cantidad = 1
       history('/cash')
+      setCantidad(1)
     }
   }
 
-  function getCantidad(){
-    Cantidad = document.getElementById('cantidad').value;  
+  const handleCantidad = (e) => {
+    setCantidad(e.target.value) 
   }
   
   return (
@@ -82,11 +81,11 @@ const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
       className=' flex-flex-col w-56 h-56 border border-border-book rounded-lg ml-32 mt-32 '
     >
 
-      <p className='text-red-price font-bold text-2xl text-center'>US ${book.precio}</p>
+      <p className='text-red-price font-bold text-2xl text-center'>US ${book.precio * cantidad || 0}</p>
 
       <div className='w-full mt-8 ml-4'>
         <label htmlFor="">Cantidad</label>
-           <select name="Cantidad" id="cantidad" onChange={() => getCantidad()}  className='outline-none bg-gray-select rounded-lg ml-4 w-2/5'>
+           <select name="Cantidad" id="cantidad" onChange={handleCantidad}  className='outline-none bg-gray-select rounded-lg ml-4 w-2/5'>
              <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
@@ -103,8 +102,8 @@ const handleAgregarLibro = (idLibro, cantidad, rutaFoto, nombre, precio) => {
              <option value="14">14</option>
              <option value="15">15</option>
            </select>
-          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleAgregarLibro(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
-          <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handlePayAtOnce(book.idlibro, Cantidad, book.rutaFoto, book.nombre, book.precio)}>¡Comprar Ya!</button>
+          <button className='bg-yellow rounded-xl px-10 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handleAgregarLibro(book.idlibro, cantidad, book.rutaFoto, book.nombre, book.precio)}>Agregar al carrito</button>
+          <button className='bg-orange rounded-xl px-14 font-bold text-base py-1 mt-3 font-galdeano' onClick={() => handlePayAtOnce(book.idlibro, cantidad, book.rutaFoto, book.nombre, book.precio)}>¡Comprar Ya!</button>
         </div>
 
          </div>

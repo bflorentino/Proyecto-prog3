@@ -150,7 +150,6 @@ C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de servic
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de servicios\obj\Debug\net5.0\Capa de servicios.RazorTargetAssemblyInfo.cache
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de servicios\obj\Debug\net5.0\Capa de servicios.csproj.CopyComplete
 C:\Users\scarl\Source\Repos\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de servicios\obj\Debug\net5.0\Capa de servicios.genruntimeconfig.cache
-C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Capa de servicios.StaticWebAssets.xml
 C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
@@ -494,3 +493,4 @@ C:\Users\DELL\Desktop\Programación III\Backend\Proyecto-Prog3\Capa de servicios
 C:\Users\DELL\Desktop\Programación III\Backend\Proyecto-Prog3\Capa de servicios\obj\Debug\net5.0\Capa de servicios.pdb
 C:\Users\DELL\Desktop\Programación III\Backend\Proyecto-Prog3\Capa de servicios\obj\Debug\net5.0\Capa de servicios.genruntimeconfig.cache
 C:\Users\bacil\Documents\Tecnologo en Software - 5to Cuatrimestre\Programacion III\Proyecto\Proyecto-prog3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Capa de servicios.StaticWebAssets.xml
+C:\Users\HP\Documents\Proyecto Programación 3\Backend\Proyecto-Prog3\Capa de servicios\bin\Debug\net5.0\Capa de servicios.StaticWebAssets.xml

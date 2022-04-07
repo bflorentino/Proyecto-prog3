@@ -65,7 +65,7 @@ export const MenuCliente = () => {
 
             <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 self-center">
                 
-                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-16 right-52 mt-2 shadow-xl rounded-2xl h-96 w-80">
+                <li id="carrito" className="hidden absolute bg-white overflow-y-auto scrol top-16 right-52 mt-2 shadow-xl rounded-2xl h-96 w-80">
                     {state.cart.map(item => (
                         <Carrito book={item} key={`orderId-${item.idLibro}`}/>
                     ))}
@@ -101,13 +101,12 @@ export const MenuCliente = () => {
                     }
                 </li> 
                   
-                <li id="informacion" className="flex hidden absolute bg-white overflow-y-auto top-16 right-2 mt-2 pb-2 shadow-xl rounded-2xl pt-6 w-56">
+                <li id="informacion" className="hidden absolute bg-white top-16 right-2 mt-2 pb-2 shadow-xl rounded-2xl pt-6 w-56">
                     {
                         user ? 
-                                <div className="flex flex-col">
-                                    <Link className="ml-5 mb-2 text-x1 hover:text-light-blue-500 duration-500" to="">CAMBIAR CONTRASEÑA</Link>
-                                    <Link className="ml-5 mb-2 text-x1 hover:text-light-blue-500 duration-500" to="">MANUAL DE USUARIO</Link>
-                                    <button className="ml-4 text-x1 duration-500 cursor-pointer" onClick={logOut}>CERRAR SESIÓN</button> 
+                                <div className="flex flex-col w-[200px]">
+                                    <Link className="ml-5 mb-2  hover:text-link-blue duration-500" to="/ChangePassword">CAMBIAR CONTRASEÑA</Link>
+                                    <button className="duration-500 hover:text-link-blue cursor-pointer" onClick={logOut}>CERRAR SESIÓN</button> 
                                 </div>
 
                             : null
