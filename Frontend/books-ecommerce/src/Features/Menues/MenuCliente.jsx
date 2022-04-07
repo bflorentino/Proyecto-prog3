@@ -105,8 +105,7 @@ export const MenuCliente = () => {
                     {
                         user ? 
                                 <div className="flex flex-col w-[200px]">
-                                    <Link className="ml-5 mb-2  hover:text-link-blue duration-500" to="">CAMBIAR CONTRASEÑA</Link>
-                                    <Link className="ml-5 mb-2  hover:text-link-blue duration-500" to="">MANUAL DE USUARIO</Link>
+                                    <Link className="ml-5 mb-2  hover:text-link-blue duration-500" to="/ChangePassword">CAMBIAR CONTRASEÑA</Link>
                                     <button className="duration-500 hover:text-link-blue cursor-pointer" onClick={logOut}>CERRAR SESIÓN</button> 
                                 </div>
 

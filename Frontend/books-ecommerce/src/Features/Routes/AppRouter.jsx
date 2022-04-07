@@ -15,6 +15,8 @@ import BookInfoPage from '../Clients-ViewBooks/BookInfoPage';
 import PayPage from '../Payments/PayPage';
 import ShoppingHistoryPage from '../Payments/ShoppingHistoryPage';
 import { NotFound } from '../NotFound/PageNotFound';
+import ChangePasswordPage from '../Password/ChangePasswordPage';
+
 
 const AppRouter = () => {
     return(
@@ -51,6 +53,11 @@ const AppRouter = () => {
                             exact
                             path = '/ShoppingHistory'
                             element= {<ShoppingHistoryPage />}
+                        />
+                         <Route
+                            exact
+                            path = '/changePassword'
+                            element= {<ChangePasswordPage />}
                         />
                         <Route
                             exact

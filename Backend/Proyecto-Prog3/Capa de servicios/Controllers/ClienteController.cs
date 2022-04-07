@@ -27,7 +27,7 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _clienteServices.AddCliente(cliente));
         }
 
-        [HttpPut("Editar Contraseña")]
+        [HttpPut("EditPs")]
         public async Task<ActionResult> EditPassword(ClienteBinding cliente)
         {
             return Ok(await _clienteServices.EditPassword(cliente));
