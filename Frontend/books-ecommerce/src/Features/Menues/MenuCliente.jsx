@@ -9,6 +9,7 @@ export const MenuCliente = () => {
     let {logOut, user, state} = useContext(AuthContext);
     
     var showCarrito = "hidden"; 
+    var showInformacionUsuario = "hidden";
 
     const Menu = () => {
         let list = document.querySelector('ul');
@@ -27,6 +28,18 @@ export const MenuCliente = () => {
             carrito.classList.add("hidden");
             showCarrito = "hidden";
         } 
+    }
+
+    const ShowInformacionUsuario = () => {
+        let informacionUsuario = document.getElementById('informacion');
+
+        if(showInformacionUsuario === "hidden"){
+            informacionUsuario.classList.remove("hidden");
+            showInformacionUsuario = "show";
+        }else{
+            informacionUsuario.classList.add("hidden");
+            showInformacionUsuario = "hidden";
+        }
     }
 
     return(
@@ -52,7 +65,7 @@ export const MenuCliente = () => {
 
             <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 self-center">
                 
-                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-16 mt-2 shadow-xl rounded-2xl h-96 w-80">
+                <li id="carrito" className="hidden absolute bg-white overflow-y-auto top-16 right-52 mt-2 shadow-xl rounded-2xl h-96 w-80">
                     {state.cart.map(item => (
                         <Carrito book={item} key={`orderId-${item.idLibro}`}/>
                     ))}
@@ -74,9 +87,32 @@ export const MenuCliente = () => {
                 <li className="mx-4 my-6 md:my-0">
                     <Link to='/ShoppingHistory' className="text-x1 duration-500 text-white">HISTORIAL</Link>
                 </li>
-                <li className="mx-4 my-6 md:my-0">
-                    {user ? <button className="text-x1 duration-500 cursor-pointer text-white" onClick={logOut}>CERRAR SESIÓN</button> : <Link className="text-x1 text-white hover:text-light-blue-500 duration-500" to="/Login">ACCEDER</Link>}
-                </li>
+                <li className="flex cursor-pointer mx-4 md:my-0 text-white" onClick={() => ShowInformacionUsuario()}>
+               
+                    {
+                        user ? 
+                            <div className="flex">
+                                <h3 className="mb-2 mr-1 mt-1">{user.data.nombreUsuario}</h3>
+                                <span className="mt-2">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </span>
+                            </div>
+                        : <Link className="text-x1 mr-6 text-white hover:text-light-blue-500 duration-500" to="/Login">ACCEDER</Link>
+                    }
+                </li> 
+                  
+                <li id="informacion" className="flex hidden absolute bg-white overflow-y-auto top-16 right-2 mt-2 pb-2 shadow-xl rounded-2xl pt-6 w-56">
+                    {
+                        user ? 
+                                <div className="flex flex-col">
+                                    <Link className="ml-5 mb-2 text-x1 hover:text-light-blue-500 duration-500" to="">CAMBIAR CONTRASEÑA</Link>
+                                    <Link className="ml-5 mb-2 text-x1 hover:text-light-blue-500 duration-500" to="">MANUAL DE USUARIO</Link>
+                                    <button className="ml-4 text-x1 duration-500 cursor-pointer" onClick={logOut}>CERRAR SESIÓN</button> 
+                                </div>
+
+                            : null
+                    }
+                </li> 
             </ul>
         </nav> 
     )

@@ -38,11 +38,13 @@ export const Buscador = () => {
                 />
             </div>
 
-            <ul id="lista" className="container absolute mt-5 w-2/6 bg-white rounded-md">
+            <ul id="lista" className="container absolute mt-5 w-2/6 bg-white">
                 {libros && libros.map((libro) => (
-                    <li key={libro.idlibro} className="hover:bg-beige hover:text-white p-2 cursor-pointer">
-                        <Link to={`/Book-Info/${libro.idlibro}`}>{libro.nombre}</Link>
-                    </li>
+                    <Link to={`/Book-Info/${libro.idlibro}`}>
+                        <li key={libro.idlibro} className="rounded-bottom hover:bg-beige hover:text-white p-2 cursor-pointer">
+                            {libro.nombre}
+                        </li>
+                    </Link>
                 ))}
             </ul>
         </div>
