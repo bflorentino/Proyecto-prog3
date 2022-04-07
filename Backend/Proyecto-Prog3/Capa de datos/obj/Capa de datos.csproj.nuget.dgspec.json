@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {}
+    "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
         "projectName": "Capa de datos",
-        "projectPath": "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
-        "packagesPath": "C:\\Users\\bacil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bacil\\Documents\\Tecnologo en Software - 5to Cuatrimestre\\Programacion III\\Proyecto\\Proyecto-prog3\\Backend\\Proyecto-Prog3\\Capa de datos\\obj\\",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\Capa de datos.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Programación III\\Backend\\Proyecto-Prog3\\Capa de datos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\bacil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -74,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -21,89 +21,127 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<Respuestas> AddLibro(LibroBinding libro)
         {
-            var respuesta = new Respuestas();
-
-            var book = new Libro
+            try
             {
-                Nombre = libro.Nombre,
-                Precio = libro.Precio,
-                Autor = libro.Autor,
-                Año = libro.Año,
-                Editorial = libro.Editorial,
-                NumeroPaginas = libro.NumeroPaginas,
-                Idioma = libro.Idioma,
-                IdCategoria = libro.IdCategoria,
-                RutaFoto = libro.RutaFoto,
-                EnVenta = true
-            };
-            await _context.Libros.AddAsync(book);
-            await _context.SaveChangesAsync();
-            respuesta.Mensaje = "El libro ha sido agregado correctamente";
-            respuesta.Exito = 1;
-            return respuesta;
+                var respuesta = new Respuestas();
+
+                var book = new Libro
+                {
+                    Nombre = libro.Nombre,
+                    Precio = libro.Precio,
+                    Autor = libro.Autor,
+                    Año = libro.Año,
+                    Editorial = libro.Editorial,
+                    NumeroPaginas = libro.NumeroPaginas,
+                    Idioma = libro.Idioma,
+                    IdCategoria = libro.IdCategoria,
+                    RutaFoto = libro.RutaFoto,
+                    EnVenta = true
+                };
+                await _context.Libros.AddAsync(book);
+                await _context.SaveChangesAsync();
+                respuesta.Mensaje = "El libro ha sido agregado correctamente";
+                respuesta.Exito = 1;
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
         public async Task<Respuestas> EliminarLibro(int eliminar)
         {
-            var respuesta = new Respuestas();
-            var libro = await _context.Libros.FirstOrDefaultAsync(a => a.IdLibro == eliminar);
-            libro.EnVenta = false;
-            _context.Update(libro);
-            await _context.SaveChangesAsync();
+            try
+            {
 
-            respuesta.Mensaje = "el libro ha sido eliminado correctamente";
-            respuesta.Exito = 1;
-            return respuesta;
+                {
+                    var respuesta = new Respuestas();
+                    var libro = await _context.Libros.FirstOrDefaultAsync(a => a.IdLibro == eliminar);
+                    libro.EnVenta = false;
+                    _context.Update(libro);
+                    await _context.SaveChangesAsync();
+
+                    respuesta.Mensaje = "el libro ha sido eliminado correctamente";
+                    respuesta.Exito = 1;
+                    return respuesta;
+                }
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
+
+
+
         }
 
         public async Task<Respuestas> Getbooks()
         {
-            Respuestas oRespuesta = new Respuestas();
-            var listaLibro = await (from libros in _context.Libros
-                                    join categoria in _context.Categoria
-                                    on libros.IdCategoria equals categoria.IdCategoria
-                                    where libros.EnVenta == true
-                                    select new LibroViewModel
-                                    {
-                                        Nombre = libros.Nombre,
-                                        Autor = libros.Autor,
-                                        Categoria = categoria.CategoriaLibro,
-                                        Editorial = libros.Editorial,
-                                        NumeroPaginas = libros.NumeroPaginas,
-                                        Idioma = libros.Idioma,
-                                        RutaFoto = libros.RutaFoto,
-                                        IdCategoria = libros.IdCategoria,
-                                        Anio = libros.Año,
-                                        Idlibro = libros.IdLibro,
-                                        Precio = libros.Precio,
-                                        EnVenta = libros.EnVenta
-                                    }).ToListAsync();
-
-            int cantidad = 0;
-            double averagef = 0;
-
-            foreach (var libro in listaLibro)
+            try
             {
-                var average = (from califica in _context.Calificaciones
-                               where califica.IdLibro == libro.Idlibro
-                               select califica.Calificación
-                           ).Average();
 
-                cantidad = (from califica in _context.Calificaciones
-                            where califica.IdLibro == libro.Idlibro
-                            select califica.Calificación
-                               ).Count();
+                Respuestas oRespuesta = new Respuestas();
+                var listaLibro = await (from libros in _context.Libros
+                                        join categoria in _context.Categoria
+                                        on libros.IdCategoria equals categoria.IdCategoria
+                                        where libros.EnVenta == true
+                                        select new LibroViewModel
+                                        {
+                                            Nombre = libros.Nombre,
+                                            Autor = libros.Autor,
+                                            Categoria = categoria.CategoriaLibro,
+                                            Editorial = libros.Editorial,
+                                            NumeroPaginas = libros.NumeroPaginas,
+                                            Idioma = libros.Idioma,
+                                            RutaFoto = libros.RutaFoto,
+                                            IdCategoria = libros.IdCategoria,
+                                            Anio = libros.Año,
+                                            Idlibro = libros.IdLibro,
+                                            Precio = libros.Precio,
+                                            EnVenta = libros.EnVenta
+                                        }).ToListAsync();
 
-                if(average == null) 
-                    average = 0;
+                int cantidad = 0;
+                double averagef = 0;
 
-                averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+                foreach (var libro in listaLibro)
+                {
+                    var average = (from califica in _context.Calificaciones
+                                   where califica.IdLibro == libro.Idlibro
+                                   select califica.Calificación
+                               ).Average();
 
-                libro.CantidadCalificado = cantidad;
-                libro.PromedioCalificacion = averagef;
+                    cantidad = (from califica in _context.Calificaciones
+                                where califica.IdLibro == libro.Idlibro
+                                select califica.Calificación
+                                   ).Count();
+
+                    if (average == null)
+                        average = 0;
+
+                    averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+
+                    libro.CantidadCalificado = cantidad;
+                    libro.PromedioCalificacion = averagef;
+                }
+                oRespuesta.Data = listaLibro;
+                return oRespuesta;
             }
-            oRespuesta.Data = listaLibro;
-            return oRespuesta;
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
+
         }
 
         public async Task<Respuestas> EditBooks(LibroBinding omodel)
@@ -138,94 +176,115 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<Respuestas> GetbookByID(int id, string NombreUsuario = "")
         {
-            Respuestas orepuesta = new Respuestas();
-
-            int cantidad = 0;
-            double averagef = 0;
-            int? Calificado = 0;
-            bool Permiso = false;
-
-            var average = (from califica in _context.Calificaciones
-                           where califica.IdLibro == id
-                           select califica.Calificación
-                           ).Average();
-
-            cantidad = (from califica in _context.Calificaciones
-                        where califica.IdLibro == id
-                        select califica.Calificación
-                           ).Count();
-
-            if (average == null)
-                average = 0;
-
-            averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
-
-            if (NombreUsuario != "")
+            try
             {
-                Calificado = _context.Calificaciones.FirstOrDefault(a => a.IdLibro == id && a.NombreUsuario == NombreUsuario)?.Calificación ?? 0;
+                Respuestas orepuesta = new Respuestas();
 
-                if (Calificado == 0)
+                int cantidad = 0;
+                double averagef = 0;
+                int? Calificado = 0;
+                bool Permiso = false;
+
+                var average = (from califica in _context.Calificaciones
+                               where califica.IdLibro == id
+                               select califica.Calificación
+                               ).Average();
+
+                cantidad = (from califica in _context.Calificaciones
+                            where califica.IdLibro == id
+                            select califica.Calificación
+                               ).Count();
+
+                if (average == null)
+                    average = 0;
+
+                averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+
+                if (NombreUsuario != "")
                 {
-                    Permiso = true;
-                }
-            }
+                    Calificado = _context.Calificaciones.FirstOrDefault(a => a.IdLibro == id && a.NombreUsuario == NombreUsuario)?.Calificación ?? 0;
 
-            var Libro = from libros in _context.Libros
-                        join categoria in _context.Categoria
-                        on libros.IdCategoria equals categoria.IdCategoria
-                        where libros.IdLibro == id && libros.EnVenta == true
-                        select new LibroViewModel
-                        {
-                            Nombre = libros.Nombre,
-                            Autor = libros.Autor,
-                            Categoria = categoria.CategoriaLibro,
-                            Editorial = libros.Editorial,
-                            NumeroPaginas = libros.NumeroPaginas,
-                            Idioma = libros.Idioma,
-                            RutaFoto = libros.RutaFoto,
-                            IdCategoria = libros.IdCategoria,
-                            Anio = libros.Año,
-                            Idlibro = libros.IdLibro,
-                            Precio = libros.Precio,
-                            EnVenta = libros.EnVenta,
-                             CantidadCalificado = cantidad,
-                            PromedioCalificacion = averagef,
-                            PermisoCalificaar = Permiso
-                        };
-            orepuesta.Data = Libro;
-            return orepuesta;
+                    if (Calificado == 0)
+                    {
+                        Permiso = true;
+                    }
+                }
+
+                var Libro = from libros in _context.Libros
+                            join categoria in _context.Categoria
+                            on libros.IdCategoria equals categoria.IdCategoria
+                            where libros.IdLibro == id && libros.EnVenta == true
+                            select new LibroViewModel
+                            {
+                                Nombre = libros.Nombre,
+                                Autor = libros.Autor,
+                                Categoria = categoria.CategoriaLibro,
+                                Editorial = libros.Editorial,
+                                NumeroPaginas = libros.NumeroPaginas,
+                                Idioma = libros.Idioma,
+                                RutaFoto = libros.RutaFoto,
+                                IdCategoria = libros.IdCategoria,
+                                Anio = libros.Año,
+                                Idlibro = libros.IdLibro,
+                                Precio = libros.Precio,
+                                EnVenta = libros.EnVenta,
+                                CantidadCalificado = cantidad,
+                                PromedioCalificacion = averagef,
+                                PermisoCalificaar = Permiso
+                            };
+                orepuesta.Data = Libro;
+                return orepuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
         public async Task<Respuestas> GetbookByName(string nombre)
         {
-            Respuestas orepuesta = new Respuestas();
+            try
+            {
+                Respuestas orepuesta = new Respuestas();
 
-            var Libro = from libros in _context.Libros
-                        join categoria in _context.Categoria
-                        on libros.IdCategoria equals categoria.IdCategoria
-                        where libros.Nombre.Contains(nombre) && libros.EnVenta == true
-                        select new LibroViewModel
-                        {
-                            Nombre = libros.Nombre,
-                            Autor = libros.Autor,
-                            Categoria = categoria.CategoriaLibro,
-                            Editorial = libros.Editorial,
-                            NumeroPaginas = libros.NumeroPaginas,
-                            Idioma = libros.Idioma,
-                            RutaFoto = libros.RutaFoto,
-                            IdCategoria = libros.IdCategoria,
-                            Anio = libros.Año,
-                            Idlibro = libros.IdLibro,
-                            Precio = libros.Precio,
-                            EnVenta = libros.EnVenta
-                        };
-            orepuesta.Data = Libro;
-            return orepuesta;
+                var Libro = from libros in _context.Libros
+                            join categoria in _context.Categoria
+                            on libros.IdCategoria equals categoria.IdCategoria
+                            where libros.Nombre.Contains(nombre) && libros.EnVenta == true
+                            select new LibroViewModel
+                            {
+                                Nombre = libros.Nombre,
+                                Autor = libros.Autor,
+                                Categoria = categoria.CategoriaLibro,
+                                Editorial = libros.Editorial,
+                                NumeroPaginas = libros.NumeroPaginas,
+                                Idioma = libros.Idioma,
+                                RutaFoto = libros.RutaFoto,
+                                IdCategoria = libros.IdCategoria,
+                                Anio = libros.Año,
+                                Idlibro = libros.IdLibro,
+                                Precio = libros.Precio,
+                                EnVenta = libros.EnVenta
+                            };
+                orepuesta.Data = Libro;
+                return orepuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
         public List<LibroViewModel> GetbookByGender(List<int?> genero, List<LibroViewModel> libros)
         {
-            if(genero.Count > 0){
+            if (genero.Count > 0)
+            {
 
                 var librosCategoria = libros.Where(a => genero.Contains(a.IdCategoria)).ToList();
                 return librosCategoria;
@@ -258,16 +317,16 @@ namespace Capa_de_servicios.Servicios
                 }
                 return librosCalificacion;
             }
-            
+
             else
                 return libros;
         }
 
         private List<LibroViewModel> GetbookByCost(int cost, List<LibroViewModel> libros)
         {
-            if (cost == 1) 
+            if (cost == 1)
             {
-                var librosPrecio = libros.Where(a =>(a.Precio <= 20 && a.Precio >= 10)).ToList();
+                var librosPrecio = libros.Where(a => (a.Precio <= 20 && a.Precio >= 10)).ToList();
                 return librosPrecio;
             }
             else if (cost == 2)
@@ -287,10 +346,10 @@ namespace Capa_de_servicios.Servicios
             }
             else if (cost == 5)
             {
-                var librosPrecio = libros.Where(a => ( a.Precio >= 81)).ToList();
+                var librosPrecio = libros.Where(a => (a.Precio >= 81)).ToList();
                 return librosPrecio;
             }
-            else 
+            else
                 return libros;
 
         }
@@ -359,10 +418,10 @@ namespace Capa_de_servicios.Servicios
                 libro.PromedioCalificacion = averagef;
             }
 
-           var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
-           var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
-           var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
-           var LibrosIdioma = GetbookByLanguage(Filtro.Idioma, LibrosCalificado);
+            var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
+            var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
+            var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
+            var LibrosIdioma = GetbookByLanguage(Filtro.Idioma, LibrosCalificado);
 
             orespuesta.Data = LibrosIdioma;
             orespuesta.Exito = 1;
@@ -371,22 +430,33 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<Respuestas> RateBook(CalificacionBinding calificacion)
         {
-            Respuestas orespuesta = new Respuestas();
-
-            var calificar = new Calificacione
+            try
             {
-                Calificación = calificacion.Calificacion,
-                NombreUsuario = calificacion.NombreUsuario,
-                IdLibro = calificacion.IdLibro
-            };
+                Respuestas orespuesta = new Respuestas();
 
-            await _context.Calificaciones.AddAsync(calificar);
-            await _context.SaveChangesAsync();
+                var calificar = new Calificacione
+                {
+                    Calificación = calificacion.Calificacion,
+                    NombreUsuario = calificacion.NombreUsuario,
+                    IdLibro = calificacion.IdLibro
+                };
 
-            orespuesta.Mensaje = "Calificacion agregada con exito!!!";
-            orespuesta.Exito = 1;
+                await _context.Calificaciones.AddAsync(calificar);
+                await _context.SaveChangesAsync();
 
-            return orespuesta;
+                orespuesta.Mensaje = "Calificacion agregada con exito!!!";
+                orespuesta.Exito = 1;
+
+                return orespuesta;
             }
+
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
+        }
     }
 }

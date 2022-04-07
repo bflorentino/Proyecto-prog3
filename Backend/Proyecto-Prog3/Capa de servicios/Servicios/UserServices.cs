@@ -45,22 +45,27 @@ namespace Capa_de_servicios.Servicios
 
         private string GetToken(Usuario usuario)
         {
-            var tokenHandeler = new JwtSecurityTokenHandler();
-            var llave = Encoding.ASCII.GetBytes(_appsetings.secreto);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(
-                    new Claim[]
-                    {
+           
+           
+                var tokenHandeler = new JwtSecurityTokenHandler();
+                var llave = Encoding.ASCII.GetBytes(_appsetings.secreto);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(
+                        new Claim[]
+                        {
                       new Claim(ClaimTypes.NameIdentifier,usuario.IdRol.ToString()),
                       new Claim(ClaimTypes.Name , usuario.NombreUsuario)
-                    }
-                    ),
-                Expires = DateTime.UtcNow.AddDays(90),
-                SigningCredentials =  new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandeler.CreateToken(tokenDescriptor);
-            return tokenHandeler.WriteToken(token);
-        }
+                        }
+                        ),
+                    Expires = DateTime.UtcNow.AddDays(90),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandeler.CreateToken(tokenDescriptor);
+                return tokenHandeler.WriteToken(token);
+
+            }
+           
+
     }
 }
