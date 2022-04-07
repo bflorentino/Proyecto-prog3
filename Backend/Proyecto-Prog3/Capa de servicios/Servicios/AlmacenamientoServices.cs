@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Capa_de_servicios.Response; 
+        
 
 namespace Capa_de_servicios.Servicios
 {
@@ -22,6 +24,8 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<string> CrearFoto(byte[] file, string contentType, string extension, string container, string nombre)
         {
+            
+                
             string webPath = _env.WebRootPath;
             string carpeta = Path.Combine(webPath, container);
             string nombreFinal = $"{nombre}{extension}";
@@ -32,7 +36,9 @@ namespace Capa_de_servicios.Servicios
             string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
 
             return dbUrl;
+            }
+            
         }
 
     }
-}
+

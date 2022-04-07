@@ -21,113 +21,151 @@ namespace Capa_de_servicios.Servicios
         public async Task<Respuestas> PayBook(PagoBinding pago ) 
         
         {
-            Respuestas orespuesta = new Respuestas();
-
-            decimal monto_Total = 0;
-
-            foreach (var producto in pago.Carrito) 
+            try
             {
-                monto_Total += (decimal)producto.Monto;
-            }
+                Respuestas orespuesta = new Respuestas();
 
-            pago.CodigoFactura = Guid.NewGuid().ToString();
-            pago.Monto = monto_Total;
+                decimal monto_Total = 0;
 
-            Venta ventas = new Venta
-            {
-                CodigoFactura = pago.CodigoFactura,
-                Monto = (decimal)pago.Monto,
-                NombreUsuario = pago.NombreUsuario,
-                NumTarjeta = pago.NumTarjeta,
-                FechaVenc = pago.FechaVenc,
-                Cv = pago.Cv,
-                IdPais = pago.idPais
-            };
-
-            await _context.Ventas.AddAsync(ventas);
-
-            foreach (var producto in pago.Carrito)
-            {
-
-                DetalleVentum detalle = new DetalleVentum
+                foreach (var producto in pago.Carrito)
                 {
-                    CodigoDetalle = Guid.NewGuid().ToString(),
+                    monto_Total += (decimal)producto.Monto;
+                }
+
+                pago.CodigoFactura = Guid.NewGuid().ToString();
+                pago.Monto = monto_Total;
+
+                Venta ventas = new Venta
+                {
                     CodigoFactura = pago.CodigoFactura,
-                    Idlibro = producto.Idlibro,
-                    Cantidad = producto.Cantidad,
-                    Precio = (int)producto.Monto
-                   
-                 };
-                await _context.DetalleVenta.AddAsync(detalle);
+                    Monto = (decimal)pago.Monto,
+                    NombreUsuario = pago.NombreUsuario,
+                    NumTarjeta = pago.NumTarjeta,
+                    FechaVenc = pago.FechaVenc,
+                    Cv = pago.Cv,
+                    IdPais = pago.idPais
+                };
 
+                await _context.Ventas.AddAsync(ventas);
+
+                foreach (var producto in pago.Carrito)
+                {
+
+                    DetalleVentum detalle = new DetalleVentum
+                    {
+                        CodigoDetalle = Guid.NewGuid().ToString(),
+                        CodigoFactura = pago.CodigoFactura,
+                        Idlibro = producto.Idlibro,
+                        Cantidad = producto.Cantidad,
+                        Precio = (int)producto.Monto
+
+                    };
+                    await _context.DetalleVenta.AddAsync(detalle);
+
+                }
+
+                await _context.SaveChangesAsync();
+
+                orespuesta.Mensaje = " Su pago ha sido realizado con exito ";
+                orespuesta.Exito = 1;
+
+                return orespuesta;
             }
-
-            await _context.SaveChangesAsync();
-
-            orespuesta.Mensaje = " Su pago ha sido realizado con exito ";
-            orespuesta.Exito = 1;
-
-            return orespuesta;
-
+            catch(Exception ex) 
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :"  + ex.Message;
+                return respuesta;
+            }
         }
 
         public async Task<Respuestas> GetCountry() 
         {
+            try
+            {
 
-            Respuestas orespuesta = new Respuestas();
+                Respuestas orespuesta = new Respuestas();
 
-            var paises = await (from pais in _context.Pais
-                        select new PaisesViewModelcs
-                       {
-                            ID = pais.Id,
-                           Descripcion = pais.Descripcion
+                var paises = await (from pais in _context.Pais
+                                    select new PaisesViewModelcs
+                                    {
+                                        ID = pais.Id,
+                                        Descripcion = pais.Descripcion
 
-                       }).ToListAsync();
+                                    }).ToListAsync();
 
-            orespuesta.Data = paises;
+                orespuesta.Data = paises;
 
-            return orespuesta;
-
+                return orespuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
 
         }
 
         public async Task<Respuestas> GetFactura(string nombreUsuario)
         {
-            Respuestas respuesta = new Respuestas();
+            try
+            {
+                Respuestas respuesta = new Respuestas();
 
-            var historialFactura = await (from historia in _context.Ventas
-                                          where historia.NombreUsuario == nombreUsuario
-                                          orderby(historia.Fecha )
-                                          select new FacturaViewModel
-                                          {
-                                              Fecha = historia.Fecha.ToString("dd/MM/yy"),
-                                              Monto = historia.Monto,
-                                              CodigoFactura = historia.CodigoFactura
-                                          }).ToListAsync();
+                var historialFactura = await (from historia in _context.Ventas
+                                              where historia.NombreUsuario == nombreUsuario
+                                              orderby (historia.Fecha)
+                                              select new FacturaViewModel
+                                              {
+                                                  Fecha = historia.Fecha.ToString("dd/MM/yy"),
+                                                  Monto = historia.Monto,
+                                                  CodigoFactura = historia.CodigoFactura
+                                              }).ToListAsync();
 
-            respuesta.Data = historialFactura;
-            respuesta.Exito = 1;
-            return respuesta;
+                respuesta.Data = historialFactura;
+                respuesta.Exito = 1;
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
         public async Task<Respuestas> GetItems(string codigoFactura)
         {
-            Respuestas respuesta = new Respuestas();
-            var items = await (from detalles in _context.DetalleVenta
-                               join nombre in _context.Libros
-                               on detalles.Idlibro equals nombre.IdLibro
-                               where detalles.CodigoFactura == codigoFactura
-                               select new ItemsViewModel
-                               {
-                                   NombreLibro = nombre.Nombre,
-                                   Idlibro = detalles.Idlibro,
-                                   Cantidad = detalles.Cantidad,
-                                   Precio = detalles.Precio
-                               }).ToListAsync();
+            try
+            {
+                Respuestas respuesta = new Respuestas();
+                var items = await (from detalles in _context.DetalleVenta
+                                   join nombre in _context.Libros
+                                   on detalles.Idlibro equals nombre.IdLibro
+                                   where detalles.CodigoFactura == codigoFactura
+                                   select new ItemsViewModel
+                                   {
+                                       NombreLibro = nombre.Nombre,
+                                       Idlibro = detalles.Idlibro,
+                                       Cantidad = detalles.Cantidad,
+                                       Precio = detalles.Precio
+                                   }).ToListAsync();
 
-            respuesta.Data = items;
-            respuesta.Exito = 1;
-            return respuesta;
+                respuesta.Data = items;
+                respuesta.Exito = 1;
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
 

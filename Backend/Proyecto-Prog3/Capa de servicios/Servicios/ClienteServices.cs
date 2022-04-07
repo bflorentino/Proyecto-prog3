@@ -20,6 +20,7 @@ namespace Capa_de_servicios.Servicios
 
         public async Task<Respuestas> AddCliente(ClienteBinding cliente)
         {
+            try { 
             var respuesta = new Respuestas();
 
             var client = new Cliente
@@ -45,10 +46,19 @@ namespace Capa_de_servicios.Servicios
 
             respuesta.Mensaje = "El cliente ha sido agregado correctamente";
             return respuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
 
         public async Task<Respuestas> EditPassword(ClienteBinding cliente)
         {
+            try { 
             var respuesta = new Respuestas();
 
             Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
@@ -62,6 +72,14 @@ namespace Capa_de_servicios.Servicios
             respuesta.Exito = 1;
 
             return respuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
         }
     }
 }
