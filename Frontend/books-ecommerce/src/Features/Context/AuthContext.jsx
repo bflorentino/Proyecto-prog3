@@ -1,6 +1,8 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAlerta } from '../Login/LoginModal';
+import { ModalAgregarCarrito } from '../Clients-Carrito/ModalAgregarCarrito';
+import { ModalNoAgregarCarrito } from '../Clients-Carrito/ModalNoAgregarCarrrito';
 
 export const AuthContext = createContext();
 
@@ -53,11 +55,26 @@ export const AuthProvider = ({children}) => {
     }
 
     const agregarLibroCarrito = (idLibro, cantidad, rutaFoto, nombre, precio) => {
-        let libro = {idLibro, cantidad, rutaFoto, nombre, precio}
-        setState({
-            ...state,
-            cart: [...state.cart, libro]
+
+        let add = true;
+
+        state.cart.forEach(element => {
+            if(element.idLibro === idLibro){
+                add = false
+            }
         });
+
+        if(add){
+            let libro = {idLibro, cantidad, rutaFoto, nombre, precio}
+            setState({
+                ...state,
+                cart: [...state.cart, libro]
+            });
+
+            ModalAgregarCarrito();
+        }else{
+            ModalNoAgregarCarrito();
+        }
     }
 
     const eliminarLibroCarrito = (book) => {

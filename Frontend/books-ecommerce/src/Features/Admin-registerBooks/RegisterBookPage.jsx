@@ -5,6 +5,7 @@ import { registerService } from "./registerBookService";
 import { useNavigate } from "react-router-dom";
 import { MenuAdmin } from "../Menues/MenuAdmin";
 import { PreviewImage } from "./PreviewImage";
+import { RegistrarLibroModal } from "./RegistraLibroModal";
 
 const RegisterBooksSchema = yup.object().shape({
 
@@ -20,7 +21,7 @@ const RegisterBooksSchema = yup.object().shape({
     Año: yup.date()
     .required('Indique la fecha'),
     Editorial: yup.string()
-    .required('indique la editorial'),
+    .required('Indique la editorial'),
     NumeroPaginas: yup.number()
     .required('Indique el número de páginas')
     .max(10000),
@@ -53,14 +54,16 @@ export const RegisterBookPage = () => {
                         Año: '',
                         Editorial: '',
                         NumeroPaginas: '',
-                        Idioma: '',
+                        Idioma: 'Es',
                         IdCategoria: 1,
                     }}
                     validationSchema = {RegisterBooksSchema}
                     onSubmit={values => {
                         registerService({values}).then(data => {
                             history('/Get-BooksAdm')
-                        })
+                        });
+
+                        RegistrarLibroModal();
                     }}
                 >
                     {({errors, touched, values, handleChange, setFieldValue}) => (
@@ -70,37 +73,6 @@ export const RegisterBookPage = () => {
                             <div className="mt-6">
                                 <h1 className="text-3xl text-center font- font-poppins">Registrar Libro</h1>
                             </div>
-
-                            {errors.Nombre || errors.Precio || errors.Autor || errors.Año || errors.Editorial || errors.NumeroPaginas || errors.Idioma || errors.IdCategoria ? (
-                                <div className="mt-2 w-2/6 text-center py-1 px-2 self-center rounded-sm">
-                                    <ul>
-                                        {errors.Nombre && touched.Nombre ? (
-                                            <li>{errors.Nombre}</li>
-                                        ) : null}
-                                        {errors.Precio && touched.Precio ? (
-                                            <li>{errors.Precio}</li>
-                                        ) : null}
-                                        {errors.Autor && touched.Autor ? (
-                                            <li>{errors.Autor}</li>
-                                        ) : null}
-                                        {errors.Año && touched.Año ? (
-                                            <li>{errors.Año}</li>
-                                        ) : null}
-                                        {errors.Editorial && touched.Editorial ? (
-                                            <li>{errors.Editorial}</li>
-                                        ) : null}
-                                        {errors.NumeroPaginas && touched.NumeroPaginas ? (
-                                            <li>{errors.NumeroPaginas}</li>
-                                        ) : null}
-                                        {errors.Idioma && touched.Idioma ? (
-                                            <li>{errors.Idioma}</li>
-                                        ) : null}
-                                        {errors.IdCategoria && touched.IdCategoria? (
-                                            <li>{errors.IdCategoria}</li>
-                                        ) : null}
-                                    </ul>
-                                </div>
-                            ): null}
 
                             <div className="flex flex-row w-full">
                                 <div className="mt-8 flex flex-col ml-12 w-1/2">
@@ -113,7 +85,11 @@ export const RegisterBookPage = () => {
                                             className={inputStyle}
                                         />
                                     </div>
-
+                                    
+                                    {errors.Nombre && touched.Nombre ? (
+                                        <div className="flex text-red-error justify-center">{errors.Nombre}</div>
+                                    ): null}
+                                    
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className={text} htmlFor="Precio">Precio:</label>
                                         <Field 
@@ -124,15 +100,23 @@ export const RegisterBookPage = () => {
                                         />
                                     </div>
 
+                                    {errors.Precio && touched.Precio ? (
+                                        <div className="flex text-red-error justify-center">{errors.Precio}</div>
+                                    ): null}
+
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className={text} htmlFor="Anio">Fecha:</label>
                                         <Field 
-                                            type="text"
+                                            type="number"
                                             autoComplete="off"
                                             name="Año"
                                             className={inputStyle}
                                         />
                                     </div>
+                                    
+                                    {errors.Año && touched.Año ? (
+                                        <div className="flex text-red-error justify-center">{errors.Año}</div>
+                                    ): null}
 
                                     <div className="mt-4 ml-4 w-full  flex">
                                         <label className={text} htmlFor="NumeroPaginas">Paginas:</label>
@@ -144,6 +128,10 @@ export const RegisterBookPage = () => {
                                         />
                                     </div>
 
+                                    {errors.NumeroPaginas && touched.NumeroPaginas ? (
+                                        <div className="flex mr-2 text-red-error justify-end">{errors.NumeroPaginas}</div>
+                                    ): null}
+
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className={text} htmlFor="Autor">Autor:</label>
                                         <Field 
@@ -153,6 +141,10 @@ export const RegisterBookPage = () => {
                                             className={inputStyle}
                                         />
                                     </div>
+
+                                    {errors.Autor && touched.Autor ? (
+                                        <div className="flex text-red-error justify-center">{errors.Autor}</div>
+                                    ): null}
 
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className={text} htmlFor="Editorial">Editorial:</label>
@@ -164,15 +156,26 @@ export const RegisterBookPage = () => {
                                         />
                                     </div>
 
+                                    {errors.Editorial && touched.Editorial ? (
+                                        <div className="flex ml-2 text-red-error justify-center">{errors.Editorial}</div>
+                                    ): null}
+
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className={text} htmlFor="Idioma">Idioma:</label>
-                                        <Field 
-                                            type="text"
-                                            autoComplete="off"
-                                            name="Idioma"
-                                            className={inputStyle}
-                                        />
+                                        <select 
+                                            name="Idioma" 
+                                            className="ml-2 mr-8 w-6/6 flex outline-none"
+                                            value={values.Idioma}
+                                            onChange={handleChange}
+                                        >
+                                            <option value={"Es"}>Español</option>
+                                            <option value={"En"}>Inglés</option>
+                                        </select>
                                     </div>
+
+                                    {errors.Idioma && touched.Idioma ? (
+                                        <div className="flex text-red-error justify-center">{errors.Idioma}</div>
+                                    ): null}
 
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className="text-1xl font-poppins mt-1" htmlFor="IdCategoria">Categoria:</label>
@@ -186,9 +189,17 @@ export const RegisterBookPage = () => {
                                             <option value={2}>Fantasía</option>
                                             <option value={3}>Ciencia Ficción</option>
                                             <option value={4}>Romance</option>
-                                        </select>
-                                        
+                                            <option value={5}>Terror</option>
+                                            <option value={6}>Acción</option>
+                                            <option value={7}>Educación</option>
+                                            <option value={8}>Comedia</option>
+                                            <option value={9}>Drama</option>
+                                        </select> 
                                     </div>
+
+                                    {errors.IdCategoria && touched.IdCategoria ? (
+                                        <div className="flex text-red-error justify-center">{errors.IdCategoria}</div>
+                                    ): null}
 
                                     <div className="mt-4 ml-4 w-full flex">
                                         <label className="text-1xl font-poppins mt-1" htmlFor="Foto">Foto:</label>
@@ -200,8 +211,7 @@ export const RegisterBookPage = () => {
                                             onChange={(event) => {
                                                 setFieldValue("Foto", event.target.files[0])
                                             }}
-                                        />
-                                        
+                                        /> 
                                     </div>
 
                                     <div className="self-center mb-4 mt-6 w-1/2 bg-green text-white text-center px-6 py-1 rounded-md">
