@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Capa_de_datos;
 using Capa_de_servicios.Servicios;
 using Capa_de_servicios.Modelos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capa_de_servicios.Controllers
 {
@@ -28,6 +29,7 @@ namespace Capa_de_servicios.Controllers
         }
 
         [HttpPut("EditPs")]
+        [Authorize(Roles = "1")]
         public async Task<ActionResult> EditPassword(ClienteBinding cliente)
         {
             return Ok(await _clienteServices.EditPassword(cliente));

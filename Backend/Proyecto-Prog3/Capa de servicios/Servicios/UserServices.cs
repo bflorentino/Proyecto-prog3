@@ -54,7 +54,7 @@ namespace Capa_de_servicios.Servicios
                     Subject = new ClaimsIdentity(
                         new Claim[]
                         {
-                      new Claim(ClaimTypes.NameIdentifier,usuario.IdRol.ToString()),
+                      new Claim(ClaimTypes.Role,usuario.IdRol.ToString()),
                       new Claim(ClaimTypes.Name , usuario.NombreUsuario)
                         }
                         ),
