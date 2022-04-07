@@ -83,6 +83,42 @@ const FilterBooks = ({setBooks}) => {
             Romance
           </label>
         </div>
+
+        <div>
+          <input type="checkbox" value={5} id="cbox5" onChange={handleFilterGenres} />
+          <label className="ml-4 text-sm" htmlFor="cbox5">
+            Terror
+          </label>
+        </div>
+
+        <div>
+          <input type="checkbox" value={6} id="cbox6" onChange={handleFilterGenres} />
+          <label className="ml-4 text-sm" htmlFor="cbox6">
+            Acción
+          </label>
+        </div>
+
+        <div>
+          <input type="checkbox" value={7} id="cbox7" onChange={handleFilterGenres} />
+          <label className="ml-4 text-sm" htmlFor="cbox7">
+            Educación
+          </label>
+        </div>
+
+        <div>
+          <input type="checkbox" value={8} id="cbox8" onChange={handleFilterGenres} />
+          <label className="ml-4 text-sm" htmlFor="cbox8">
+            Comedia
+          </label>
+        </div>
+
+        <div>
+          <input type="checkbox" value={9} id="cbox9" onChange={handleFilterGenres} />
+          <label className="ml-4 text-sm" htmlFor="cbox9">
+            Drama
+          </label>
+        </div>
+        
       </div>
 
       <div className='flex flex-col ml-4 font-poppins mt-6'>

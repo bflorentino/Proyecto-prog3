@@ -10,7 +10,7 @@ const SignUpSchema = Yup.object().shape({
     .required("Este campo es requerido"),
     apellido: Yup.string()
     .required("Este campo es requerido"),
-    correo : Yup.string().email("Correo inválido").required('Se requiere un correo electrónico'),
+    correoElectronico : Yup.string().email("Correo inválido").required('Se requiere un correo electrónico'),
     direccion : Yup.string()
     .required("Debe seleccionar su país"),
     nombreUsuario : Yup.string()
@@ -30,7 +30,7 @@ export const AddUserPage = () =>{
         <div className='flex items-center flex-col mt-6'>
             <h1 className='text-4xl font-bold font-poppins'>Crear nueva cuenta</h1>
             <Formik
-                initialValues={{nombre:'', apellido:'', telefono:'', correo:'', direccion:'', nombreUsuario:'',Contraseña:''}}
+                initialValues={{nombre:'', apellido:'', telefono:'', correoElectronico:'', direccion:'', nombreUsuario:'',Contraseña:''}}
                 validationSchema = {SignUpSchema}
                 onSubmit={values => {
                     addUser({values}).then(mensaje => {
@@ -71,7 +71,7 @@ export const AddUserPage = () =>{
                         type="text"
                         autoComplete='off'
                         placeholder='Correo Electrónico'
-                        name='correo'
+                        name='correoElectronico'
                         className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
                     />
                     {errors.correo && touched.correo ? (

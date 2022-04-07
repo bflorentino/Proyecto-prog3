@@ -12,6 +12,7 @@ import { Footer } from '../Footer/Footer'
 const PaySchema = Yup.object().shape({
   
   nombreTarjeta: Yup.string().required("Debe agregar el nombre de su tarjeta"),
+  direccion: Yup.string().required("Debe agregar la dirección de envío del producto"),
   numeroTarjeta: Yup.string().required("Se requiere un número de tarjeta")
                                       .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
                             //  .test('len', 'Tarjeta inválida', (val) => val.toString().length ===  16),
@@ -86,6 +87,7 @@ const PayPage = () => {
   const handlePayment = (values) => {
     
     const paymentData = {
+
       nombreUsuario: user.data.nombreUsuario,
       numTarjeta: values.numeroTarjeta.toString().substring(0, 10),
       cv: values.cvc,
@@ -110,7 +112,13 @@ const PayPage = () => {
       <MenuCliente />
       <div className='flex flex-row flex-wrap bg-white overflow-auto h-full w-full justify-center'>
         <Formik 
-              initialValues={{pais:65, nombreTarjeta: '', numeroTarjeta: '', cvc:'', mes: '01',anio: 2022 }}
+              initialValues={{pais:65,
+                              direccion: '', 
+                              nombreTarjeta: '', 
+                              numeroTarjeta: '', 
+                              cvc:'', 
+                              mes: '01',
+                              anio: 2022 }}
               validationSchema = {PaySchema}
               onSubmit={values => {
                   handlePayment(values)
@@ -160,7 +168,21 @@ const PayPage = () => {
                 </div>
 
                 <div className='border border-border-pay flex flex-row flex-wrap w-full mt-8 pb-12'>
-                  <div className='w-full mt-4 flex flex-col justify-center h-16 ml-6'>
+
+                <div className='w-full mt-4 flex flex-col justify-center h-16 ml-6'>
+                    <Field
+                      type = "text"
+                      name = 'direccion'
+                      placeholder = 'Dirección de envío'
+                      className = 'border outline-none w-11/12 h-10 pl-2'
+                    />
+                    {errors.direccion && touched.direccion ? (
+                        <div className='text-red-error'>{errors.direccion}</div>
+                    ) : null}
+                    
+                  </div>
+
+                  <div className='w-full flex flex-col justify-center h-16 ml-6'>
                     <Field
                       type = "text"
                       name = 'nombreTarjeta'
