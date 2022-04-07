@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using Capa_de_datos;
 using Capa_de_servicios.Servicios;
 using Capa_de_servicios.Modelos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capa_de_servicios.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "1")]
     public class PagosController : ControllerBase
     {
         private readonly IPagoServices _PagoServices;

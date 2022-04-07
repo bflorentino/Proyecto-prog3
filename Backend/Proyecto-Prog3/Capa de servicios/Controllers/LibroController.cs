@@ -10,6 +10,7 @@ using Capa_de_servicios.Response;
 using Capa_de_servicios.Servicios;
 using Capa_de_servicios.Modelos;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capa_de_servicios.Controllers
 {
@@ -28,6 +29,7 @@ namespace Capa_de_servicios.Controllers
 
         //Eliminar un libro
         [HttpPut("{Id}")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> EliminarLibro(int Id)
         {
             return Ok(await _libroServices.EliminarLibro(Id));
@@ -41,6 +43,7 @@ namespace Capa_de_servicios.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Post([FromForm] LibroBinding libro)
         {
             if (libro.Foto != null)
@@ -60,6 +63,7 @@ namespace Capa_de_servicios.Controllers
 
         // Editar libro 
         [HttpPut]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> Edit([FromForm]LibroBinding libro)
         {
             if (libro.Foto != null)
@@ -88,6 +92,7 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _libroServices.FilterBooks(Filtro));
         }
         [HttpPost("Calificar Libro")]
+        [Authorize(Roles = "1")]
         public async Task<ActionResult> RateBook(CalificacionBinding calificacion)
         {
             return Ok (await _libroServices.RateBook(calificacion));
