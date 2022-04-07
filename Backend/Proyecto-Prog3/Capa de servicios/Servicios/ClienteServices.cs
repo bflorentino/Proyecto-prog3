@@ -56,22 +56,32 @@ namespace Capa_de_servicios.Servicios
             }
         }
 
-        public async Task<Respuestas> EditPassword(ClienteBinding cliente)
+        public async Task<Respuestas> EditPassword(EditarPssBinding cliente)
         {
             try { 
             var respuesta = new Respuestas();
 
-            Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
-            user.Contraseña = Encriptacion.GetSHA256(cliente.Contraseña);
+                Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
 
-            respuesta.Mensaje = "Contraseña cambiada con exito!!!";
 
-            _context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            await _context.SaveChangesAsync();
+                if (user.Contraseña == Encriptacion.GetSHA256(cliente.CurrentPassword))
+                {
 
-            respuesta.Exito = 1;
+                    user.Contraseña = Encriptacion.GetSHA256(cliente.NewPassword);
+                    respuesta.Mensaje = "Contraseña cambiada con exito!!!";
 
-            return respuesta;
+                    _context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    await _context.SaveChangesAsync();
+
+                    respuesta.Exito = 1;
+                }
+                else
+                {
+                    respuesta.Mensaje = "Contraseña incorrecta!!!";
+                    respuesta.Exito = 0;
+                }
+                return respuesta;
+            
             }
             catch (Exception ex)
             {
