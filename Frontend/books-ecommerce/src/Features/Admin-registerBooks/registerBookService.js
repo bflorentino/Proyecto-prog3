@@ -1,6 +1,6 @@
 const API = 'https://localhost:44373/api/Libro';
 
-export const registerService = async ({values}) => {    
+export const registerService = async ({values}, token) => {    
     
     let form = new FormData();
     
@@ -17,6 +17,9 @@ export const registerService = async ({values}) => {
     let response = await fetch(API, {
 
         method: 'POST',
+        headers:{
+            "Authorization":`Bearer ${token}`
+        },
         body: form
     });
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import { registerService } from "./registerBookService";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuAdmin } from "../Menues/MenuAdmin";
 import { PreviewImage } from "./PreviewImage";
 import { RegistrarLibroModal } from "./RegistraLibroModal";
+import { AuthContext } from "../Context/AuthContext";
 
 const RegisterBooksSchema = yup.object().shape({
 
@@ -40,6 +41,8 @@ export const RegisterBookPage = () => {
     const history = useNavigate();
     const fileRef = useRef(null);
 
+    const {user} = useContext(AuthContext)
+
     return(
         <div className="content">
             <MenuAdmin/>
@@ -59,7 +62,7 @@ export const RegisterBookPage = () => {
                     }}
                     validationSchema = {RegisterBooksSchema}
                     onSubmit={values => {
-                        registerService({values}).then(data => {
+                        registerService({values}, user.data.token).then(data => {
                             history('/Get-BooksAdm')
                         });
 

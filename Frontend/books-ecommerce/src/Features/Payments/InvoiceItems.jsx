@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../Context/AuthContext';
 import { getItemsByInvoice } from './PayService';
+
 
 const InvoiceItems = ({invoiceCode}) => {
 
     const [items, setItems] = useState([]);
+    const {user} = useContext(AuthContext);
 
     useEffect(()=> {
-        getItemsByInvoice(invoiceCode)
+        getItemsByInvoice(invoiceCode, user.data.token)
             .then(data => {
                 setItems([...data])
             })

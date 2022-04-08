@@ -1,8 +1,11 @@
-import React  from 'react';
+import React, { useContext }  from 'react';
 import { Link } from 'react-router-dom';
 import { eliminarAlerta } from '../Admin-DeleteBooks/DeleteModal';
+import { AuthContext } from '../Context/AuthContext';
 
 const BookGrid =( {book} ) => {
+
+  const {user} = useContext(AuthContext);
 
   return (
     <>
@@ -50,7 +53,7 @@ const BookGrid =( {book} ) => {
           <Link to={`/Edit-BooksAdm/${book.idlibro}`} className='ml-32 bg-green-button text-white px-4 py-1'>
               Editar  
           </Link>
-          <button onClick={() => {eliminarAlerta(book.idlibro)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
+          <button onClick={() => {eliminarAlerta(book.idlibro, user.data.token)}} className='ml-4 px-4 py-1 bg-red-error text-white'>
             Eliminar
           </button>
         </div>

@@ -14,7 +14,7 @@ const ShoppingHistoryPage = () => {
 
   useEffect(()=> {
     if(user !== null){
-      getInvoice(user.data.nombreUsuario)
+      getInvoice(user.data.nombreUsuario, user.data.token)
       .then(data => {
         setInvoices([...data.reverse()])
       })

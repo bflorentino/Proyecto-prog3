@@ -63,7 +63,6 @@ namespace Capa_de_servicios.Servicios
 
                 Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
 
-
                 if (user.Contraseña == Encriptacion.GetSHA256(cliente.CurrentPassword))
                 {
 

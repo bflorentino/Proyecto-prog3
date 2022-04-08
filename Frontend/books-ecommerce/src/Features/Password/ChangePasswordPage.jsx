@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, replace } from "formik";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {AuthContext} from "../Context/AuthContext";
 import changePassword from "./changePasswordService";
+import swal from "sweetalert";
 
 const PasswordSchema = yup.object().shape({
     currentPassword: yup.string()
@@ -16,6 +17,7 @@ const PasswordSchema = yup.object().shape({
 const ChangePasswordPage = () => {
 
     const {user} = useContext(AuthContext);
+    const history = useNavigate();
 
     return(
     <>
@@ -28,10 +30,30 @@ const ChangePasswordPage = () => {
                     changePassword({
                                 nombreUsuario: user.data.nombreUsuario,
                                 ...values
-                                }).then(data => {
-                        console.log("Su contraseña ha cambiado")
+                                },
+                                 user.data.token).then(data => {
+                                    if(data.exito){
+                                        swal({
+                                            title: "Cambio de contraseña",
+                                            text: "Su contraseña ha cambiado",
+                                            icon: "success",       
+                                        }
+                                    )
+                                    history('/', replace)
+                                    }else{
+                                        swal({
+                                            title: "Contraseña incorrecta",
+                                            text: "Asegúrese de escribir su contraseña actual correctamente",
+                                            icon: "error",
+                                        })
+                                    }
                     }).catch(error => {
-                        console.log("No, no cambio")
+                    swal({
+                            title: "Error",
+                            text: "Hubo un error al intentar cambiar su contraseña",
+                            icon: "error",
+                        }
+                    )
                     })
                   }
                 }

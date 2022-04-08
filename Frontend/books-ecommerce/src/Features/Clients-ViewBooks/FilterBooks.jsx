@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getAllBooks } from '../Admin-getBooks/getBooksService';
 import { getBooksFiltered } from './FilterService';
 
-const FilterBooks = ({setBooks}) => {
+const FilterBooks = ({setBooksToShow, allBooks }) => {
 
   const [ filters, setFilters ] = useState({
     genero : [],
@@ -19,13 +19,13 @@ const FilterBooks = ({setBooks}) => {
     if(!started){
       setStarted(true)
     }else if(started && (genero.length !== 0 || precio !== 0 || calificacion !== 0 || idioma !== 0)){
-      getBooksFiltered(filters).then(books => {
-        setBooks([...books])
+      getBooksFiltered(filters, allBooks).then(books => {
+        setBooksToShow([...books])
       })
     }
     else if(started && genero.length === 0 && precio === 0 && calificacion === 0 && idioma === 0){
       getAllBooks().then(books => {
-        setBooks([...books])
+        setBooksToShow([...books])
       })
     }
       // eslint-disable-next-line

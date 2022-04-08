@@ -12,16 +12,16 @@ export const Buscador = () => {
     }
 
     useEffect(() => {
+    
         let listLibros = document.getElementById('lista');
-
-        BusquedaService(busqueda).then(info => {
-            setLibros(info.data);
-        });
         
         if(busqueda === ""){
             listLibros.classList.add('hidden');
         }else{
             listLibros.classList.remove('hidden');
+            BusquedaService(busqueda).then(info => {
+                setLibros(info.data);
+            });
         }
     }, [busqueda])
 
@@ -39,8 +39,8 @@ export const Buscador = () => {
             </div>
 
             <ul id="lista" className="container absolute mt-5 w-2/6 h-[350px] overflow-auto scrol bg-white">
-                {libros && libros.map((libro) => (
-                    <Link to={`/Book-Info/${libro.idlibro}`}>
+                {libros && libros.map((libro, i) => (
+                    <Link key={i} to={`/Book-Info/${libro.idlibro}`}>
                         <li key={libro.idlibro} className="rounded-bottom hover:bg-beige hover:text-white p-2 cursor-pointer">
                             {libro.nombre}
                         </li>

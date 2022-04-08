@@ -1,21 +1,19 @@
 const URL = "https://localhost:44373/api/Cliente/EditPs"
 
-const changePassword = async(values) => {
+const changePassword = async(values, token) => {
 
     const response = await fetch(URL, {
 
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
-        body: values,
+        body: JSON.stringify(values),
     });
 
-    let data = await response.json();
-
-    if(response.status === 200){
-        return data;
-    }
+    const data = await response.json();
+    return data;   
 }
 
 export default changePassword;

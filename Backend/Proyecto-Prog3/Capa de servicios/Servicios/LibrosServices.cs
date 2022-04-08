@@ -374,51 +374,51 @@ namespace Capa_de_servicios.Servicios
         {
             Respuestas orespuesta = new Respuestas();
 
-            var listaLibro = await (from libros in _context.Libros
-                                    join categoria in _context.Categoria
-                                    on libros.IdCategoria equals categoria.IdCategoria
-                                    where libros.EnVenta == true
-                                    select new LibroViewModel
-                                    {
-                                        Nombre = libros.Nombre,
-                                        Autor = libros.Autor,
-                                        Categoria = categoria.CategoriaLibro,
-                                        Editorial = libros.Editorial,
-                                        NumeroPaginas = libros.NumeroPaginas,
-                                        Idioma = libros.Idioma,
-                                        RutaFoto = libros.RutaFoto,
-                                        IdCategoria = libros.IdCategoria,
-                                        Anio = libros.Año,
-                                        Idlibro = libros.IdLibro,
-                                        Precio = libros.Precio,
-                                        EnVenta = libros.EnVenta
-                                    }).ToListAsync();
+            //var listaLibro = await (from libros in _context.Libros
+            //                        join categoria in _context.Categoria
+            //                        on libros.IdCategoria equals categoria.IdCategoria
+            //                        where libros.EnVenta == true
+            //                        select new LibroViewModel
+            //                        {
+            //                            Nombre = libros.Nombre,
+            //                            Autor = libros.Autor,
+            //                            Categoria = categoria.CategoriaLibro,
+            //                            Editorial = libros.Editorial,
+            //                            NumeroPaginas = libros.NumeroPaginas,
+            //                            Idioma = libros.Idioma,
+            //                            RutaFoto = libros.RutaFoto,
+            //                            IdCategoria = libros.IdCategoria,
+            //                            Anio = libros.Año,
+            //                            Idlibro = libros.IdLibro,
+            //                            Precio = libros.Precio,
+            //                            EnVenta = libros.EnVenta
+            //                        }).ToListAsync();
 
-            int cantidad = 0;
-            double averagef = 0;
+            //int cantidad = 0;
+            //double averagef = 0;
 
-            foreach (var libro in listaLibro)
-            {
-                var average = (from califica in _context.Calificaciones
-                               where califica.IdLibro == libro.Idlibro
-                               select califica.Calificación
-                           ).Average();
+            //foreach (var libro in listaLibro)
+            //{
+            //    var average = (from califica in _context.Calificaciones
+            //                   where califica.IdLibro == libro.Idlibro
+            //                   select califica.Calificación
+            //               ).Average();
 
-                cantidad = (from califica in _context.Calificaciones
-                            where califica.IdLibro == libro.Idlibro
-                            select califica.Calificación
-                               ).Count();
+            //    cantidad = (from califica in _context.Calificaciones
+            //                where califica.IdLibro == libro.Idlibro
+            //                select califica.Calificación
+            //                   ).Count();
 
-                if (average == null)
-                    average = 0;
+            //    if (average == null)
+            //        average = 0;
 
-                averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
+            //    averagef = (double)(Math.Floor((decimal)(average * 10)) / 10);
 
-                libro.CantidadCalificado = cantidad;
-                libro.PromedioCalificacion = averagef;
-            }
+            //    libro.CantidadCalificado = cantidad;
+            //    libro.PromedioCalificacion = averagef;
+            //}
 
-            var LibrosGenero = GetbookByGender(Filtro.Genero, listaLibro);
+            var LibrosGenero = GetbookByGender(Filtro.Genero, Filtro.Libros);
             var LibrosPrecio = GetbookByCost(Filtro.Precio, LibrosGenero);
             var LibrosCalificado = GetbookByCalificacion(Filtro.Calificacion, LibrosPrecio);
             var LibrosIdioma = GetbookByLanguage(Filtro.Idioma, LibrosCalificado);

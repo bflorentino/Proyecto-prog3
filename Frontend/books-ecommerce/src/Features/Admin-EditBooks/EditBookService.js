@@ -1,6 +1,6 @@
 let URL = "https://localhost:44373/api/Libro"
 
-export const editBookService = async (values) => {
+export const editBookService = async (values, token) => {
 
     const form = new FormData();
 
@@ -18,6 +18,9 @@ export const editBookService = async (values) => {
     const response = await fetch(URL, {
 
         method: 'PUT',
+        headers: {
+            "Authorization":`Bearer ${token}`,
+        },
         body: form
     });
 

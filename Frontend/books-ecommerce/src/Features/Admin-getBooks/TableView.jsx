@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { eliminarAlerta } from '../Admin-DeleteBooks/DeleteModal';
+import { AuthContext } from '../Context/AuthContext';
 
 const TableView = ( {Books} ) => {
+
+  const {user} = useContext(AuthContext);
 
   return (
     <div className='flex justify-center'>
@@ -43,7 +46,7 @@ const TableView = ( {Books} ) => {
                     <Link to={`/Edit-BooksAdm/${book.idlibro}`} class="text-link-blue hover:underline">Editar</Link>
                   </td>
                   <td class="py-4 px-2 text-sm font-medium text-right whitespace-nowrap">
-                    <button onClick={() => {eliminarAlerta(book.idlibro)}} className="text-link-blue hover:underline">Eliminar</button>
+                    <button onClick={() => {eliminarAlerta(book.idlibro, user.data.token)}} className="text-link-blue hover:underline">Eliminar</button>
                   </td>
                 </tr>
             ))

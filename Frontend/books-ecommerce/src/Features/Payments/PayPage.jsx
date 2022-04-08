@@ -15,7 +15,6 @@ const PaySchema = Yup.object().shape({
   direccion: Yup.string().required("Debe agregar la dirección de envío del producto"),
   numeroTarjeta: Yup.string().required("Se requiere un número de tarjeta")
                                       .max(16, "Tarjeta inválida").min(16, "Tarjeta incompleta"),
-                            //  .test('len', 'Tarjeta inválida', (val) => val.toString().length ===  16),
   cvc: Yup.number().required("Debe agregar el código de seguridad")
                    .max(999, "CVC inválido").min(100, "CVC incompleto")
                   
@@ -49,13 +48,15 @@ const PayPage = () => {
 
   useEffect(()=> {
     let isMounted = true;
-    getCountries().then(countries => {
+    getCountries(user.data.token).then(countries => {
       isMounted && setCountries(countries)
     })
     return () => {isMounted = false} 
-  }, [])
+  }, [user.data.token])
   
   const confirmPay = (paymentData)=>{
+
+    console.log(user.data.idRol)
   
       swal({
         title: "Completar Pago",
@@ -65,7 +66,7 @@ const PayPage = () => {
       }).then(res => {
         if(res){
             
-          payBooks(paymentData).then(message => {
+          payBooks(paymentData, user.data.token).then(message => {
               swal({
                   text: message,
                   icon: "success"

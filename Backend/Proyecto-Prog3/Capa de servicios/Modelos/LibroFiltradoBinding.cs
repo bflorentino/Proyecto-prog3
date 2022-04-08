@@ -8,5 +8,6 @@ namespace Capa_de_servicios.Modelos
         public int Precio { get; set; } = 0;
         public int Calificacion { get; set; }
         public int Idioma { get; set; }
+        public List<LibroViewModel> Libros { get; set; }
     }
 }

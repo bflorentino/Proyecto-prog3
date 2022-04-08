@@ -10,7 +10,6 @@ const BookStartRating = ({book}) => {
     const [ rating, setRating ] = useState(null);
     const [ hover, setHover ] = useState(null);
     const [ rated, setRated ] = useState(null);
-    console.log(book)
 
     const handleRating = ( e ) => {
         if(!rated){
@@ -19,7 +18,7 @@ const BookStartRating = ({book}) => {
                 idLibro: book.idlibro,
                 calificacion: e.target.value,
                 nombreUsuario: user.data.nombreUsuario
-            }).then(message=>{
+            }, user.data.token).then(message=>{
                 setRated(true)
             })
         }

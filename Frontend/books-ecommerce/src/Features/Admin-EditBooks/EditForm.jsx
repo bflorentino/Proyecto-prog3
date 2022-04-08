@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { editBookService } from './EditBookService'
 import swal from 'sweetalert';
+import { AuthContext } from '../Context/AuthContext';
 
 const EditForm = ({Book}) => {
 
     const [image, setImage] = useState(null)
     const [editedImage, setEditedImage] = useState(null)
+    const {user} = useContext(AuthContext);
     const history = useNavigate(); 
 
     const imageHandler = ( e ) => {
@@ -46,7 +48,7 @@ const EditForm = ({Book}) => {
             IdCategoria: form.IdCategoria.value,
             Foto: editedImage 
             
-        }).then(data =>{
+        }, user.data.token).then(data =>{
             
             history('/Get-BooksAdm')
             showAlert();
