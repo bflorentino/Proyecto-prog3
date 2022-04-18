@@ -108,7 +108,7 @@ export const RegisterBookPage = () => {
                                     ): null}
 
                                     <div className="mt-4 ml-4 w-full flex">
-                                        <label className={text} htmlFor="Anio">Fecha:</label>
+                                        <label className={text} htmlFor="Anio">Año:</label>
                                         <Field 
                                             type="number"
                                             autoComplete="off"

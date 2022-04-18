@@ -95,7 +95,7 @@ const EditForm = ({Book}) => {
             </div>
             <div className=" ml-4 w-full flex mt-4">
               <label className="text-1xl w-1/4" htmlFor="Anio">
-                Fecha:
+                Año:
               </label>
               <input
                 type="text"

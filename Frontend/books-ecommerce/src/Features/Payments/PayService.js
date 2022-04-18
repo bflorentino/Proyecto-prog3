@@ -11,8 +11,6 @@ export const payBooks = async (values, token) => {
         },        
     };
 
-    console.log(token);
-
     const res = await fetch(URL, post);
     const { mensaje} = await res.json();
 

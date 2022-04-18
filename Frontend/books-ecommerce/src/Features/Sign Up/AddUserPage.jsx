@@ -11,8 +11,6 @@ const SignUpSchema = Yup.object().shape({
     apellido: Yup.string()
     .required("Este campo es requerido"),
     correoElectronico : Yup.string().email("Correo inválido").required('Se requiere un correo electrónico'),
-    direccion : Yup.string()
-    .required("Debe seleccionar su país"),
     nombreUsuario : Yup.string()
     .required("Se requiere un nombre de usuario")
     .min(5, "Este nombre es demasiado corto"),
@@ -89,19 +87,6 @@ export const AddUserPage = () =>{
                     />
                     {errors.telefono && touched.telefono ? (
                         <div className='text-red-error'>{errors.telefono}</div>
-                    ) : null}
-                </div>
-
-                <div className='mt-6 w-4/5'>
-                    <Field 
-                        type="text"
-                        autoComplete='off'
-                        placeholder='Direccion'
-                        name='direccion'
-                        className='border-b-2 border-light-blue py-2 outline-none w-full focus:border-dark-blue placeholder:text-dark-blue'
-                    />
-                    {errors.direccion && touched.direccion ? (
-                        <div className='text-red-error'>{errors.direccion}</div>
                     ) : null}
                 </div>
 

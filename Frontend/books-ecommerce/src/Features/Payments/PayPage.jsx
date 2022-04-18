@@ -55,8 +55,6 @@ const PayPage = () => {
   }, [user.data.token])
   
   const confirmPay = (paymentData)=>{
-
-    console.log(user.data.idRol)
   
       swal({
         title: "Completar Pago",
