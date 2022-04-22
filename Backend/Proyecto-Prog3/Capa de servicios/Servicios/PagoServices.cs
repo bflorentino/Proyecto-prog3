@@ -6,6 +6,9 @@ using Capa_de_datos;
 using Capa_de_servicios.Response;
 using Capa_de_servicios.Modelos;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
+using System.Text;
 
 namespace Capa_de_servicios.Servicios
 {
@@ -16,7 +19,30 @@ namespace Capa_de_servicios.Servicios
         public PagoServices(E_CommerceContext context)
         {
             _context = context;
-        }   
+        }
+
+
+        private void SendEmail(string correo, StringBuilder cuerpo, string codigoFactura)
+        {
+            var credentials = new NetworkCredential("miltongp26@gmail.com", "ulhphbuaglqdenge");
+
+            var mail = new MailMessage();
+            mail.From = new MailAddress("miltongp26@gmail.com");
+            mail.Subject = "Su factura de la libreria VAN GOH ";
+            mail.To.Add(new MailAddress(correo));
+            mail.Body = $"<html> <body> <h1> Codigo de factura </h1>: {codigoFactura} <br> <br>  <h2>Su compra fue la siguiente </h2> <p> {cuerpo}</p> </ body >  </ html > ";
+            mail.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.Credentials = credentials;
+            smtp.UseDefaultCredentials = false;
+            smtp.Send(mail);
+
+            smtp.Dispose();
+
+        }
 
         public async Task<Respuestas> PayBook(PagoBinding pago ) 
         
@@ -47,7 +73,7 @@ namespace Capa_de_servicios.Servicios
                 };
 
                 await _context.Ventas.AddAsync(ventas);
-
+                StringBuilder detalles = new StringBuilder();
                 foreach (var producto in pago.Carrito)
                 {
 
@@ -61,11 +87,13 @@ namespace Capa_de_servicios.Servicios
 
                     };
                     await _context.DetalleVenta.AddAsync(detalle);
+                    detalles.Append($"{producto.Nombre}     {detalle.Cantidad.ToString()}     {detalle.Precio.ToString()}  \n");
 
                 }
 
                 await _context.SaveChangesAsync();
-
+                var userEmail = await _context.Clientes.FirstOrDefaultAsync(d => d.NombreUsuario == pago.NombreUsuario);
+                SendEmail(userEmail.CorreoElectronico, detalles, pago.CodigoFactura);
                 orespuesta.Mensaje = " Su pago ha sido realizado con exito ";
                 orespuesta.Exito = 1;
 

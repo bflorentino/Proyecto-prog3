@@ -11,6 +11,8 @@ namespace Capa_de_servicios.Modelos
         public int Cantidad { get; set; }
         public double Monto { get; set; }
 
+        public string Nombre { get; set; }
+
 
     }
 }
