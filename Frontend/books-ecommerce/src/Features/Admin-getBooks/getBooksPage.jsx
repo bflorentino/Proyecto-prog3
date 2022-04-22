@@ -10,10 +10,10 @@ const GetBooksPage = () => {
     const [ books, setBooks ] = useState(null)
 
     useEffect(()=>{
-        getAllBooks().then(books => {
-            setBooks([...books])
-        })
-    }, [])
+      getAllBooks().then(books => {
+        setBooks([...books])
+      })
+    }, [books])
 
     const changeToTableViewFormat = ( e ) => {
         document.getElementById("btnListView").classList.remove("active")
