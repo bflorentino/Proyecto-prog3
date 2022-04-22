@@ -63,7 +63,7 @@ namespace Capa_de_servicios.Servicios
 
                 Usuario user = await _context.Usuarios.FindAsync(cliente.NombreUsuario);
 
-                if (user.Contraseña == Encriptacion.GetSHA256(cliente.CurrentPassword))
+                if (user.Contraseña == Encriptacion.GetSHA256(cliente.CurrentPassword) && Encriptacion.GetSHA256(cliente.CurrentPassword) != Encriptacion.GetSHA256(cliente.NewPassword))
                 {
 
                     user.Contraseña = Encriptacion.GetSHA256(cliente.NewPassword);
@@ -76,7 +76,7 @@ namespace Capa_de_servicios.Servicios
                 }
                 else
                 {
-                    respuesta.Mensaje = "Contraseña incorrecta!!!";
+                    respuesta.Mensaje = "Contraseña incorrecta, intenta con otra contraseña o Estas ingresando la misma contraseña que tenias!!!";
                     respuesta.Exito = 0;
                 }
                 return respuesta;
