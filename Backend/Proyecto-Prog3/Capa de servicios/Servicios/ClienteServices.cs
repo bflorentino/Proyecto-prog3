@@ -45,6 +45,7 @@ namespace Capa_de_servicios.Servicios
             await _context.SaveChangesAsync();
 
             respuesta.Mensaje = "El cliente ha sido agregado correctamente";
+            respuesta.Data = 1;
             return respuesta;
             }
             catch (Exception ex)

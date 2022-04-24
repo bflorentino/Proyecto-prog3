@@ -42,6 +42,14 @@ namespace Capa_de_servicios.Controllers
             return Ok(await _libroServices.Getbooks());
         }
 
+        // Obtener los datos de los Libros
+        [HttpGet("admin")]
+        [Authorize(Roles = "2")]
+        public async Task<IActionResult> GetAdmin()
+        {
+            return Ok(await _libroServices.GetbooksAdmin());
+        }
+
         [HttpPost]
         [Authorize(Roles = "2")]
         public async Task<IActionResult> Post([FromForm] LibroBinding libro)

@@ -144,6 +144,45 @@ namespace Capa_de_servicios.Servicios
 
         }
 
+        public async Task<Respuestas> GetbooksAdmin()
+        {
+            try
+            {
+
+                Respuestas oRespuesta = new Respuestas();
+                var listaLibro = await (from libros in _context.Libros
+                                        join categoria in _context.Categoria
+                                        on libros.IdCategoria equals categoria.IdCategoria
+                                        where libros.EnVenta == true
+                                        select new LibroViewModel
+                                        {
+                                            Nombre = libros.Nombre,
+                                            Autor = libros.Autor,
+                                            Categoria = categoria.CategoriaLibro,
+                                            Editorial = libros.Editorial,
+                                            NumeroPaginas = libros.NumeroPaginas,
+                                            Idioma = libros.Idioma,
+                                            RutaFoto = libros.RutaFoto,
+                                            IdCategoria = libros.IdCategoria,
+                                            Anio = libros.Año,
+                                            Idlibro = libros.IdLibro,
+                                            Precio = libros.Precio,
+                                            EnVenta = libros.EnVenta
+                                        }).ToListAsync();
+
+                oRespuesta.Data = listaLibro;
+                return oRespuesta;
+            }
+            catch (Exception ex)
+            {
+                var respuesta = new Respuestas();
+                respuesta.Data = 0;
+                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                return respuesta;
+            }
+
+        }
+
         public async Task<Respuestas> EditBooks(LibroBinding omodel)
         {
             Respuestas orepuesta = new Respuestas();
