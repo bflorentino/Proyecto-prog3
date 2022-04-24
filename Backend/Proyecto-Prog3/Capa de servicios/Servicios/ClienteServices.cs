@@ -44,7 +44,7 @@ namespace Capa_de_servicios.Servicios
             await _context.Usuarios.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            respuesta.Mensaje = "El cliente ha sido agregado correctamente";
+            respuesta.Mensaje = "Su cuenta ha sido registrada exitosamente";
             respuesta.Data = 1;
             return respuesta;
             }
@@ -52,7 +52,7 @@ namespace Capa_de_servicios.Servicios
             {
                 var respuesta = new Respuestas();
                 respuesta.Data = 0;
-                respuesta.Mensaje = "Ha ocurrido un error el error es :" + ex.Message;
+                respuesta.Mensaje = "El nombre de usuario o el correo electrónico ya existe. Pruebe con otro correo o nombre de usuario";
                 return respuesta;
             }
         }

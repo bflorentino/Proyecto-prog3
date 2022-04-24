@@ -32,12 +32,26 @@ export const AddUserPage = () =>{
                 initialValues={{nombre:'', apellido:'', telefono:'', correoElectronico:'', direccion:'', nombreUsuario:'',Contraseña:''}}
                 validationSchema = {SignUpSchema}
                 onSubmit={values => {
-                    addUser({values}).then(mensaje => {
-                        history('/login', {replace:true})
+                    addUser({values}).then(data => {
+                        if(data.data === 1){
+                            history('/login', {replace:true})
+                            swal({
+                                title: "Cuenta creada",
+                                text: data.mensaje,
+                                icon: "success",
+                            })
+
+                        }else{
+                            swal({
+                                title: "Error",
+                                text: data.mensaje,
+                                icon: "error",
+                            })
+                        }
                     }).catch(error => {
                         swal({
-                            title: "Nombre de usuario existente",
-                            text: "Este nombre de usuario ya existe. Intente con otro",
+                            title: "Error de conexión",
+                            text: "Hubo problemas de conexión. Intente más tarde",
                             icon: "error",
                         })
                     })

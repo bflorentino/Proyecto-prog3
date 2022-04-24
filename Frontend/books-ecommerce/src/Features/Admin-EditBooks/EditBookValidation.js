@@ -1,9 +1,7 @@
 export const validateForm = ( form ) => {
 
     // Validar formulario de edición de un libro
-
-    console.log(form)
-
+    
     if(form.Nombre.value === "") return "El titulo del libro es requerido";
     if(form.Precio.value === "") return "Se requiere el precio del libro";
     if(form.Precio.value > 10000 || form.Precio.value < 1) return "Precio inválido";

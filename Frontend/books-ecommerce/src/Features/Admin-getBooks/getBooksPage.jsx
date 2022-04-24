@@ -1,18 +1,21 @@
-import { React, useState, useEffect } from "react";
-import { getAllBooks } from "./getBooksService";
+import { React, useState, useEffect, useContext } from "react";
+import { getAllBooksAdm } from "./getBooksService";
 import ListView from "./ListView";
 import TableView from "./TableView";
 import { MenuAdmin } from "../Menues/MenuAdmin";
+import { AuthContext } from "../Context/AuthContext";
 
 const GetBooksPage = () => {
 
     const [viewFormat, setViewFormat] = useState(true);
     const [ books, setBooks ] = useState(null)
+    const {user} = useContext(AuthContext)
 
     useEffect(()=>{
-      getAllBooks().then(books => {
+      getAllBooksAdm(user.data.token).then(books => {
         setBooks([...books])
       })
+      // eslint-disable-next-line
     }, [books])
 
     const changeToTableViewFormat = ( e ) => {

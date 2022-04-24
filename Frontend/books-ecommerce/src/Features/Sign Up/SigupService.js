@@ -12,7 +12,7 @@ export const addUser = async({values}) => {
     };
 
     const res = await fetch(URL, post);
-    const { mensaje} = await res.json();
+    const data = await res.json();
 
-    return mensaje;
+    return data;
  }
