@@ -83,6 +83,9 @@ namespace Capa_de_datos
                 entity.HasKey(e => e.NombreUsuario)
                     .HasName("PK__Clientes__A0436BD691C3BDB5");
 
+                entity.HasIndex(e => e.CorreoElectronico, "UQ__Constrai")
+                    .IsUnique();
+
                 entity.Property(e => e.NombreUsuario)
                     .HasMaxLength(20)
                     .IsUnicode(false)
