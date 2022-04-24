@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllBooks } from '../Admin-getBooks/getBooksService';
+// import { getAllBooks } from '../Admin-getBooks/getBooksService';
 import { getBooksFiltered } from './FilterService';
 
 const FilterBooks = ({setBooksToShow, allBooks }) => {
@@ -24,7 +24,7 @@ const FilterBooks = ({setBooksToShow, allBooks }) => {
       })
     }
     else if(started && genero.length === 0 && precio === 0 && calificacion === 0 && idioma === 0){
-      getAllBooks().then(books => {
+      getBooksFiltered(filters, allBooks).then(books => {
         setBooksToShow([...books])
       })
     }
