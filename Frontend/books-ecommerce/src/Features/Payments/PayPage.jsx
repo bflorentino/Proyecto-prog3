@@ -37,8 +37,12 @@ const PayPage = () => {
       
       totalCost += iterator.precio
       cartDetails = [...cartDetails, {
-        idLibro: iterator.idLibro, cantidad: iterator.cantidad, monto: iterator.precio
-      } ]
+        idLibro: iterator.idLibro, 
+        cantidad: iterator.cantidad, 
+        monto: iterator.precio, 
+        nombre: iterator.nombre
+      } 
+    ]
       
       setCartDetails([...cartDetails])
     }
@@ -197,6 +201,8 @@ const PayPage = () => {
                   <div className='w-full mt-2 flex flex-col justify-center h-16 ml-6'>
                     <Field
                       type = "number"
+                      min="1" 
+                      pattern="^[0-9]+"
                       name = 'numeroTarjeta'
                       placeholder = 'Número de tarjeta'
                       className = 'border outline-none w-11/12 h-10 pl-2'

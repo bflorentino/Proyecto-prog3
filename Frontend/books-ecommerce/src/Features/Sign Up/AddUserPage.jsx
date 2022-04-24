@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup';
 import { addUser } from './SigupService';
 import { useNavigate, Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 // FORMIK VALIDATIONS
 const SignUpSchema = Yup.object().shape({
@@ -33,6 +34,12 @@ export const AddUserPage = () =>{
                 onSubmit={values => {
                     addUser({values}).then(mensaje => {
                         history('/login', {replace:true})
+                    }).catch(error => {
+                        swal({
+                            title: "Nombre de usuario existente",
+                            text: "Este nombre de usuario ya existe. Intente con otro",
+                            icon: "error",
+                        })
                     })
                 }}
             >

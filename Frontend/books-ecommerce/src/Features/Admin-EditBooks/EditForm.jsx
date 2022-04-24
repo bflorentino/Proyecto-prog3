@@ -1,16 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { editBookService } from './EditBookService'
 import swal from 'sweetalert';
 import { AuthContext } from '../Context/AuthContext';
+import { validateForm } from './EditBookValidation';
 
 const EditForm = ({Book}) => {
 
     const [image, setImage] = useState(null)
     const [editedImage, setEditedImage] = useState(null)
+    const [selectValues, setSelectValues] = useState({})
     const {user} = useContext(AuthContext);
     const history = useNavigate(); 
 
+    useEffect(()=> {
+       setSelectValues({Idioma: Book.idioma, IdCategoria: Book.idCategoria})
+    }, [Book])
+    
     const imageHandler = ( e ) => {
         // Preview image 
         const reader = new FileReader();
@@ -34,26 +40,44 @@ const EditForm = ({Book}) => {
         
         e.preventDefault();
 
-        const form = document.querySelector('#edit-data');    
+        const form = document.querySelector('#edit-data');
+        const validForm = validateForm(form)
         
-        editBookService({
-            idLibro: Book.idlibro,
-            Nombre: form.Nombre.value,
-            Precio: form.Precio.value,
-            Año: form.Año.value,
-            NumeroPaginas: form.NumeroPaginas.value,
-            Autor: form.Autor.value,
-            Editorial: form.Editorial.value,
-            Idioma: form.Idioma.value,
-            IdCategoria: form.IdCategoria.value,
-            Foto: editedImage 
-            
-        }, user.data.token).then(data =>{
-            
-            history('/Get-BooksAdm')
-            showAlert();
-            }
-        )
+        if(validForm === true){
+          editBookService({
+              idLibro: Book.idlibro,
+              Nombre: form.Nombre.value,
+              Precio: form.Precio.value,
+              Año: form.Anio.value,
+              NumeroPaginas: form.NumeroPaginas.value,
+              Autor: form.Autor.value,
+              Editorial: form.Editorial.value,
+              Idioma: form.Idioma.value,
+              IdCategoria: form.IdCategoria.value,
+              Foto: editedImage 
+              
+          }, user.data.token).then(data =>{
+              
+              history('/Get-BooksAdm')
+              showAlert();
+              }
+            )
+      }else{
+          swal({
+            title: "Datos inválidos",
+            text: validForm,
+            icon: "error",
+        })
+      }
+    }
+
+    const handleSelectValues = (e) => {
+      // const selectName = e.target.name
+
+      setSelectValues({
+        ...selectValues,
+        [e.target.name] : e.target.value
+      })
     }
 
   return (
@@ -98,9 +122,9 @@ const EditForm = ({Book}) => {
                 Año:
               </label>
               <input
-                type="text"
+                type="number"
                 autoComplete="off"
-                name="Año"
+                name="Anio"
                 defaultValue={Book.anio && Book.anio}
                 className="px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue"
               />
@@ -151,6 +175,8 @@ const EditForm = ({Book}) => {
               <select
                 name="Idioma"
                 className="ml-2 mr-8 w-6/6 flex outline-none"
+                value = {selectValues.Idioma}
+                onChange = {handleSelectValues}
               >
                 <option value={"Es"}>Español</option>
                 <option value={"En"}>Inglés</option>
@@ -164,7 +190,8 @@ const EditForm = ({Book}) => {
               <select
                 name="IdCategoria"
                 className="px-1 rounded-md border-gray outline-none border-2 w-2/3 placeholder:text-dark-blue"
-                defaultValue={Book.idCategoria ? Book.idCategoria : 1}
+                value = {selectValues.IdCategoria}
+                onChange = {handleSelectValues}
               >
                 <option value={1}>Aventura</option>
                 <option value={2}>Fantasía</option>

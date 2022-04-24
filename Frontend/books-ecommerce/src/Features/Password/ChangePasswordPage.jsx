@@ -27,34 +27,42 @@ const ChangePasswordPage = () => {
                 initialValues={{currentPassword:'', newPassword:''}}
                 validationSchema = {PasswordSchema}
                 onSubmit=  {values=> {
-                    changePassword({
-                                nombreUsuario: user.data.nombreUsuario,
-                                ...values
-                                },
-                                 user.data.token).then(data => {
-                                    if(data.exito){
-                                        swal({
-                                            title: "Cambio de contraseña",
-                                            text: "Su contraseña ha cambiado",
-                                            icon: "success",       
+                    if(values.currentPassword !== values.newPassword){
+                        changePassword({
+                                    nombreUsuario: user.data.nombreUsuario,
+                                    ...values
+                                    },
+                                     user.data.token).then(data => {
+                                        if(data.exito){
+                                            swal({
+                                                title: "Cambio de contraseña",
+                                                text: "Su contraseña ha cambiado",
+                                                icon: "success",       
+                                            }
+                                        )
+                                        history('/', replace)
+                                        }else{
+                                            swal({
+                                                title: "Contraseña incorrecta",
+                                                text: "Asegúrese de escribir su contraseña actual correctamente",
+                                                icon: "error",
+                                            })
                                         }
-                                    )
-                                    history('/', replace)
-                                    }else{
-                                        swal({
-                                            title: "Contraseña incorrecta",
-                                            text: "Asegúrese de escribir su contraseña actual correctamente",
-                                            icon: "error",
-                                        })
-                                    }
-                    }).catch(error => {
-                    swal({
+                        }).catch(error => {
+                        swal({
+                                title: "Error",
+                                text: "Hubo un error al intentar cambiar su contraseña",
+                                icon: "error",
+                            }
+                        )
+                        })
+                    } else{
+                        swal({
                             title: "Error",
-                            text: "Hubo un error al intentar cambiar su contraseña",
+                            text: "Las contraseñas deben ser diferentes",
                             icon: "error",
-                        }
-                    )
-                    })
+                        })
+                    }
                   }
                 }
             >

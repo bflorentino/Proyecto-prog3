@@ -15,12 +15,15 @@ const RegisterBooksSchema = yup.object().shape({
     .max(30),
     Precio: yup.number()
     .required('Indique un precio')
-    .max(10000),
+    .min(1, 'Precio inválido')
+    .max(10000, 'Precio inválido'),
     Autor: yup.string()
     .required('Indique el autor')
     .max(30),
-    Año: yup.date()
-    .required('Indique la fecha'),
+    Año: yup.number()
+    .required('Indique la fecha')
+    .max(2099, "Año inválido")
+    .min(1, "Año inválido"),
     Editorial: yup.string()
     .required('Indique la editorial'),
     NumeroPaginas: yup.number()
@@ -111,6 +114,8 @@ export const RegisterBookPage = () => {
                                         <label className={text} htmlFor="Anio">Año:</label>
                                         <Field 
                                             type="number"
+                                            min = "1"
+                                            max = "2099"
                                             autoComplete="off"
                                             name="Año"
                                             className={inputStyle}

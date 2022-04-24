@@ -31,7 +31,7 @@ export const MenuAdmin = () => {
                     <a className="text-x1 hover:text-light-blue-500 duration-500" href="/Register-BooksAdm">REGISTRAR LIBRO</a>
                 </li>
                 <li className="mx-4 my-6 md:my-0">
-                    <a className="text-x1 hover:text-light-blue-500 duration-500 cursor-pointer" onClick={logOut}>CERRAR SESIÓN</a>
+                    <button className="text-x1 hover:text-light-blue-500 duration-500 cursor-pointer" onClick={logOut}>CERRAR SESIÓN</button>
                 </li>
             </ul>
         </nav>
